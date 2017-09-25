@@ -1,0 +1,34 @@
+{
+  "name": "hrnyc10-solo-week",
+  "version": "1.0.0",
+  "description": "Solo Week Project -- Turn-Based Strategy Game",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cyghfer/hrnyc10-solo-week.git"
+  },
+  "author": "Craig Gordon",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cyghfer/hrnyc10-solo-week/issues"
+  },
+  "homepage": "https://github.com/cyghfer/hrnyc10-solo-week#readme",
+  "dependencies": {
+    "axios": "^0.16.2",
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "express": "^4.15.5",
+    "mysql": "^2.14.1",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1"
+  }
+}
