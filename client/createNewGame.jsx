@@ -15,6 +15,7 @@ class CreateNewGame extends React.Component {
           <option>Relic</option>
         </select><br/>
         Select Country: <select name="Country">
+          <option>select...</option>
           <option>Floria</option>
           <option>Ranford</option>
         </select>
