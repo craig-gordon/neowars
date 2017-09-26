@@ -17,5 +17,8 @@ client/compiled/
 # see https://npmjs.org/doc/faq.html#Should-I-check-my-node_modules-folder-into-git
 node_modules/
 
+# db auth
+db/config.js
+
 # dotenv secrets
 .env
