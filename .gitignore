@@ -10,6 +10,7 @@ pids
 *.seed
 
 # Compiled Dirs (http://nodejs.org/api/addons.html)
+client/compiled/
 
 # Dependency directorys
 # Deployed apps should consider commenting these lines out:
