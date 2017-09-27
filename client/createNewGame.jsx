@@ -22,7 +22,7 @@ class CreateNewGame extends React.Component {
       <div>
         <h3>Create Game</h3>
         Game Name: <input type="text" value={this.state.gameName} onChange={this.updateName}></input><br/>
-        Select Map: <select name="Map" onChange={this.props.updateMap}>
+        Select Map: <select name="Map" onChange={this.updateMap}>
           <option>select...</option>
           <option>Sandalwood Plains</option>
           <option>Folzor's Tundra</option>

@@ -12,7 +12,7 @@ class CurrentGame extends React.Component {
       <div>
         <h3>{this.props.gameName}</h3>
         Map: {this.props.map}<br/>
-        Day: {this.state.currentDay}<br/>
+        Day: {this.state.currentDay}<br/><br/>
         <GameBoard board={this.props.board} />
       </div>
     )

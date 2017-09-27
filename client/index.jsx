@@ -9,24 +9,14 @@ class App extends React.Component {
     };
     this.createNewGame = this.createNewGame.bind(this);
     this.startGame = this.startGame.bind(this);
-    this.setGameName = this.setGameName.bind(this);
-    this.setMap = this.setMap.bind(this);
   }
 
   createNewGame() {
     this.setState({currentView: 'createNewGame'});
   }
 
-  startGame(gameName) {
-    this.setState({currentView: 'gameInSession', gameName});
-  }
-
-  setGameName(e) {
-    this.setState({gameName: e.target.value});
-  }
-
-  setMap(e) {
-    this.setState({map: e.target.value});
+  startGame(gameName, map) {
+    this.setState({currentView: 'gameInSession', gameName, map});
   }
 
   render() {
