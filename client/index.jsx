@@ -3,7 +3,8 @@ class App extends React.Component {
     super(props);
     this.state = {
       currentView: 'landingPage',
-      board: [[0, 1, 2, 3, 4], [1, 2, 3, 4, 5], [2, 3, 4, 5, 6], [3, 4, 5, 6, 7], [4, 5, 6, 7, 8]],
+      mapList: null,
+      board: null,
       gameName: null,
       map: null
     };
@@ -12,11 +13,24 @@ class App extends React.Component {
   }
 
   createNewGame() {
-    this.setState({currentView: 'createNewGame'});
+    axios.get('/maps')
+      .then(maps => {
+        this.setState({
+          currentView: 'createNewGame',
+          mapList: maps
+        });
+      })
+      .catch(err => {
+        console.log('Server error:', err);
+      });
   }
 
   startGame(gameName, map) {
-    this.setState({currentView: 'gameInSession', gameName, map});
+    this.setState({
+      currentView: 'gameInSession',
+      gameName,
+      map
+    });
   }
 
   render() {
