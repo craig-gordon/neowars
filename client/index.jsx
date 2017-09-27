@@ -13,11 +13,12 @@ class App extends React.Component {
   }
 
   createNewGame() {
-    axios.get('/maps')
-      .then(maps => {
+    axios.get('http://localhost:8000/maps')
+      .then(res => {
+        let mapList = res.data.map(map => map.name);
         this.setState({
           currentView: 'createNewGame',
-          mapList: maps
+          mapList
         });
       })
       .catch(err => {
@@ -38,7 +39,7 @@ class App extends React.Component {
       <div>
         <h1>Neo Wars</h1>
         {this.state.currentView === 'landingPage' && <LandingPage createNewGame={this.createNewGame} />}
-        {this.state.currentView === 'createNewGame' && <CreateNewGame setGameName={this.setgameName} setMap={this.setMap} startGame={this.startGame} />}
+        {this.state.currentView === 'createNewGame' && <CreateNewGame maps={this.state.mapList} setGameName={this.setgameName} setMap={this.setMap} startGame={this.startGame} />}
         {this.state.currentView === 'gameInSession' && <CurrentGame gameName={this.state.gameName} map={this.state.map} board={this.state.board}/>}
       </div>
     )

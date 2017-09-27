@@ -24,9 +24,7 @@ class CreateNewGame extends React.Component {
         Game Name: <input type="text" value={this.state.gameName} onChange={this.updateName}></input><br/>
         Select Map: <select name="Map" onChange={this.updateMap}>
           <option>select...</option>
-          <option>Sandalwood Plains</option>
-          <option>Folzor's Tundra</option>
-          <option>Relic</option>
+          {this.props.maps.map((map, i) => <option key={i}>{map}</option>)}
         </select><br/>
         <br/><br/>
         <button onClick={this.props.startGame.bind(null, this.state.gameName, this.state.map)}>Start Game</button>

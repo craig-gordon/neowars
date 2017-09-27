@@ -1,11 +1,11 @@
-const mysql = require('promise-mysql');
+const mysql = require('mysql2/promise');
 const config = require('./config.js');
-
-const connection = mysql.createConnection(config);
 
 const getAllMaps = async () => {
   try {
-    return await connection.query(`SELECT * FROM 'maps'`);
+    const connection = await mysql.createConnection(config);
+    let [maps, fields] = await connection.query(`SELECT * FROM maps`);
+    return maps;
   } catch(err) {
     return err;
   }

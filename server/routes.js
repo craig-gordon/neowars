@@ -11,7 +11,10 @@ app.use(cors());
 
 app.get('/maps', (req, res) => {
   db.getAllMaps()
-    .then(maps => res.send(maps));
+    .then(maps => {
+      res.send(maps);
+    })
+    .catch(err => res.send(err));
 });
 
 module.exports = app;
