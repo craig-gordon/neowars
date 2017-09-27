@@ -11,7 +11,7 @@ class CurrentGame extends React.Component {
     return (
       <div>
         Day: {this.state.currentDay}
-        <GameBoard length={10}/>
+        <GameBoard board={this.props.board} />
       </div>
     )
   }
