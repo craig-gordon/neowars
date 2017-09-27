@@ -10,7 +10,9 @@ class CurrentGame extends React.Component {
   render() {
     return (
       <div>
-        Day: {this.state.currentDay}
+        <h3>{this.props.gameName}</h3>
+        Map: {this.props.map}<br/>
+        Day: {this.state.currentDay}<br/>
         <GameBoard board={this.props.board} />
       </div>
     )
