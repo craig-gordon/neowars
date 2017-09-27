@@ -5,7 +5,7 @@ class BoardSpace extends React.Component {
 
   render() {
     return (
-      <td>{this.props.type}</td>
+      <td>{this.props.terrain}</td>
     )
   }
 }

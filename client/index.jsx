@@ -27,11 +27,27 @@ class App extends React.Component {
   }
 
   startGame(gameName, map) {
-    this.setState({
-      currentView: 'gameInSession',
-      gameName,
-      map
-    });
+    axios.post('http://localhost:8000/board', {map})
+      .then(res => {
+        let board = this.assembleBoard(res.data);
+        this.setState({
+          currentView: 'gameInSession',
+          board,
+          gameName,
+          map
+        });
+      });
+  }
+
+  assembleBoard(dbArray) {
+    return dbArray.reduce((matrix, space) => {
+      if (space.col_no === 0) {
+        matrix[space.row_no] = [space.terrain];
+      } else {
+        matrix[space.row_no].push(space.terrain);
+      }
+      return matrix;
+    }, []);
   }
 
   render() {

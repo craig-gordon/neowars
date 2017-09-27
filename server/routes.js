@@ -17,4 +17,12 @@ app.get('/maps', (req, res) => {
     .catch(err => res.send(err));
 });
 
+app.post('/board', (req, res) => {
+  db.getBoard(req.body.map)
+    .then(board => {
+      res.send(board);
+    })
+    .catch(err => res.send(err));
+});
+
 module.exports = app;
