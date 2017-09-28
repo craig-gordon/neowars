@@ -3,7 +3,8 @@ class CurrentGame extends React.Component {
     super(props);
     this.state = {
       currentDay: 1,
-      currentTurn: 'floria'
+      countries: ['Floria', 'Ranford'],
+      currentTurn: 'Floria'
     };
   }
 
@@ -13,7 +14,8 @@ class CurrentGame extends React.Component {
         <h3>{this.props.gameName}</h3>
         Map: {this.props.map}<br/>
         Day: {this.state.currentDay}<br/><br/>
-        <GameBoard board={this.props.board} />
+        <GameBoard board={this.props.board} /><br/>
+        <CountriesIntel countries={this.state.countries} currentTurn={this.state.currentTurn} />
       </div>
     )
   }
