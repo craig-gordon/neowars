@@ -2,24 +2,22 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentView: 'landingPage',
-      mapList: null,
+      mapList: [],
       board: null,
       gameName: null,
       map: null
     };
-    this.createNewGame = this.createNewGame.bind(this);
+    this.getMapList = this.getMapList.bind(this);
     this.startGame = this.startGame.bind(this);
+    this.assembleBoard = this.assembleBoard.bind(this);
   }
 
-  createNewGame() {
+  getMapList() {
     axios.get('http://localhost:8000/maps')
       .then(res => {
         let mapList = res.data.map(map => map.name);
-        this.setState({
-          currentView: 'createNewGame',
-          mapList
-        });
+        console.log('mapList:', mapList);
+        this.setState({mapList});
       })
       .catch(err => {
         console.log('Server error:', err);
@@ -31,7 +29,6 @@ class App extends React.Component {
       .then(res => {
         let board = this.assembleBoard(res.data);
         this.setState({
-          currentView: 'gameInSession',
           board,
           gameName,
           map
@@ -53,13 +50,16 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <h1>Neo Wars</h1>
-        {this.state.currentView === 'landingPage' && <LandingPage createNewGame={this.createNewGame} />}
-        {this.state.currentView === 'createNewGame' && <CreateNewGame maps={this.state.mapList} setGameName={this.setgameName} setMap={this.setMap} startGame={this.startGame} />}
-        {this.state.currentView === 'gameInSession' && <CurrentGame gameName={this.state.gameName} map={this.state.map} board={this.state.board}/>}
+        <Banner />
+        <Main 
+          mapList={this.state.mapList}
+          gameName={this.state.gameName}
+          map={this.state.map}
+          board={this.state.board}
+          getMapList={this.getMapList}
+          startGame={this.startGame}
+        />
       </div>
     )
   }
 }
-
-ReactDOM.render(<App />, document.getElementById('app'));

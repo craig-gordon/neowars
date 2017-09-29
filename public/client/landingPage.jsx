@@ -1,3 +1,5 @@
+const Link = ReactRouterDOM.Link;
+
 class LandingPage extends React.Component {
   constructor(props) {
     super(props);
@@ -6,7 +8,7 @@ class LandingPage extends React.Component {
   render() {
     return (
       <div>
-        <button onClick={this.props.createNewGame}>Create New Game</button>
+        <Link to='/new'><button onClick={this.props.getMapList}>Start New Game</button></Link>
       </div>
     )
   }

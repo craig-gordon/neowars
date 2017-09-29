@@ -61,6 +61,7 @@ CREATE TABLE units (
 INSERT INTO maps (name, height, width) VALUES ("Sandalwood Plains", 5, 5);
 INSERT INTO maps (name, height, width) VALUES ("Folzor's Tundra", 10, 10);
 INSERT INTO maps (name, height, width) VALUES ("Relic", 20, 20);
+
 INSERT INTO spaces (map_id, row_no, col_no, terrain) VALUES ((SELECT id FROM maps WHERE name="Sandalwood Plains"), 0, 0, 'P');
 INSERT INTO spaces (map_id, row_no, col_no, terrain) VALUES ((SELECT id FROM maps WHERE name="Sandalwood Plains"), 0, 1, 'P');
 INSERT INTO spaces (map_id, row_no, col_no, terrain) VALUES ((SELECT id FROM maps WHERE name="Sandalwood Plains"), 0, 2, 'P');

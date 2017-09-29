@@ -7,6 +7,7 @@ class CreateNewGame extends React.Component {
     }
     this.updateName = this.updateName.bind(this);
     this.updateMap = this.updateMap.bind(this);
+    console.log('this.props:', this.props);
   }
 
   updateName(e) {
@@ -24,7 +25,7 @@ class CreateNewGame extends React.Component {
         Game Name: <input type="text" value={this.state.gameName} onChange={this.updateName}></input><br/>
         Select Map: <select name="Map" onChange={this.updateMap}>
           <option>select...</option>
-          {this.props.maps.map((map, i) => <option key={i}>{map}</option>)}
+          {this.props.mapList.map((map, i) => <option key={i}>{map}</option>)}
         </select><br/>
         <br/><br/>
         <button onClick={this.props.startGame.bind(null, this.state.gameName, this.state.map)}>Start Game</button>
