@@ -1,9 +1,13 @@
 const BrowserRouter = ReactRouterDOM.BrowserRouter;
+const Provider = ReactRedux.Provider;
 
-const router = (
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>
-)
+const store = Redux.createStore(rootReducer);
 
-ReactDOM.render(router, document.getElementById('root'));
+ReactDOM.render(
+  <Provider store={store}>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </Provider>,
+  document.getElementById('root')
+);
