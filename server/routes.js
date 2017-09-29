@@ -11,7 +11,7 @@ app.use(cors());
 
 console.log(__dirname);
 
-app.use(express.static(path.join(__dirname + '/../')));
+app.use(express.static(path.join(__dirname + '/../public')));
 
 app.get('/maps', (req, res) => {
   db.getAllMaps()

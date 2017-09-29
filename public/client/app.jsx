@@ -3,9 +3,9 @@ class App extends React.Component {
     super(props);
     this.state = {
       mapList: [],
-      board: [],
       gameName: null,
-      map: null
+      map: null,
+      board: []
     };
     this.getMapList = this.getMapList.bind(this);
     this.setNameAndMap = this.setNameAndMap.bind(this);
