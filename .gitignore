@@ -1,5 +1,3 @@
-### node etc ###
-
 # Logs
 logs
 *.log
@@ -9,16 +7,13 @@ pids
 *.pid
 *.seed
 
-# Compiled Dirs (http://nodejs.org/api/addons.html)
-client/compiled/
+# Compiled Directories
+client/components/compiled/
 
-# Dependency directorys
+# Dependency Directories
 # Deployed apps should consider commenting these lines out:
 # see https://npmjs.org/doc/faq.html#Should-I-check-my-node_modules-folder-into-git
 node_modules/
 
-# db auth
+# Database Authorization
 db/config.js
-
-# dotenv secrets
-.env
