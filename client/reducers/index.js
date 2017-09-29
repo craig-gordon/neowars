@@ -1,3 +1,29 @@
+const incrementDay = (state = 1, action) => {
+  switch (action.type) {
+    case 'INCREMENT_DAY':
+      return ++state;
+    default:
+      return state;
+  }
+}
+
+const changeCurrentTurn = (state = '', action) => {
+  switch (action.type) {
+    case 'CHANGE_CURRENT_TURN':
+      return 
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
 window.actionTypes = {
   INCREMENT_DAY: 'INCREMENT_DAY',
   CHANGE_CURRENT_TURN: 'CHANGE_CURRENT_TURN',
