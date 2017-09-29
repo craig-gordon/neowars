@@ -8,7 +8,11 @@ class LandingPage extends React.Component {
   render() {
     return (
       <div>
-        <Link to='/new'><button onClick={this.props.getMapList}>Start New Game</button></Link>
+        <Link to='/new'>
+          <button onClick={this.props.getMapList}>
+            Create New Game
+          </button>
+        </Link>
       </div>
     )
   }

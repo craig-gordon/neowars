@@ -18,7 +18,7 @@ class Main extends React.Component {
           <Route path='/new' render={
             () => <CreateNewGame
               mapList={this.props.mapList}
-              startGame={this.props.startGame}
+              setNameAndMap={this.props.setNameAndMap}
             />
           }/>
           <Route path='/game' render={

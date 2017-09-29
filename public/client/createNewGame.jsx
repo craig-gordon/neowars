@@ -1,3 +1,5 @@
+const Link = ReactRouterDOM.Link;
+
 class CreateNewGame extends React.Component {
   constructor(props) {
     super(props);
@@ -28,7 +30,11 @@ class CreateNewGame extends React.Component {
           {this.props.mapList.map((map, i) => <option key={i}>{map}</option>)}
         </select><br/>
         <br/><br/>
-        <button onClick={this.props.startGame.bind(null, this.state.gameName, this.state.map)}>Start Game</button>
+        <Link to='/game'>
+          <button onClick={this.props.setNameAndMap.bind(null, this.state.gameName, this.state.map)}>
+            Start Game
+          </button>
+        </Link>
       </div>
     )
   }

@@ -3,12 +3,12 @@ class App extends React.Component {
     super(props);
     this.state = {
       mapList: [],
-      board: null,
+      board: [],
       gameName: null,
       map: null
     };
     this.getMapList = this.getMapList.bind(this);
-    this.startGame = this.startGame.bind(this);
+    this.setNameAndMap = this.setNameAndMap.bind(this);
     this.assembleBoard = this.assembleBoard.bind(this);
   }
 
@@ -24,7 +24,7 @@ class App extends React.Component {
       });
   }
 
-  startGame(gameName, map) {
+  setNameAndMap(gameName, map) {
     axios.post('http://localhost:8000/board', {map})
       .then(res => {
         let board = this.assembleBoard(res.data);
@@ -57,7 +57,7 @@ class App extends React.Component {
           map={this.state.map}
           board={this.state.board}
           getMapList={this.getMapList}
-          startGame={this.startGame}
+          setNameAndMap={this.setNameAndMap}
         />
       </div>
     )
