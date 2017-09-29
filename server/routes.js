@@ -9,9 +9,9 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
-console.log(__dirname);
+console.log(path.join(__dirname + '/../'));
 
-app.use(express.static(path.join(__dirname + '/../public')));
+app.use(express.static(path.join(__dirname + '/../')));
 
 app.get('/maps', (req, res) => {
   db.getAllMaps()
