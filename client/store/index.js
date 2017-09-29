@@ -1,44 +1,26 @@
-const store = Redux.createStore(rootReducer);
-
-storeBlueprint = {
-  gameName: 'BATTLE OF THE CENTURY',
-  map: 'Sandalwood Plains',
+const defaultState = {
+  mapList: [],
+  gameName: '',
+  map: '',
   day: 1,
   currentTurn: 'Floria',
-  
-  Board: [
-    [
-      {
-        terrain: 'P',
-        currentUnit: null,
-        capturePoints: null,
-        ownedBy: null
-      },
-    ],
-    [
-      {
-        terrain: 'P',
-        currentUnit: null,
-        capturePoints: null,
-        ownedBy: null
-      },
-    ]
-  ],
-  
-  Countries: [
+  board: [],
+  countries: [
     {
-      Name: 'Floria',
-      Funds: 5000,
-      Income: 5000,
-      Units: [
-        {
-          Type: 'antiair',
-          HP: 100,
-          Ammo: 9,
-          Fuel: 60,
-          Position: [0, 0]
-        },
-      ]
+      name: 'Floria',
+      funds: 0,
+      income: 0,
+      units: [],
     },
+    {
+      name: 'Ranford',
+      funds: 0,
+      income: 0,
+      units: []
+    }
   ]
 };
+
+const store = Redux.createStore(rootReducer, defaultState);
+
+window.store = store;
