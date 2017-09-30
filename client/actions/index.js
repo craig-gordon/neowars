@@ -1,6 +1,6 @@
-const incrementDay = () => ({
+const incrementDay = (day) => ({
   type: actionTypes.INCREMENT_DAY,
-  day: ++day
+  day
 });
 
 const changeCurrentTurn = (countryName) => ({
@@ -8,10 +8,9 @@ const changeCurrentTurn = (countryName) => ({
   countryName
 });
 
-const generateIncome = (income, funds) => ({
+const generateIncome = (income) => ({
   type: actionTypes.GENERATE_INCOME,
-  income,
-  funds
+  income
 });
 
 const buildUnit = (unitType) => ({
@@ -19,43 +18,44 @@ const buildUnit = (unitType) => ({
   unitType
 });
 
-const selectUnit = (unit) => ({
-  type: actionTypes.SELECT_UNIT,
+const destroyUnit = (unit) => ({
+  type: actionTypes.DESTROY_UNIT,
   unit
-});
+})
 
 const moveUnit = (position) => ({
   type: actionTypes.MOVE_UNIT,
   position
 });
 
-const fireOnUnit = (aUnit, dUnit) => ({
-  type: actionTypes.FIRE_ON_UNIT,
-  aUnit,
-  dUnit
+const incrementHp = (gain) => ({
+  type: actionTypes.INCREMENT_HP,
+  gain
 });
 
-const decrementAmmo = (ammo) => ({
+const decrementHp = (loss) => ({
+  type: actionTypes.DECREMENT_HP,
+  loss
+});
+
+const incrementAmmo = (gain) => ({
+  type: actionTypes.INCREMENT_AMMO,
+  gain
+})
+
+const decrementAmmo = (loss) => ({
   type: actionTypes.DECREMENT_AMMO,
-  ammo
+  loss
 });
 
-const decrementFuel = (fuel, amount) => ({
+const incrementFuel = (gain) => ({
+  type: actionTypes.INCREMENT_FUEL,
+  gain
+});
+
+const decrementFuel = (loss) => ({
   type: actionTypes.DECREMENT_FUEL,
-  fuel,
-  amount
-});
-
-const restock = (fuel, ammo) => ({
-  type: actionTypes.RESTOCK,
-  fuel,
-  ammo
-});
-
-const captureProperty = (unit, space) => ({
-  type: actionTypes.CAPTURE_PROPERTY,
-  unit,
-  space
+  loss
 });
 
 const incrementIncome = (income) => ({
@@ -63,8 +63,12 @@ const incrementIncome = (income) => ({
   income
 });
 
-const joinUnits = (unit1, unit2) => ({
-  type: actionTypes.JOIN_UNITS,
-  unit1,
-  unit2,
+const decrementIncome = (income) => ({
+  type: actionTypes.DECREMENT_INCOME,
+  income
+});
+
+const captureProperty = (unit, space) => ({
+  type: actionTypes.CAPTURE_PROPERTY,
+  unitHp
 });
