@@ -58,14 +58,14 @@ const decrementFuel = (loss) => ({
   loss
 });
 
-const incrementIncome = (income) => ({
+const incrementIncome = (gain) => ({
   type: actionTypes.INCREMENT_INCOME,
-  income
+  gain
 });
 
-const decrementIncome = (income) => ({
+const decrementIncome = (loss) => ({
   type: actionTypes.DECREMENT_INCOME,
-  income
+  loss
 });
 
 const captureProperty = (unit, space) => ({

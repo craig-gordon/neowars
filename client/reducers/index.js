@@ -116,3 +116,5 @@ const captureProperty = (state, action) => {
       return state;
   }
 }
+
+window.rootReducer = rootReducer;
