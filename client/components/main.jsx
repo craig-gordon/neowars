@@ -23,7 +23,6 @@ class Main extends React.Component {
   setNameAndMap(gameName, map) {
     axios.post('http://localhost:8000/board', {map})
       .then(res => {
-        console.log(res.data);
         let board = this.assembleBoard(res.data);
         store.dispatch(this.props.setGameName(gameName));
         store.dispatch(this.props.setMap(map));

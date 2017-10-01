@@ -23,7 +23,7 @@ class CurrentGame extends React.Component {
       <div>
         <h3>{this.props.gameName}</h3>
         Map: {this.props.map}<br/>
-        Day: {this.props.currentDay}<br/><br/>
+        Day: {this.props.day}<br/><br/>
         <GameBoard
           board={this.props.board}
           units={this.props.units}
