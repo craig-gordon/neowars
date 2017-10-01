@@ -23,6 +23,11 @@ const changeCurrentTurn = (countryName) => ({
   countryName
 });
 
+const setBoard = (board) => ({
+  type: actionTypes.BOARD_SET,
+  board
+});
+
 const receiveIncome = (income) => ({
   type: actionTypes.INCOME_RECEIVE,
   income

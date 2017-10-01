@@ -533,3 +533,21 @@ class Tank extends Unit {
     capture: false
   }
 }
+
+window.createUnit = {
+  antiair: Antiair,
+  apc: APC,
+  artillery: Artillery,
+  bcopter: Bcopter,
+  bomber: Bomber,
+  fighter: Fighter,
+  infantry: Infantry,
+  mdtank: MdTank,
+  mech: Mech,
+  missiles: Missiles,
+  neotank: Neotank,
+  recon: Recon,
+  rockets: Rockets,
+  tcopter: Tcopter,
+  tank: Tank
+}

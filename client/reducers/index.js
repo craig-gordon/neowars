@@ -16,19 +16,19 @@ const gameName = (state = null, action) => {
   }
 }
 
-const day = (state = 1, action) => {
+const map = (state = '', action) => {
   switch (action.type) {
-    case 'DAY_INCREMENT':
-      return ++state;
+    case 'MAP_SELECT':
+      return action.map;
     default:
       return state;
   }
 }
 
-const map = (state = '', action) => {
+const day = (state = 1, action) => {
   switch (action.type) {
-    case 'MAP_SELECT':
-      return action.map;
+    case 'DAY_INCREMENT':
+      return ++state;
     default:
       return state;
   }
@@ -43,90 +43,46 @@ const currentTurn = (state = 'Floria', action) => {
   }
 }
 
-const funds = (state = 0, action) => {
+const board = (state = [], action) => {
+  switch (action.type) {
+    case 'BOARD_SET':
+      return action.board.map(row => row.slice());
+    default:
+      return state;
+  }
+}
+
+const countries = (state = (
+  {
+    Floria: {
+      funds: 0,
+      income: 0,
+      units: []
+    }
+  },
+  {
+    Ranford: {
+      funds: 0,
+      income: 0,
+      units: []
+    }
+  }
+), action) => {
   switch (action.type) {
     case 'INCOME_RECEIVE':
-      return state + action.income;
+      let newState = Object.assign({}, state);
+      newState[action.country].funds += state[action.country].income;
+      return newState;
     default:
       return state;
   }
 }
 
-const build = (state = [], action) => {
+const units = (state = [], action) => {
   switch (action.type) {
     case 'UNIT_BUILD':
-      return state.slice().push(action.unit);
-    default:
-      return state;
-  }
-}
-
-const destroy = (state = [], action) => {
-  switch (action.type) {
-    case 'UNIT_DESTROY':
-      return [...state.slice(0, i), ...state.slice(i + 1)];
-    default:
-      return state;
-  }
-}
-
-const move = (state = {}, action) => {
-  switch (action.type) {
-    case 'UNIT_MOVE':
-      return [state[0] + action.position[0], state[1] + action.position[1]];
-    default:
-      return state;
-  }
-}
-
-const hp = (state = 100, action) => {
-  switch (action.type) {
-    case 'HP_INCREMENT':
-      return state + action.gain;
-    case 'HP_DECREMENT':
-      return state - action.loss;
-    default:
-      return state;
-  }
-}
-
-const ammo = (state = 9, action) => {
-  switch (action.type) {
-    case 'AMMO_INCREMENT':
-      return state + action.gain;
-    case 'AMMO_DECREMENT':
-      return state - action.loss;
-    default:
-      return state;
-  }
-}
-
-const fuel = (state = 99, action) => {
-  switch (action.type) {
-    case 'FUEL_INCREMENT':
-      return state + action.gain;
-    case 'FUEL_DECREMENT':
-      return state - action.loss;
-    default:
-      return state;
-  }
-}
-
-const income = (state = 0, action) => {
-  switch (action.type) {
-    case 'INCOME_INCREMENT':
-      return state + 1000;
-    case 'INCOME_DECREMENT':
-      return state - 1000;
-    default:
-      return state;
-  }
-}
-
-const capture = (state = 20, action) => {
-  switch (action.type) {
-    case 'PROPERTY_CAPTURE':
-      return Math.max(state - action.unitHp, 0);
+      let newState = state.push(new createUnit[action.unitType])
+      return newState;
     default:
       return state;
   }
@@ -135,17 +91,12 @@ const capture = (state = 20, action) => {
 const rootReducer = Redux.combineReducers({
   mapList,
   gameName,
+  map,
   day,
   currentTurn,
-  funds,
-  build,
-  destroy,
-  move,
-  hp,
-  ammo,
-  fuel,
-  income,
-  capture
+  board,
+  countries,
+  units
 });
 
 window.rootReducer = rootReducer;
