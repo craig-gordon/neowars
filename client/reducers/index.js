@@ -1,120 +1,151 @@
-const rootReducer = Redux.combineReducers({
-  incrementDay,
-  changeCurrentTurn,
-  generateIncome,
-  buildUnit,
-  destroyUnit,
-  moveUnit,
-  hp,
-  ammo,
-  fuel,
-  income,
-  captureProperty
-});
-
-const incrementDay = (state, action) => {
+const mapList = (state = [], action) => {
   switch (action.type) {
-    case 'INCREMENT_DAY':
+    case 'MAP_LIST_POPULATE':
+      return action.maps;
+    default:
+      return state;
+  }
+}
+
+const gameName = (state = null, action) => {
+  switch (action.type) {
+    case 'GAME_NAME_SET':
+      return action.gameName;
+    default:
+      return state;
+  }
+}
+
+const day = (state = 1, action) => {
+  switch (action.type) {
+    case 'DAY_INCREMENT':
       return ++state;
     default:
       return state;
   }
 }
 
-const changeCurrentTurn = (state, action) => {
+const map = (state = '', action) => {
   switch (action.type) {
-    case 'CHANGE_CURRENT_TURN':
-      return 
+    case 'MAP_SELECT':
+      return action.map;
+    default:
+      return state;
   }
 }
 
-const generateIncome = (state, action) => {
+const currentTurn = (state = 'Floria', action) => {
   switch (action.type) {
-    case 'GENERATE_INCOME':
+    case 'CURRENT_TURN_CHANGE':
+      return action.country;
+    default:
+      return state;
+  }
+}
+
+const funds = (state = 0, action) => {
+  switch (action.type) {
+    case 'INCOME_RECEIVE':
       return state + action.income;
     default:
       return state;
   }
 }
 
-const buildUnit = (state, action) => {
+const build = (state = [], action) => {
   switch (action.type) {
-    case 'BUILD_UNIT':
+    case 'UNIT_BUILD':
       return state.slice().push(action.unit);
     default:
       return state;
   }
 }
 
-const destroyUnit = (state, action) => {
+const destroy = (state = [], action) => {
   switch (action.type) {
-    case 'DESTROY_UNIT':
+    case 'UNIT_DESTROY':
       return [...state.slice(0, i), ...state.slice(i + 1)];
     default:
       return state;
   }
 }
 
-const moveUnit = (state, action) => {
+const move = (state = {}, action) => {
   switch (action.type) {
-    case 'MOVE_UNIT':
+    case 'UNIT_MOVE':
       return [state[0] + action.position[0], state[1] + action.position[1]];
     default:
       return state;
   }
 }
 
-const hp = (state, action) => {
+const hp = (state = 100, action) => {
   switch (action.type) {
-    case 'INCREMENT_HP':
+    case 'HP_INCREMENT':
       return state + action.gain;
-    case 'DECREMENT_HP':
+    case 'HP_DECREMENT':
       return state - action.loss;
     default:
       return state;
   }
 }
 
-const ammo = (state, action) => {
+const ammo = (state = 9, action) => {
   switch (action.type) {
-    case 'INCREMENT_AMMO':
+    case 'AMMO_INCREMENT':
       return state + action.gain;
-    case 'DECREMENT_AMMO':
+    case 'AMMO_DECREMENT':
       return state - action.loss;
     default:
       return state;
   }
 }
 
-const fuel = (state, action) => {
+const fuel = (state = 99, action) => {
   switch (action.type) {
-    case 'INCREMENT_FUEL':
+    case 'FUEL_INCREMENT':
       return state + action.gain;
-    case 'DECREMENT_FUEL':
+    case 'FUEL_DECREMENT':
       return state - action.loss;
     default:
       return state;
   }
 }
 
-const income = (state, action) => {
+const income = (state = 0, action) => {
   switch (action.type) {
-    case 'INCREMENT_INCOME':
+    case 'INCOME_INCREMENT':
       return state + 1000;
-    case 'DECREMENT_INCOME':
+    case 'INCOME_DECREMENT':
       return state - 1000;
     default:
       return state;
   }
 }
 
-const captureProperty = (state, action) => {
+const capture = (state = 20, action) => {
   switch (action.type) {
-    case 'CAPTURE_PROPERTY':
+    case 'PROPERTY_CAPTURE':
       return Math.max(state - action.unitHp, 0);
     default:
       return state;
   }
 }
+
+const rootReducer = Redux.combineReducers({
+  mapList,
+  gameName,
+  day,
+  currentTurn,
+  funds,
+  build,
+  destroy,
+  move,
+  hp,
+  ammo,
+  fuel,
+  income,
+  capture
+});
 
 window.rootReducer = rootReducer;

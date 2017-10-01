@@ -10,6 +10,6 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => Redux.bindActionCreators(actionCreators, dispatch);
 
-const App = connect(mapStateToProps, mapDispatchToProps)(Main);
+const App = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(Top);
 
 window.App = App;

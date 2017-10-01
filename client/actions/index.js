@@ -1,82 +1,97 @@
+const populateMapList = (maps) => ({
+  type: actionTypes.MAP_LIST_POPULATE,
+  maps
+});
+
+const setGameName = (gameName) => ({
+  type: actionTypes.GAME_NAME_SET,
+  gameName
+});
+
 const incrementDay = (day) => ({
-  type: actionTypes.INCREMENT_DAY,
+  type: actionTypes.DAY_INCREMENT,
   day
 });
 
+const selectMap = (map) => ({
+  type: actionTypes.MAP_SELECT,
+  map
+});
+
 const changeCurrentTurn = (countryName) => ({
-  type: actionTypes.CHANGE_CURRENT_TURN,
+  type: actionTypes.CURRENT_TURN_CHANGE,
   countryName
 });
 
-const generateIncome = (income) => ({
-  type: actionTypes.GENERATE_INCOME,
+const receiveIncome = (income) => ({
+  type: actionTypes.INCOME_RECEIVE,
   income
 });
 
 const buildUnit = (unitType) => ({
-  type: actionTypes.BUILD_UNIT,
+  type: actionTypes.UNIT_BUILD,
   unitType
 });
 
 const destroyUnit = (index) => ({
-  type: actionTypes.DESTROY_UNIT,
+  type: actionTypes.UNIT_DESTROY,
   index
 })
 
 const moveUnit = (position) => ({
-  type: actionTypes.MOVE_UNIT,
+  type: actionTypes.UNIT_MOVE,
   position
 });
 
 const incrementHp = (gain) => ({
-  type: actionTypes.INCREMENT_HP,
+  type: actionTypes.HP_INCREMENT,
   gain
 });
 
 const decrementHp = (loss) => ({
-  type: actionTypes.DECREMENT_HP,
+  type: actionTypes.HP_DECREMENT,
   loss
 });
 
 const incrementAmmo = (gain) => ({
-  type: actionTypes.INCREMENT_AMMO,
+  type: actionTypes.AMMO_INCREMENT,
   gain
 })
 
 const decrementAmmo = (loss) => ({
-  type: actionTypes.DECREMENT_AMMO,
+  type: actionTypes.AMMO_DECREMENT,
   loss
 });
 
 const incrementFuel = (gain) => ({
-  type: actionTypes.INCREMENT_FUEL,
+  type: actionTypes.FUEL_INCREMENT,
   gain
 });
 
 const decrementFuel = (loss) => ({
-  type: actionTypes.DECREMENT_FUEL,
+  type: actionTypes.FUEL_DECREMENT,
   loss
 });
 
 const incrementIncome = (gain) => ({
-  type: actionTypes.INCREMENT_INCOME,
+  type: actionTypes.INCOME_INCREMENT,
   gain
 });
 
 const decrementIncome = (loss) => ({
-  type: actionTypes.DECREMENT_INCOME,
+  type: actionTypes.INCOME_DECREMENT,
   loss
 });
 
 const captureProperty = (unitHp) => ({
-  type: actionTypes.CAPTURE_PROPERTY,
+  type: actionTypes.PROPERTY_CAPTURE,
   unitHp
 });
 
 window.actionCreators = {
   incrementDay,
   changeCurrentTurn,
-  generateIncome,
+  receiveIncome,
   buildUnit,
   destroyUnit,
   moveUnit,
