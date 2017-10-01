@@ -8,8 +8,14 @@ class GameBoard extends React.Component {
       <table>
         <tbody>
           {this.props.board.map((row, x) => {
-            return <tr key={x}>{row.map((terrainType, y) => {
-              return <BoardSpace key={y} space={new setTerrain[terrainType](x, y)} />
+            return <tr key={x}>{row.map((space, y) => {
+              return (
+                <BoardSpace
+                  key={y}
+                  space={space}
+                  toggleSpaceIntel={this.props.toggleSpaceIntel}
+                />
+              )
             })}</tr>
           })}
         </tbody>

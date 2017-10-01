@@ -25,7 +25,7 @@ const map = (state = '', action) => {
   }
 }
 
-const board = (state = [], action) => {
+const board = (state = [[]], action) => {
   switch (action.type) {
     case 'BOARD_SET':
       return action.board;

@@ -23,6 +23,7 @@ class Main extends React.Component {
   setNameAndMap(gameName, map) {
     axios.post('http://localhost:8000/board', {map})
       .then(res => {
+        console.log(res.data);
         let board = this.assembleBoard(res.data);
         store.dispatch(this.props.setGameName(gameName));
         store.dispatch(this.props.setMap(map));
@@ -33,9 +34,9 @@ class Main extends React.Component {
   assembleBoard(dbArray) {
     return dbArray.reduce((matrix, space) => {
       if (space.col_no === 0) {
-        matrix[space.row_no] = [space.terrain];
+        matrix[space.row_no] = [new setTerrain[space.terrain](space.row_no, space.col_no)];
       } else {
-        matrix[space.row_no].push(space.terrain);
+        matrix[space.row_no].push(new setTerrain[space.terrain](space.row_no, space.col_no));
       }
       return matrix;
     }, []);
