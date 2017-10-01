@@ -18,8 +18,17 @@ const gameName = (state = null, action) => {
 
 const map = (state = '', action) => {
   switch (action.type) {
-    case 'MAP_SELECT':
+    case 'MAP_SET':
       return action.map;
+    default:
+      return state;
+  }
+}
+
+const board = (state = [], action) => {
+  switch (action.type) {
+    case 'BOARD_SET':
+      return action.board.map(row => row.slice());
     default:
       return state;
   }
@@ -38,15 +47,6 @@ const currentTurn = (state = 'Floria', action) => {
   switch (action.type) {
     case 'CURRENT_TURN_CHANGE':
       return action.country;
-    default:
-      return state;
-  }
-}
-
-const board = (state = [], action) => {
-  switch (action.type) {
-    case 'BOARD_SET':
-      return action.board.map(row => row.slice());
     default:
       return state;
   }
@@ -93,9 +93,9 @@ window.reducers = {
   mapList,
   gameName,
   map,
+  board,
   day,
   currentTurn,
-  board,
   countries,
   units
 };

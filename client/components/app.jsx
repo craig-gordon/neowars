@@ -12,6 +12,6 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => Redux.bindActionCreators(actionCreators, dispatch);
 
-const App = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(Top);
+const App = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(Main);
 
 window.App = App;

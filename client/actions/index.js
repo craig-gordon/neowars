@@ -8,24 +8,24 @@ const setGameName = (gameName) => ({
   gameName
 });
 
-const incrementDay = (day) => ({
-  type: actionTypes.DAY_INCREMENT,
-  day
-});
-
-const selectMap = (map) => ({
-  type: actionTypes.MAP_SELECT,
+const setMap = (map) => ({
+  type: actionTypes.MAP_SET,
   map
-});
-
-const changeCurrentTurn = (countryName) => ({
-  type: actionTypes.CURRENT_TURN_CHANGE,
-  countryName
 });
 
 const setBoard = (board) => ({
   type: actionTypes.BOARD_SET,
   board
+});
+
+const incrementDay = (day) => ({
+  type: actionTypes.DAY_INCREMENT,
+  day
+});
+
+const changeCurrentTurn = (countryName) => ({
+  type: actionTypes.CURRENT_TURN_CHANGE,
+  countryName
 });
 
 const receiveIncome = (income) => ({
@@ -95,6 +95,9 @@ const captureProperty = (unitHp) => ({
 
 window.actionCreators = {
   populateMapList,
+  setGameName,
+  setMap,
+  setBoard,
   incrementDay,
   changeCurrentTurn,
   receiveIncome,
