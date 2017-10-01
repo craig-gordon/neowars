@@ -4,7 +4,6 @@ const Route = ReactRouterDOM.Route;
 class Main extends React.Component {
   constructor(props) {
     super(props);
-    console.log('this.props:', this.props);
     this.getMapList = this.getMapList.bind(this);
     this.setNameAndMap = this.setNameAndMap.bind(this);
     this.assembleBoard = this.assembleBoard.bind(this);
@@ -61,7 +60,7 @@ class Main extends React.Component {
             />
           }/>
           <Route path='/game' render={
-            () => <CurrentGame
+            () => <GameContainer
               map={this.props.map}
               gameName={this.props.gameName}
               board={this.props.board}

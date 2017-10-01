@@ -28,7 +28,7 @@ const map = (state = '', action) => {
 const board = (state = [], action) => {
   switch (action.type) {
     case 'BOARD_SET':
-      return action.board.map(row => row.slice());
+      return action.board;
     default:
       return state;
   }
@@ -46,27 +46,27 @@ const day = (state = 1, action) => {
 const currentTurn = (state = 'Floria', action) => {
   switch (action.type) {
     case 'CURRENT_TURN_CHANGE':
-      return action.country;
+      return action.countryName;
     default:
       return state;
   }
 }
 
 const countries = (state = (
-  {
-    Floria: {
+  [
+    {
+      name: 'Floria',
+      funds: 0,
+      income: 0,
+      units: []
+    },
+    {
+      name: 'Ranford',
       funds: 0,
       income: 0,
       units: []
     }
-  },
-  {
-    Ranford: {
-      funds: 0,
-      income: 0,
-      units: []
-    }
-  }
+  ]
 ), action) => {
   switch (action.type) {
     case 'INCOME_RECEIVE':

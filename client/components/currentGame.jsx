@@ -1,11 +1,10 @@
 class CurrentGame extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      currentDay: 1,
-      countries: ['Floria', 'Ranford'],
-      currentTurn: 'Floria'
-    };
+  }
+
+  componentDidMount() {
+    store.dispatch(this.props.changeCurrentTurn(this.props.countries[0].name));
   }
 
   render() {
@@ -13,9 +12,9 @@ class CurrentGame extends React.Component {
       <div>
         <h3>{this.props.gameName}</h3>
         Map: {this.props.map}<br/>
-        Day: {this.state.currentDay}<br/><br/>
-        <GameBoard board={this.props.board} /><br/>
-        <CountriesIntel countries={this.state.countries} currentTurn={this.state.currentTurn} />
+        Day: {this.props.currentDay}<br/><br/>
+        <GameBoard board={this.props.board} units={this.props.units} /><br/>
+        <CountriesIntel countries={this.props.countries} currentTurn={this.props.currentTurn} />
       </div>
     )
   }

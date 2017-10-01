@@ -7,7 +7,7 @@ class Terrain {
 class Road extends Terrain {
   constructor(x, y) {
     super(x, y);
-    this.type = 'road';
+    this.type = 'R';
     this.defense = 0;
     this.moveCosts = {
       A: 1,
@@ -22,7 +22,7 @@ class Road extends Terrain {
 class Plain extends Terrain {
   constructor(x, y) {
     super(x, y);
-    this.type = 'plain';
+    this.type = 'P';
     this.defense = 1;
     this.moveCosts = {
       A: 1,
@@ -37,7 +37,7 @@ class Plain extends Terrain {
 class Wood extends Terrain {
   constructor(x, y) {
     super(x, y);
-    this.type = 'wood';
+    this.type = 'W';
     this.defense = 2;
     this.moveCosts = {
       A: 1,
@@ -52,7 +52,7 @@ class Wood extends Terrain {
 class Mountain extends Terrain {
   constructor(x, y) {
     super(x, y);
-    this.type = 'mountain';
+    this.type = 'M';
     this.defense = 4;
     this.moveCosts = {
       A: 1,
@@ -63,9 +63,9 @@ class Mountain extends Terrain {
 }
 
 class City extends Terrain {
-  constructor(x, y, owner) {
+  constructor(x, y, owner = null) {
     super(x, y);
-    this.type = 'city';
+    this.type = 'C';
     this.defense = 3;
     this.moveCosts = {
       A: 1,
@@ -93,9 +93,9 @@ class City extends Terrain {
 }
 
 class Base extends Terrain {
-  constructor(x, y, owner) {
+  constructor(x, y, owner = null) {
     super(x, y);
-    this.type = 'base';
+    this.type = 'B';
     this.defense = 3;
     this.moveCosts = {
       A: 1,
@@ -140,9 +140,9 @@ class Base extends Terrain {
 }
 
 class Airport extends Terrain {
-  constructor(x, y, owner) {
+  constructor(x, y, owner = null) {
     super(x, y);
-    this.type = 'airport';
+    this.type = 'A';
     this.defense = 3;
     this.moveCosts = {
       A: 1,
@@ -182,7 +182,7 @@ class Airport extends Terrain {
 class HQ extends Terrain {
   constructor(x, y, owner) {
     super(x, y);
-    this.type = 'HQ';
+    this.type = 'H';
     this.defense = 4;
     this.moveCosts = {
       A: 1,
@@ -211,12 +211,12 @@ class HQ extends Terrain {
 }
 
 window.setTerrain = {
-  road: Road,
-  plain: Plain,
-  wood: Wood,
-  mountain: Mountain,
-  city: City,
-  base: Base,
-  airport: Airport,
-  hq: HQ
+  R: Road,
+  P: Plain,
+  W: Wood,
+  M: Mountain,
+  C: City,
+  B: Base,
+  A: Airport,
+  H: HQ
 };

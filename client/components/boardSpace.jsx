@@ -8,8 +8,8 @@ class BoardSpace extends React.Component {
   render() {
     return (
       <td>
-        <Link to={`/game/space=${this.props.position[0]},${this.props.position[1]}`}>
-          {this.props.terrain}
+        <Link to={`/game/space=${this.props.space.position[0]},${this.props.space.position[1]}`}>
+          {this.props.space.type}
         </Link>
       </td>
     )
