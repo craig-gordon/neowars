@@ -1,20 +1,21 @@
 class Unit {
-  constructor() {
-    hp: 100
+  constructor(owner) {
+    this.hp = 100;
+    this.owner = owner;
   }
 }
 
 class Antiair extends Unit {
-  constructor() {
-    super();
-    type: 'antiair',
-    zone: 'L',
-    moveRange: 6,
-    moveType: 'T',
-    fuel: 60,
-    maintenance: 0,
-    cost: 7000,
-    weapons: [
+  constructor(owner) {
+    super(owner);
+    this.type = 'antiair';
+    this.zone = 'L';
+    this.moveRange = 6;
+    this.moveType = 'T';
+    this.fuel = 60;
+    this.maintenance = 0;
+    this.cost = 7000;
+    this.weapons = [
       {
         name: 'vulcan cannon',
         range: 1,
@@ -35,43 +36,43 @@ class Antiair extends Unit {
           rockets: 55,
           tcopter: 120,
           tank: 25
-        },
+        }
       }
-    ]
-    fireAfterMove: true,
-    carry: [],
-    capture: false
+    ];
+    this.fireAfterMove = true;
+    this.carry = [];
+    this.capture = false;
   }
 }
 
 class APC extends Unit {
-  constructor() {
-    super();
-    type: 'apc',
-    zone: 'L',
-    moveRange: 6,
-    moveType: 'T',
-    fuel: 60,
-    maintenance: 0,
-    cost: 5000,
-    weapons: [],
-    fireAfterMove: false,
-    carry: ['infantry', 'mech'],
-    capture: false
+  constructor(owner) {
+    super(owner);
+    this.type = 'apc';
+    this.zone = 'L';
+    this.moveRange = 6;
+    this.moveType = 'T';
+    this.fuel = 60;
+    this.maintenance = 0;
+    this.cost = 5000;
+    this.weapons = [];
+    this.fireAfterMove = false;
+    this.carry = ['infantry', 'mech'];
+    this.capture = false;
   }
 }
 
 class Artillery extends Unit {
-  constructor() {
-    super();
-    type: 'artillery',
-    zone: 'L',
-    moveRange: 5,
-    moveType: 'T',
-    fuel: 50,
-    maintenance: 0,
-    cost: 6000,
-    weapons: [
+  constructor(owner) {
+    super(owner);
+    this.type = 'artillery';
+    this.zone = 'L';
+    this.moveRange = 5;
+    this.moveType = 'T';
+    this.fuel = 50;
+    this.maintenance = 0;
+    this.cost = 6000;
+    this.weapons = [
       {
         name: 'cannon',
         range: [2, 3],
@@ -88,26 +89,26 @@ class Artillery extends Unit {
           recon: 80,
           rockets: 80,
           tank: 70
-        },
+        }
       }
-    ]
-    fireAfterMove: false,
-    carry: [],
-    capture: false
+    ];
+    this.fireAfterMove = false;
+    this.carry = [];
+    this.capture = false;
   }
 }
 
 class Bcopter extends Unit {
-  constructor() {
-    super();
-    type: 'bcopter',
-    zone: 'A',
-    moveRange: 6,
-    moveType: 'A',
-    fuel: 99,
-    maintenance: 2,
-    cost: 9000,
-    weapons: [
+  constructor(owner) {
+    super(owner);
+    this.type = 'bcopter';
+    this.zone = 'A';
+    this.moveRange = 6;
+    this.moveType = 'A';
+    this.fuel = 99;
+    this.maintenance = 2;
+    this.cost = 9000;
+    this.weapons = [
       {
         name: 'missiles',
         range: 1,
@@ -120,7 +121,7 @@ class Bcopter extends Unit {
           infantry: 75,
           mdtank: 25,
           mech: 75,
-          missiles: 65
+          missiles: 65,
           neotank: 20,
           recon: 55,
           rockets: 65,
@@ -131,29 +132,26 @@ class Bcopter extends Unit {
       {
         name: 'machine gun',
         range: 1,
-        ammo: Infinity,
-        damageTo: {
-
-        }
+        ammo: Infinity
       }
-    ],
-    fireAfterMove: true,
-    carry: [],
-    capture: false
+    ];
+    this.fireAfterMove = true;
+    this.carry = [];
+    this.capture = false;
   }
 }
 
 class Bomber extends Unit {
-  constructor() {
-    super();
-    type: 'bomber',
-    zone: 'A',
-    moveRange: 7,
-    moveType: 'A',
-    fuel: 99,
-    maintenance: 5,
-    cost: 20000,
-    weapons: [
+  constructor(owner) {
+    super(owner);
+    this.type = 'bomber';
+    this.zone = 'A';
+    this.moveRange = 7;
+    this.moveType = 'A';
+    this.fuel = 99;
+    this.maintenance = 5;
+    this.cost = 20000;
+    this.weapons = [
       {
         name: 'bombs',
         range: 1,
@@ -170,26 +168,26 @@ class Bomber extends Unit {
           recon: 105,
           rockets: 105,
           tank: 105
-        },
+        }
       }
-    ]
-    fireAfterMove: true,
-    carry: [],
-    capture: false
+    ];
+    this.fireAfterMove = true;
+    this.carry = [];
+    this.capture = false;
   }
 }
 
 class Fighter extends Unit {
-  constructor() {
-    super();
-    type: 'fighter',
-    zone: 'A',
-    moveRange: 9,
-    moveType: 'A',
-    fuel: 99,
-    maintenance: 5,
-    cost: 16000,
-    weapons: [
+  constructor(owner) {
+    super(owner);
+    this.type = 'fighter';
+    this.zone = 'A';
+    this.moveRange = 9;
+    this.moveType = 'A';
+    this.fuel = 99;
+    this.maintenance = 5;
+    this.cost = 16000;
+    this.weapons = [
       {
         name: 'missiles',
         range: 1,
@@ -199,26 +197,26 @@ class Fighter extends Unit {
           bomber: 100,
           fighter: 55,
           tcopter: 100
-        },
+        }
       }
-    ]
-    fireAfterMove: true,
-    carry: [],
-    capture: false
+    ];
+    this.fireAfterMove = true;
+    this.carry = [];
+    this.capture = false;
   }
 }
 
 class Infantry extends Unit {
-  constructor() {
-    super();
-    type: 'infantry',
-    zone: 'L',
-    moveRange: 3,
-    moveType: 'I',
-    fuel: 99,
-    maintenance: 0,
-    cost: 1500,
-    weapons: [
+  constructor(owner) {
+    super(owner);
+    this.type = 'infantry';
+    this.zone = 'L';
+    this.moveRange = 3;
+    this.moveType = 'I';
+    this.fuel = 99;
+    this.maintenance = 0;
+    this.cost = 1500;
+    this.weapons = [
       {
         name: 'machine gun',
         range: 1,
@@ -237,26 +235,26 @@ class Infantry extends Unit {
           rockets: 25,
           tcopter: 30,
           tank: 5
-        },
+        }
       }
-    ]
-    fireAfterMove: true,
-    carry: [],
-    capture: true
+    ];
+    this.fireAfterMove = true;
+    this.carry = [];
+    this.capture = true;
   }
 }
 
 class MdTank extends Unit {
-  contructor() {
-    super();
-    type: 'mdtank',
-    zone: 'L',
-    moveRange: 5,
-    moveType: 'T',
-    fuel: 50,
-    maintenance: 0,
-    cost: 14000,
-    weapons: [
+  constructor(owner) {
+    super(owner);
+    this.type = 'mdtank';
+    this.zone = 'L';
+    this.moveRange = 5;
+    this.moveType = 'T';
+    this.fuel = 50;
+    this.maintenance = 0;
+    this.cost = 14000;
+    this.weapons = [
       {
         name: 'cannon',
         range: 1,
@@ -277,28 +275,25 @@ class MdTank extends Unit {
         name: 'machine gun',
         range: 1,
         ammo: Infinity,
-        damageTo: {
-
-        }
       }
-    ],
-    fireAfterMove: true,
-    carry: [],
-    capture: false
+    ];
+    this.fireAfterMove = true;
+    this.carry = [];
+    this.capture = false;
   }
 }
 
 class Mech extends Unit {
-  contructor() {
-    super();
-    type: 'mech',
-    zone: 'L',
-    moveRange: 2,
-    moveType: 'M',
-    fuel: 99,
-    maintenance: 0,
-    cost: 2500,
-    weapons: [
+  constructor(owner) {
+    super(owner);
+    this.type = 'mech';
+    this.zone = 'L';
+    this.moveRange = 2;
+    this.moveType = 'M';
+    this.fuel = 99;
+    this.maintenance = 0;
+    this.cost = 2500;
+    this.weapons = [
       {
         name: 'bazooka',
         range: 1,
@@ -318,58 +313,55 @@ class Mech extends Unit {
       {
         name: 'machine gun',
         range: 1,
-        ammo: Infinity,
-        damageTo: {
-
-        }
+        ammo: Infinity
       }
-    ],
-    fireAfterMove: true,
-    carry: [],
-    capture: true
+    ];
+    this.fireAfterMove = true;
+    this.carry = [];
+    this.capture = true;
   }
 }
 
 class Missiles extends Unit {
-  constructor() {
-    super();
-    type: 'missiles',
-    zone: 'L',
-    moveRange: 5,
-    moveType: 'W',
-    fuel: 99,
-    maintenance: 0,
-    cost: 10000,
-    weapons: [
+  constructor(owner) {
+    super(owner);
+    this.type = 'missiles';
+    this.zone = 'L';
+    this.moveRange = 5;
+    this.moveType = 'W';
+    this.fuel = 99;
+    this.maintenance = 0;
+    this.cost = 10000;
+    this.weapons = [
       {
         name: 'missiles',
-        range: [3, 4, 5, 6]
+        range: [3, 4, 5, 6],
         ammo: 6,
         damageTo: {
-          bcopter: 120
+          bcopter: 120,
           bomber: 100,
           fighter: 100,
           tcopter: 120
         },
       }
-    ]
-    fireAfterMove: false,
-    carry: [],
-    capture: false
+    ];
+    this.fireAfterMove = false;
+    this.carry = [];
+    this.capture = false;
   }
 }
 
 class Neotank extends Unit {
-  contructor() {
-    super();
-    type: 'neotank',
-    zone: 'L',
-    moveRange: 6,
-    moveType: 'T',
-    fuel: 99,
-    maintenance: 0,
-    cost: 20000,
-    weapons: [
+  constructor(owner) {
+    super(owner);
+    this.type = 'neotank';
+    this.zone = 'L';
+    this.moveRange = 6;
+    this.moveType = 'T';
+    this.fuel = 99;
+    this.maintenance = 0;
+    this.cost = 20000;
+    this.weapons = [
       {
         name: 'cannon',
         range: 1,
@@ -389,29 +381,26 @@ class Neotank extends Unit {
       {
         name: 'machine gun',
         range: 1,
-        ammo: Infinity,
-        damageTo: {
-
-        }
+        ammo: Infinity
       }
-    ],
-    fireAfterMove: true,
-    carry: [],
-    capture: false
+    ];
+    this.fireAfterMove = true;
+    this.carry = [];
+    this.capture = false;
   }
 }
 
 class Recon extends Unit {
-  constructor() {
-    super();
-    type: 'recon',
-    zone: 'L',
-    moveRange: 8,
-    moveType: 'W',
-    fuel: 80,
-    maintenance: 0,
-    cost: 4000,
-    weapons: [
+  constructor(owner) {
+    super(owner);
+    this.type = 'recon';
+    this.zone = 'L';
+    this.moveRange = 8;
+    this.moveType = 'W';
+    this.fuel = 80;
+    this.maintenance = 0;
+    this.cost = 4000;
+    this.weapons = [
       {
         name: 'machine gun',
         range: 1,
@@ -432,24 +421,24 @@ class Recon extends Unit {
           tank: 6
         },
       }
-    ]
-    fireAfterMove: true,
-    carry: [],
-    capture: false
+    ];
+    this.fireAfterMove = true;
+    this.carry = [];
+    this.capture = false;
   }
 }
 
 class Rockets extends Unit {
-  constructor() {
-    super();
-    type: 'rockets',
-    zone: 'L',
-    moveRange: 5,
-    moveType: 'W',
-    fuel: 50,
-    maintenance: 0,
-    cost: 15000,
-    weapons: [
+  constructor(owner) {
+    super(owner);
+    this.type = 'rockets';
+    this.zone = 'L';
+    this.moveRange = 5;
+    this.moveType = 'W';
+    this.fuel = 50;
+    this.maintenance = 0;
+    this.cost = 15000;
+    this.weapons = [
       {
         name: 'rockets',
         range: [3, 4, 5],
@@ -468,41 +457,41 @@ class Rockets extends Unit {
           tank: 80
         },
       }
-    ]
-    fireAfterMove: false,
-    carry: [],
-    capture: false
+    ];
+    this.fireAfterMove = false;
+    this.carry = [];
+    this.capture = false;
   }
 }
 
 class Tcopter extends Unit {
-  constructor() {
-    super();
-    type: 'tcopter',
-    zone: 'A',
-    moveRange: 6,
-    moveType: 'A',
-    fuel: 99,
-    maintenance: 2,
-    cost: 5000,
-    weapons: [],
-    fireAfterMove: false,
-    carry: ['infantry', 'mech'],
-    capture: false
+  constructor(owner) {
+    super(owner);
+    this.type = 'tcopter';
+    this.zone = 'A';
+    this.moveRange = 6;
+    this.moveType = 'A';
+    this.fuel = 99;
+    this.maintenance = 2;
+    this.cost = 5000;
+    this.weapons = [],
+    this.fireAfterMove = false;
+    this.carry = ['infantry', 'mech'];
+    this.capture = false;
   }
 }
 
 class Tank extends Unit {
-  contructor() {
-    super();
-    type: 'tank',
-    zone: 'L',
-    moveRange: 6,
-    moveType: 'T',
-    fuel: 70,
-    maintenance: 0,
-    cost: 7000,
-    weapons: [
+  constructor(owner) {
+    super(owner);
+    this.type = 'tank';
+    this.zone = 'L';
+    this.moveRange = 6;
+    this.moveType = 'T';
+    this.fuel = 70;
+    this.maintenance = 0;
+    this.cost = 7000;
+    this.weapons = [
       {
         name: 'cannon',
         range: 1,
@@ -522,15 +511,12 @@ class Tank extends Unit {
       {
         name: 'machine gun',
         range: 1,
-        ammo: Infinity,
-        damageTo: {
-
-        }
+        ammo: Infinity
       }
-    ],
-    fireAfterMove: true,
-    carry: [],
-    capture: false
+    ];
+    this.fireAfterMove = true;
+    this.carry = [];
+    this.capture = false;
   }
 }
 
@@ -550,4 +536,4 @@ window.createUnit = {
   rockets: Rockets,
   tcopter: Tcopter,
   tank: Tank
-}
+};

@@ -1,75 +1,82 @@
 class Terrain {
   constructor(x, y) {
-    position: [x, y]
+    this.position = [x, y];
   }
 }
 
 class Road extends Terrain {
   constructor(x, y) {
     super(x, y);
-    defense: 0
-    moveCosts: {
+    this.type = 'road';
+    this.defense = 0;
+    this.moveCosts = {
       A: 1,
       I: 1,
       M: 1,
       T: 1,
       W: 1
-    }
+    };
   }
 }
 
 class Plain extends Terrain {
   constructor(x, y) {
     super(x, y);
-    defense: 1
-    moveCosts: {
+    this.type = 'plain';
+    this.defense = 1;
+    this.moveCosts = {
       A: 1,
       I: 1,
       M: 1,
       T: 1,
       W: 2 
-    }
+    };
   }
 }
 
 class Wood extends Terrain {
   constructor(x, y) {
     super(x, y);
-    defense: 2
-    moveCosts: {
+    this.type = 'wood';
+    this.defense = 2;
+    this.moveCosts = {
       A: 1,
       I: 1,
       M: 1,
       T: 2,
       W: 3 
-    }    
+    };
   }
 }
 
 class Mountain extends Terrain {
   constructor(x, y) {
     super(x, y);
-    moveCosts: {
+    this.type = 'mountain';
+    this.defense = 4;
+    this.moveCosts = {
       A: 1,
       I: 2,
       M: 1,
-    }   
+    };
   }
 }
 
 class City extends Terrain {
   constructor(x, y, owner) {
     super(x, y);
-    moveCosts: {
+    this.type = 'city';
+    this.defense = 3;
+    this.moveCosts = {
       A: 1,
       I: 1,
       M: 1,
       T: 1,
       W: 1
-    },
-    captureHp: 20,
-    owner: owner,
-    canHeal: {
+    };
+    this.captureHp = 20;
+    this.owner = owner;
+    this.canHeal = {
       antiair: true,
       apc: true,
       artillery: true,
@@ -81,23 +88,25 @@ class City extends Terrain {
       recon: true,
       rockets: true,
       tank: true
-    },
+    };
   }
 }
 
-class Factory extends Terrain {
+class Base extends Terrain {
   constructor(x, y, owner) {
     super(x, y);
-    moveCosts: {
+    this.type = 'base';
+    this.defense = 3;
+    this.moveCosts = {
       A: 1,
       I: 1,
       M: 1,
       T: 1,
       W: 1
-    },
-    captureHp: 20,
-    owner: owner,
-    canHeal: {
+    };
+    this.captureHp = 20;
+    this.owner = owner;
+    this.canHeal = {
       antiair: true,
       apc: true,
       artillery: true,
@@ -113,8 +122,8 @@ class Factory extends Terrain {
       rockets: true,
       tcopter: false,
       tank: true
-    },
-    canBuild: {
+    };
+    this.canBuild = {
       antiair: 7000,
       apc: 5000,
       artillery: 6000,
@@ -126,23 +135,25 @@ class Factory extends Terrain {
       recon: 4000,
       rockets: 15000,
       tank: 7000
-    }
+    };
   }
 }
 
 class Airport extends Terrain {
   constructor(x, y, owner) {
     super(x, y);
-    moveCosts: {
+    this.type = 'airport';
+    this.defense = 3;
+    this.moveCosts = {
       A: 1,
       I: 1,
       M: 1,
       T: 1,
       W: 1
-    },
-    captureHp: 20,
-    owner: owner,
-    canHeal: {
+    };
+    this.captureHp = 20;
+    this.owner = owner;
+    this.canHeal = {
       antiair: false,
       apc: false,
       artillery: false,
@@ -158,12 +169,54 @@ class Airport extends Terrain {
       rockets: false,
       tcopter: true,
       tank: false
-    },
-    canBuild: {
+    };
+    this.canBuild = {
       bcopter: 9000,
       bomber: 20000,
       fighter: 16000,
       tcopter: 5000
-    }
+    };
   }
 }
+
+class HQ extends Terrain {
+  constructor(x, y, owner) {
+    super(x, y);
+    this.type = 'HQ';
+    this.defense = 4;
+    this.moveCosts = {
+      A: 1,
+      I: 1,
+      M: 1,
+      T: 1,
+      W: 1
+    };
+    this.captureHp = 20;
+    this.owner = owner;
+    this.endsGame = true;
+    this.canHeal = {
+      antiair: true,
+      apc: true,
+      artillery: true,
+      infantry: true,
+      mdtank: true,
+      mech: true,
+      missiles: true,
+      neotank: true,
+      recon: true,
+      rockets: true,
+      tank: true
+    };
+  }
+}
+
+window.setTerrain = {
+  road: Road,
+  plain: Plain,
+  wood: Wood,
+  mountain: Mountain,
+  city: City,
+  base: Base,
+  airport: Airport,
+  hq: HQ
+};
