@@ -81,8 +81,9 @@ const countries = (state = (
 const units = (state = [], action) => {
   switch (action.type) {
     case 'UNIT_BUILD':
-      let newState = state.push(new createUnit[action.unitType])
-      return newState;
+      return state.concat[new createUnit[action.unitType]];
+    case 'UNIT_DESTROY':
+      return state.slice(0, action.index).concat(state.slice(action.index + 1));
     default:
       return state;
   }
