@@ -1,12 +1,6 @@
 class Top extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      mapList: [],
-      // gameName: null,
-      // map: null,
-      // board: []
-    };
     this.getMapList = this.getMapList.bind(this);
     this.setNameAndMap = this.setNameAndMap.bind(this);
     this.assembleBoard = this.assembleBoard.bind(this);
@@ -15,9 +9,10 @@ class Top extends React.Component {
   getMapList() {
     axios.get('http://localhost:8000/maps')
       .then(res => {
+        console.log('res.data:', res.data);
         let mapList = res.data.map(map => map.name);
         console.log('mapList:', mapList);
-        this.setState({mapList});
+        this.props.populateMapList(mapList);
       })
       .catch(err => {
         console.log('Server error:', err);
@@ -28,11 +23,9 @@ class Top extends React.Component {
     axios.post('http://localhost:8000/board', {map})
       .then(res => {
         let board = this.assembleBoard(res.data);
-        this.setState({
-          board,
-          gameName,
-          map
-        });
+        this.props.setGameName(gameName);
+        this.props.selectMap(map);
+        this.props.setBoard(board);
       });
   }
 
@@ -52,10 +45,10 @@ class Top extends React.Component {
       <div>
         <Banner />
         <Main 
-          mapList={this.state.mapList}
-          gameName={this.state.gameName}
-          map={this.state.map}
-          board={this.state.board}
+          mapList={this.props.mapList}
+          gameName={this.props.gameName}
+          map={this.props.map}
+          board={this.props.board}
           getMapList={this.getMapList}
           setNameAndMap={this.setNameAndMap}
         />

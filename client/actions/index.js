@@ -94,6 +94,7 @@ const captureProperty = (unitHp) => ({
 });
 
 window.actionCreators = {
+  populateMapList,
   incrementDay,
   changeCurrentTurn,
   receiveIncome,

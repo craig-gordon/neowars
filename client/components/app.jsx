@@ -5,7 +5,9 @@ const mapStateToProps = (state) => ({
   day: state.day,
   currentTurn: state.currentTurn,
   board: state.board,
-  countries: state.countries
+  countries: state.countries,
+  units: state.units,
+  router: state.router
 });
 
 const mapDispatchToProps = (dispatch) => Redux.bindActionCreators(actionCreators, dispatch);

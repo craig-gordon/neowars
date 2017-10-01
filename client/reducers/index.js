@@ -89,7 +89,7 @@ const units = (state = [], action) => {
   }
 }
 
-const rootReducer = Redux.combineReducers({
+window.reducers = {
   mapList,
   gameName,
   map,
@@ -98,6 +98,4 @@ const rootReducer = Redux.combineReducers({
   board,
   countries,
   units
-});
-
-window.rootReducer = rootReducer;
+};
