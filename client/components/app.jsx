@@ -1,65 +1,15 @@
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      mapList: [],
-      gameName: null,
-      map: null,
-      board: []
-    };
-    this.getMapList = this.getMapList.bind(this);
-    this.setNameAndMap = this.setNameAndMap.bind(this);
-    this.assembleBoard = this.assembleBoard.bind(this);
-  }
+const mapStateToProps = (state) => ({
+  mapList: state.mapList,
+  gameName: state.gameName,
+  map: state.map,
+  day: state.day,
+  currentTurn: state.currentTurn,
+  board: state.board,
+  countries: state.countries
+});
 
-  getMapList() {
-    axios.get('http://localhost:8000/maps')
-      .then(res => {
-        let mapList = res.data.map(map => map.name);
-        console.log('mapList:', mapList);
-        this.setState({mapList});
-      })
-      .catch(err => {
-        console.log('Server error:', err);
-      });
-  }
+const mapDispatchToProps = (dispatch) => Redux.bindActionCreators(actionCreators, dispatch);
 
-  setNameAndMap(gameName, map) {
-    axios.post('http://localhost:8000/board', {map})
-      .then(res => {
-        let board = this.assembleBoard(res.data);
-        this.setState({
-          board,
-          gameName,
-          map
-        });
-      });
-  }
+const App = connect(mapStateToProps, mapDispatchToProps)(Main);
 
-  assembleBoard(dbArray) {
-    return dbArray.reduce((matrix, space) => {
-      if (space.col_no === 0) {
-        matrix[space.row_no] = [space.terrain];
-      } else {
-        matrix[space.row_no].push(space.terrain);
-      }
-      return matrix;
-    }, []);
-  }
-
-  render() {
-    return (
-      <div>
-        <Banner />
-        <Main 
-          mapList={this.state.mapList}
-          gameName={this.state.gameName}
-          map={this.state.map}
-          board={this.state.board}
-          getMapList={this.getMapList}
-          setNameAndMap={this.setNameAndMap}
-        />
-      </div>
-    )
-  }
-}
+window.App = App;

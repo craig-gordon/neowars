@@ -18,9 +18,9 @@ const buildUnit = (unitType) => ({
   unitType
 });
 
-const destroyUnit = (unit) => ({
+const destroyUnit = (index) => ({
   type: actionTypes.DESTROY_UNIT,
-  unit
+  index
 })
 
 const moveUnit = (position) => ({
@@ -68,7 +68,25 @@ const decrementIncome = (loss) => ({
   loss
 });
 
-const captureProperty = (unit, space) => ({
+const captureProperty = (unitHp) => ({
   type: actionTypes.CAPTURE_PROPERTY,
   unitHp
 });
+
+window.actionCreators = {
+  incrementDay,
+  changeCurrentTurn,
+  generateIncome,
+  buildUnit,
+  destroyUnit,
+  moveUnit,
+  incrementHp,
+  decrementHp,
+  incrementAmmo,
+  decrementAmmo,
+  incrementFuel,
+  decrementFuel,
+  incrementIncome,
+  decrementIncome,
+  captureProperty
+}
