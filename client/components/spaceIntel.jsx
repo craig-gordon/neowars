@@ -18,7 +18,10 @@ class SpaceIntel extends React.Component {
               unitTuple[1] < country.funds ? 
                 <li
                   key={i}
-                  onClick={this.props.buildUnit.bind(null, unitTuple[0], this.props.space.country, this.props.space.position)}
+                  onClick={() => {
+                    this.props.buildUnit.call(null, unitTuple[0], this.props.space.country, this.props.space.position);
+                    this.props.decrementFunds.call(null, country.name, unitTuple[1]);
+                  }}
                 >
                   {unitTuple[0]} | {unitTuple[1]}
                 </li>

@@ -54,6 +54,7 @@ class CurrentGame extends React.Component {
           position={this.state.clickedSpace}
           space={this.props.board[this.state.clickedSpace[0]][this.state.clickedSpace[1]]}
           buildUnit={this.props.buildUnit}
+          decrementFunds={this.props.decrementFunds}
         /> : null}
       </div>
     )

@@ -72,6 +72,10 @@ const countries = (state = (
     case 'INCOME_RECEIVE':
       newState[action.countryIndex].funds += state[action.countryIndex].income;
       return newState;
+    case 'FUNDS_DECREMENT':
+      let countryIndex = state.reduce((memo, country, i) => country.name === action.countryName ? i : memo, null);
+      newState[countryIndex].funds -= action.loss;
+      return newState;
     case 'INCOME_INCREMENT':
       newState[action.countryIndex].income += action.gain;
       return newState;

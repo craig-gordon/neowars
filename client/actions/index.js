@@ -33,6 +33,12 @@ const receiveIncome = (countryIndex) => ({
   countryIndex
 });
 
+const decrementFunds = (countryName, loss) => ({
+  type: actionTypes.FUNDS_DECREMENT,
+  countryName,
+  loss
+});
+
 const buildUnit = (unitType, countryName, position) => ({
   type: actionTypes.UNIT_BUILD,
   unitType,
@@ -104,6 +110,7 @@ window.actionCreators = {
   incrementDay,
   changeCurrentTurn,
   receiveIncome,
+  decrementFunds,
   buildUnit,
   destroyUnit,
   moveUnit,
@@ -116,4 +123,4 @@ window.actionCreators = {
   incrementIncome,
   decrementIncome,
   captureProperty
-}
+};
