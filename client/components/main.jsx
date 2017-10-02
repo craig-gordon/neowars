@@ -33,9 +33,9 @@ class Main extends React.Component {
   assembleBoard(dbArray) {
     return dbArray.reduce((matrix, space) => {
       if (space.col_no === 0) {
-        matrix[space.row_no] = [new setTerrain[space.terrain](space.row_no, space.col_no)];
+        matrix[space.row_no] = [new setTerrain[space.terrain](space.row_no, space.col_no, space.country)];
       } else {
-        matrix[space.row_no].push(new setTerrain[space.terrain](space.row_no, space.col_no));
+        matrix[space.row_no].push(new setTerrain[space.terrain](space.row_no, space.col_no, space.country));
       }
       return matrix;
     }, []);

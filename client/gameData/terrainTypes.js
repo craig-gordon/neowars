@@ -7,7 +7,7 @@ class Terrain {
 class Road extends Terrain {
   constructor(x, y) {
     super(x, y);
-    this.type = 'R';
+    this.terrain = 'R';
     this.defense = 0;
     this.moveCosts = {
       A: 1,
@@ -22,7 +22,7 @@ class Road extends Terrain {
 class Plain extends Terrain {
   constructor(x, y) {
     super(x, y);
-    this.type = 'P';
+    this.terrain = 'P';
     this.defense = 1;
     this.moveCosts = {
       A: 1,
@@ -37,7 +37,7 @@ class Plain extends Terrain {
 class Wood extends Terrain {
   constructor(x, y) {
     super(x, y);
-    this.type = 'W';
+    this.terrain = 'W';
     this.defense = 2;
     this.moveCosts = {
       A: 1,
@@ -52,7 +52,7 @@ class Wood extends Terrain {
 class Mountain extends Terrain {
   constructor(x, y) {
     super(x, y);
-    this.type = 'M';
+    this.terrain = 'M';
     this.defense = 4;
     this.moveCosts = {
       A: 1,
@@ -63,9 +63,9 @@ class Mountain extends Terrain {
 }
 
 class City extends Terrain {
-  constructor(x, y, owner = null) {
+  constructor(x, y, country = null) {
     super(x, y);
-    this.type = 'C';
+    this.terrain = 'C';
     this.defense = 3;
     this.moveCosts = {
       A: 1,
@@ -75,27 +75,27 @@ class City extends Terrain {
       W: 1
     };
     this.captureHp = 20;
-    this.owner = owner;
-    this.canHeal = {
-      antiair: true,
-      apc: true,
-      artillery: true,
-      infantry: true,
-      mdtank: true,
-      mech: true,
-      missiles: true,
-      neotank: true,
-      recon: true,
-      rockets: true,
-      tank: true
-    };
+    this.country = country;
+    this.canHeal = [
+      'antiair',
+      'apc',
+      'artillery',
+      'infantry',
+      'mdtank',
+      'mech',
+      'missiles',
+      'neotank',
+      'recon',
+      'rockets',
+      'tank'
+    ];
   }
 }
 
 class Base extends Terrain {
-  constructor(x, y, owner = null) {
+  constructor(x, y, country = null) {
     super(x, y);
-    this.type = 'B';
+    this.terrain = 'B';
     this.defense = 3;
     this.moveCosts = {
       A: 1,
@@ -105,44 +105,40 @@ class Base extends Terrain {
       W: 1
     };
     this.captureHp = 20;
-    this.owner = owner;
-    this.canHeal = {
-      antiair: true,
-      apc: true,
-      artillery: true,
-      bcopter: false,
-      bomber: false,
-      fighter: false,
-      infantry: true,
-      mdtank: true,
-      mech: true,
-      missiles: true,
-      neotank: true,
-      recon: true,
-      rockets: true,
-      tcopter: false,
-      tank: true
-    };
-    this.canBuild = {
-      antiair: 7000,
-      apc: 5000,
-      artillery: 6000,
-      infantry: 1500,
-      mdtank: 14000,
-      mech: 2500,
-      missiles: 10000,
-      neotank: 20000,
-      recon: 4000,
-      rockets: 15000,
-      tank: 7000
-    };
+    this.country = country;
+    this.canHeal = [
+      'antiair',
+      'apc',
+      'artillery',
+      'infantry',
+      'mdtank',
+      'mech',
+      'missiles',
+      'neotank',
+      'recon',
+      'rockets',
+      'tank'
+    ];
+    this.canBuild = [
+      ['antiair', 7000],
+      ['apc', 5000],
+      ['artillery', 6000],
+      ['infantry', 1500],
+      ['mdtank', 14000],
+      ['mech', 2500],
+      ['missiles', 10000],
+      ['neotank', 20000],
+      ['recon', 4000],
+      ['rockets', 15000],
+      ['tank', 7000]
+    ];
   }
 }
 
 class Airport extends Terrain {
-  constructor(x, y, owner = null) {
+  constructor(x, y, country = null) {
     super(x, y);
-    this.type = 'A';
+    this.terrain = 'A';
     this.defense = 3;
     this.moveCosts = {
       A: 1,
@@ -152,37 +148,26 @@ class Airport extends Terrain {
       W: 1
     };
     this.captureHp = 20;
-    this.owner = owner;
-    this.canHeal = {
-      antiair: false,
-      apc: false,
-      artillery: false,
-      bcopter: true,
-      bomber: true,
-      fighter: true,
-      infantry: false,
-      mdtank: false,
-      mech: false,
-      missiles: false,
-      neotank: false,
-      recon: false,
-      rockets: false,
-      tcopter: true,
-      tank: false
-    };
-    this.canBuild = {
-      bcopter: 9000,
-      bomber: 20000,
-      fighter: 16000,
-      tcopter: 5000
-    };
+    this.country = country;
+    this.canHeal = [
+      'bcopter',
+      'bomber',
+      'fighter',
+      'tcopter'
+    ];
+    this.canBuild = [
+      ['bcopter', 9000],
+      ['bomber', 20000],
+      ['fighter', 16000],
+      ['tcopter', 5000]
+    ];
   }
 }
 
 class HQ extends Terrain {
-  constructor(x, y, owner) {
+  constructor(x, y, country) {
     super(x, y);
-    this.type = 'H';
+    this.terrain = 'H';
     this.defense = 4;
     this.moveCosts = {
       A: 1,
@@ -192,21 +177,21 @@ class HQ extends Terrain {
       W: 1
     };
     this.captureHp = 20;
-    this.owner = owner;
+    this.country = country;
     this.endsGame = true;
-    this.canHeal = {
-      antiair: true,
-      apc: true,
-      artillery: true,
-      infantry: true,
-      mdtank: true,
-      mech: true,
-      missiles: true,
-      neotank: true,
-      recon: true,
-      rockets: true,
-      tank: true
-    };
+    this.canHeal = [
+      'antiair',
+      'apc',
+      'artillery',
+      'infantry',
+      'mdtank',
+      'mech',
+      'missiles',
+      'neotank',
+      'recon',
+      'rockets',
+      'tank'
+    ];
   }
 }
 

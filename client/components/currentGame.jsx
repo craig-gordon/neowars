@@ -14,8 +14,6 @@ class CurrentGame extends React.Component {
 
   toggleSpaceIntel(position) {
     this.setState({spaceInFocus: true, clickedSpace: position});
-    console.log(this.props.board[this.state.clickedSpace[0]][this.state.clickedSpace[1]]);
-    console.log(this.state);
   }
 
   render() {

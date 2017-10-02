@@ -13,7 +13,7 @@ CREATE TABLE maps (
 );
 
 CREATE TABLE games (
-  id int NOT NULL AUTO_INCREMENT,
+  id int AUTO_INCREMENT,
   map_id int NOT NULL,
   current_day int NOT NULL,
   current_turn varchar(20) NOT NULL,
@@ -28,11 +28,11 @@ CREATE TABLE games (
 
 CREATE TABLE spaces (
   id int AUTO_INCREMENT,
-  map_id int,
+  map_id int NOT NULL,
   row_no int NOT NULL,
   col_no int NOT NULL,
-  terrain varchar(10) NOT NULL,
-  capture_points int,
+  terrain char(1) NOT NULL,
+  country varchar(20),
   PRIMARY KEY (id),
   FOREIGN KEY (map_id)
   REFERENCES maps(id)
@@ -40,7 +40,7 @@ CREATE TABLE spaces (
 
 CREATE TABLE units (
   id int AUTO_INCREMENT,
-  name varchar(20) NOT NULL,
+  type varchar(20) NOT NULL,
   country varchar(20) NOT NULL,
   current_hp int NOT NULL,
   game_id int NOT NULL,
@@ -62,28 +62,28 @@ INSERT INTO maps (name, height, width) VALUES ("Sandalwood Plains", 5, 5);
 INSERT INTO maps (name, height, width) VALUES ("Folzor's Tundra", 10, 10);
 INSERT INTO maps (name, height, width) VALUES ("Relic", 20, 20);
 
-INSERT INTO spaces (map_id, row_no, col_no, terrain) VALUES ((SELECT id FROM maps WHERE name="Sandalwood Plains"), 0, 0, 'P');
-INSERT INTO spaces (map_id, row_no, col_no, terrain) VALUES ((SELECT id FROM maps WHERE name="Sandalwood Plains"), 0, 1, 'P');
-INSERT INTO spaces (map_id, row_no, col_no, terrain) VALUES ((SELECT id FROM maps WHERE name="Sandalwood Plains"), 0, 2, 'P');
-INSERT INTO spaces (map_id, row_no, col_no, terrain) VALUES ((SELECT id FROM maps WHERE name="Sandalwood Plains"), 0, 3, 'P');
-INSERT INTO spaces (map_id, row_no, col_no, terrain) VALUES ((SELECT id FROM maps WHERE name="Sandalwood Plains"), 0, 4, 'P');
-INSERT INTO spaces (map_id, row_no, col_no, terrain) VALUES ((SELECT id FROM maps WHERE name="Sandalwood Plains"), 1, 0, 'P');
-INSERT INTO spaces (map_id, row_no, col_no, terrain) VALUES ((SELECT id FROM maps WHERE name="Sandalwood Plains"), 1, 1, 'P');
-INSERT INTO spaces (map_id, row_no, col_no, terrain) VALUES ((SELECT id FROM maps WHERE name="Sandalwood Plains"), 1, 2, 'P');
-INSERT INTO spaces (map_id, row_no, col_no, terrain) VALUES ((SELECT id FROM maps WHERE name="Sandalwood Plains"), 1, 3, 'P');
-INSERT INTO spaces (map_id, row_no, col_no, terrain) VALUES ((SELECT id FROM maps WHERE name="Sandalwood Plains"), 1, 4, 'P');
-INSERT INTO spaces (map_id, row_no, col_no, terrain) VALUES ((SELECT id FROM maps WHERE name="Sandalwood Plains"), 2, 0, 'P');
-INSERT INTO spaces (map_id, row_no, col_no, terrain) VALUES ((SELECT id FROM maps WHERE name="Sandalwood Plains"), 2, 1, 'P');
-INSERT INTO spaces (map_id, row_no, col_no, terrain) VALUES ((SELECT id FROM maps WHERE name="Sandalwood Plains"), 2, 2, 'P');
-INSERT INTO spaces (map_id, row_no, col_no, terrain) VALUES ((SELECT id FROM maps WHERE name="Sandalwood Plains"), 2, 3, 'P');
-INSERT INTO spaces (map_id, row_no, col_no, terrain) VALUES ((SELECT id FROM maps WHERE name="Sandalwood Plains"), 2, 4, 'P');
-INSERT INTO spaces (map_id, row_no, col_no, terrain) VALUES ((SELECT id FROM maps WHERE name="Sandalwood Plains"), 3, 0, 'P');
-INSERT INTO spaces (map_id, row_no, col_no, terrain) VALUES ((SELECT id FROM maps WHERE name="Sandalwood Plains"), 3, 1, 'P');
-INSERT INTO spaces (map_id, row_no, col_no, terrain) VALUES ((SELECT id FROM maps WHERE name="Sandalwood Plains"), 3, 2, 'P');
-INSERT INTO spaces (map_id, row_no, col_no, terrain) VALUES ((SELECT id FROM maps WHERE name="Sandalwood Plains"), 3, 3, 'P');
-INSERT INTO spaces (map_id, row_no, col_no, terrain) VALUES ((SELECT id FROM maps WHERE name="Sandalwood Plains"), 3, 4, 'P');
-INSERT INTO spaces (map_id, row_no, col_no, terrain) VALUES ((SELECT id FROM maps WHERE name="Sandalwood Plains"), 4, 0, 'P');
-INSERT INTO spaces (map_id, row_no, col_no, terrain) VALUES ((SELECT id FROM maps WHERE name="Sandalwood Plains"), 4, 1, 'P');
-INSERT INTO spaces (map_id, row_no, col_no, terrain) VALUES ((SELECT id FROM maps WHERE name="Sandalwood Plains"), 4, 2, 'P');
-INSERT INTO spaces (map_id, row_no, col_no, terrain) VALUES ((SELECT id FROM maps WHERE name="Sandalwood Plains"), 4, 3, 'P');
-INSERT INTO spaces (map_id, row_no, col_no, terrain) VALUES ((SELECT id FROM maps WHERE name="Sandalwood Plains"), 4, 4, 'P');
+INSERT INTO spaces (map_id, row_no, col_no, terrain, country) VALUES ((SELECT id FROM maps WHERE name="Sandalwood Plains"), 0, 0, 'P', null);
+INSERT INTO spaces (map_id, row_no, col_no, terrain, country) VALUES ((SELECT id FROM maps WHERE name="Sandalwood Plains"), 0, 1, 'P', null);
+INSERT INTO spaces (map_id, row_no, col_no, terrain, country) VALUES ((SELECT id FROM maps WHERE name="Sandalwood Plains"), 0, 2, 'P', null);
+INSERT INTO spaces (map_id, row_no, col_no, terrain, country) VALUES ((SELECT id FROM maps WHERE name="Sandalwood Plains"), 0, 3, 'B', 'Ranford');
+INSERT INTO spaces (map_id, row_no, col_no, terrain, country) VALUES ((SELECT id FROM maps WHERE name="Sandalwood Plains"), 0, 4, 'H', 'Ranford');
+INSERT INTO spaces (map_id, row_no, col_no, terrain, country) VALUES ((SELECT id FROM maps WHERE name="Sandalwood Plains"), 1, 0, 'P', null);
+INSERT INTO spaces (map_id, row_no, col_no, terrain, country) VALUES ((SELECT id FROM maps WHERE name="Sandalwood Plains"), 1, 1, 'P', null);
+INSERT INTO spaces (map_id, row_no, col_no, terrain, country) VALUES ((SELECT id FROM maps WHERE name="Sandalwood Plains"), 1, 2, 'P', null);
+INSERT INTO spaces (map_id, row_no, col_no, terrain, country) VALUES ((SELECT id FROM maps WHERE name="Sandalwood Plains"), 1, 3, 'P', null);
+INSERT INTO spaces (map_id, row_no, col_no, terrain, country) VALUES ((SELECT id FROM maps WHERE name="Sandalwood Plains"), 1, 4, 'B', 'Ranford');
+INSERT INTO spaces (map_id, row_no, col_no, terrain, country) VALUES ((SELECT id FROM maps WHERE name="Sandalwood Plains"), 2, 0, 'P', null);
+INSERT INTO spaces (map_id, row_no, col_no, terrain, country) VALUES ((SELECT id FROM maps WHERE name="Sandalwood Plains"), 2, 1, 'P', null);
+INSERT INTO spaces (map_id, row_no, col_no, terrain, country) VALUES ((SELECT id FROM maps WHERE name="Sandalwood Plains"), 2, 2, 'P', null);
+INSERT INTO spaces (map_id, row_no, col_no, terrain, country) VALUES ((SELECT id FROM maps WHERE name="Sandalwood Plains"), 2, 3, 'P', null);
+INSERT INTO spaces (map_id, row_no, col_no, terrain, country) VALUES ((SELECT id FROM maps WHERE name="Sandalwood Plains"), 2, 4, 'P', null);
+INSERT INTO spaces (map_id, row_no, col_no, terrain, country) VALUES ((SELECT id FROM maps WHERE name="Sandalwood Plains"), 3, 0, 'B', 'Floria');
+INSERT INTO spaces (map_id, row_no, col_no, terrain, country) VALUES ((SELECT id FROM maps WHERE name="Sandalwood Plains"), 3, 1, 'P', null);
+INSERT INTO spaces (map_id, row_no, col_no, terrain, country) VALUES ((SELECT id FROM maps WHERE name="Sandalwood Plains"), 3, 2, 'P', null);
+INSERT INTO spaces (map_id, row_no, col_no, terrain, country) VALUES ((SELECT id FROM maps WHERE name="Sandalwood Plains"), 3, 3, 'P', null);
+INSERT INTO spaces (map_id, row_no, col_no, terrain, country) VALUES ((SELECT id FROM maps WHERE name="Sandalwood Plains"), 3, 4, 'P', null);
+INSERT INTO spaces (map_id, row_no, col_no, terrain, country) VALUES ((SELECT id FROM maps WHERE name="Sandalwood Plains"), 4, 0, 'H', 'Floria');
+INSERT INTO spaces (map_id, row_no, col_no, terrain, country) VALUES ((SELECT id FROM maps WHERE name="Sandalwood Plains"), 4, 1, 'B', 'Floria');
+INSERT INTO spaces (map_id, row_no, col_no, terrain, country) VALUES ((SELECT id FROM maps WHERE name="Sandalwood Plains"), 4, 2, 'P', null);
+INSERT INTO spaces (map_id, row_no, col_no, terrain, country) VALUES ((SELECT id FROM maps WHERE name="Sandalwood Plains"), 4, 3, 'P', null);
+INSERT INTO spaces (map_id, row_no, col_no, terrain, country) VALUES ((SELECT id FROM maps WHERE name="Sandalwood Plains"), 4, 4, 'P', null);
