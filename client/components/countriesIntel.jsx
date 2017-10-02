@@ -13,6 +13,7 @@ class CountriesIntel extends React.Component {
               console.log(this.props.currentTurn);              
               this.props.changeCurrentTurn.call(null, this.props.countries);
               this.props.makeUnitsActive();
+              this.props.toggleSpaceIntel();
               setTimeout(() => {
                 this.props.receiveIncome.call(null, this.props.currentTurn);
               }, 5);

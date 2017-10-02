@@ -72,7 +72,6 @@ const countries = (state = (
   switch (action.type) {
     case 'INCOME_RECEIVE': // state = [{'Floria'}, {'Ranford'}]
       var countryIndex = state.reduce((memo, country, i) => country.name === action.countryName ? i : memo, null);
-      console.log('countryIndex:', countryIndex);
       newState[countryIndex].funds += newState[countryIndex].income;
       return newState;
     case 'FUNDS_DECREMENT':

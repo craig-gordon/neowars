@@ -12,7 +12,7 @@ class SpaceIntel extends React.Component {
         Terrain: {this.props.space.terrain}<br/>
         Defense: {this.props.space.defense}<br/>
         {this.props.space.country ? `Owner: ${this.props.space.country}` : null}<br/>
-        {this.props.space.canBuild ?
+        {this.props.space.canBuild && this.props.currentTurn === this.props.space.country ?
           (<ul>
             {this.props.space.canBuild.map((unitTuple, i) => (
               unitTuple[1] < country.funds ? 

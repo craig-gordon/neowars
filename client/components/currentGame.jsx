@@ -2,8 +2,8 @@ class CurrentGame extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      spaceInFocus: false,
-      clickedSpace: [0, 0]
+      spaceInFocus: null,
+      clickedSpace: []
     }
     this.toggleSpaceIntel = this.toggleSpaceIntel.bind(this);
     this.calculateInitialIncome = this.calculateInitialIncome.bind(this);
@@ -22,7 +22,11 @@ class CurrentGame extends React.Component {
   }
 
   toggleSpaceIntel(position) {
-    this.setState({spaceInFocus: true, clickedSpace: position});
+    if (position === this.state.clickedSpace || position === undefined) {
+      this.setState({spaceInFocus: false, clickedSpace: []});
+    } else {
+      this.setState({spaceInFocus: true, clickedSpace: position});
+    }
   }
 
   calculateInitialIncome(countryName) {
@@ -47,11 +51,13 @@ class CurrentGame extends React.Component {
         <CountriesIntel
           countries={this.props.countries}
           currentTurn={this.props.currentTurn}
+          toggleSpaceIntel={this.toggleSpaceIntel}
           changeCurrentTurn={this.props.changeCurrentTurn}
           makeUnitsActive={this.props.makeUnitsActive}
           receiveIncome={this.props.receiveIncome}
         /><br/>
         {this.state.spaceInFocus ? <SpaceIntel
+          currentTurn={this.props.currentTurn}
           countries={this.props.countries}
           units={this.props.units}
           position={this.state.clickedSpace}
