@@ -46,7 +46,7 @@ const day = (state = 0, action) => {
 
 const currentTurn = (state = '', action) => {
   switch (action.type) {
-    case 'CURRENT_TURN_CHANGE': // countries = [{'Floria'}, {'Ranford'}]
+    case 'CURRENT_TURN_CHANGE':
       let indexOfCurrent = action.countries.reduce((memo, country, i) => country.name === memo ? i : memo, state);
       return indexOfCurrent === '' ? action.countries[0].name : action.countries[(indexOfCurrent + 1) % action.countries.length].name;
     default:
@@ -70,11 +70,13 @@ const countries = (state = (
 ), action) => {
   let newState = Object.assign([], state);
   switch (action.type) {
-    case 'INCOME_RECEIVE':
-      newState[action.countryIndex].funds += state[action.countryIndex].income;
+    case 'INCOME_RECEIVE': // state = [{'Floria'}, {'Ranford'}]
+      var countryIndex = state.reduce((memo, country, i) => country.name === action.countryName ? i : memo, null);
+      console.log('countryIndex:', countryIndex);
+      newState[countryIndex].funds += newState[countryIndex].income;
       return newState;
     case 'FUNDS_DECREMENT':
-      let countryIndex = state.reduce((memo, country, i) => country.name === action.countryName ? i : memo, null);
+      var countryIndex = state.reduce((memo, country, i) => country.name === action.countryName ? i : memo, null);
       newState[countryIndex].funds -= action.loss;
       return newState;
     case 'INCOME_INCREMENT':
@@ -91,6 +93,8 @@ const units = (state = [], action) => {
       return state.concat([new createUnit[action.unitType](action.countryName, action.position)]);
     case 'UNIT_DESTROY':
       return state.slice(0, action.index).concat(state.slice(action.index + 1));
+    case 'UNITS_MAKE_ACTIVE':
+      return state.map(unit => Object.assign(unit, {canMove: true}));
     default:
       return state;
   }

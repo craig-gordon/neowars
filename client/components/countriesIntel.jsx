@@ -9,7 +9,14 @@ class CountriesIntel extends React.Component {
         Country   Funds   Income
         {this.props.countries.map((country, i) => (
           <div key={i}>
-            {country.name} {country.funds} {country.income} {this.props.currentTurn === country.name ? (<div onClick={this.props.changeCurrentTurn.bind(null, this.props.countries)}>End Turn</div>) : null}
+            {country.name} {country.funds} {country.income} {this.props.currentTurn === country.name ? (<div onClick={() => {
+              console.log(this.props.currentTurn);              
+              this.props.changeCurrentTurn.call(null, this.props.countries);
+              this.props.makeUnitsActive();
+              setTimeout(() => {
+                this.props.receiveIncome.call(null, this.props.currentTurn);
+              }, 5);
+            }}>End Turn</div>) : null}
           </div>
         ))}
       </div>

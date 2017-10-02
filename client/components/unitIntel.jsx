@@ -12,7 +12,7 @@ class UnitIntel extends React.Component {
         Move: {this.props.unit.moveRange}<br/>
         Fuel: {this.props.unit.fuel}<br/>
         Ammo: {this.props.unit.weapons[0].ammo}<br/>
-        {this.props.canMove ? Move Unit : null}<br/><br/>
+        {this.props.unit.canMove ? `Move Unit` : null}<br/><br/>
       </div>
     )
   }

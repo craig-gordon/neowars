@@ -17,7 +17,7 @@ class CurrentGame extends React.Component {
         let amount = this.calculateInitialIncome(country.name);
         this.props.incrementIncome(i, amount);
       })
-      this.props.receiveIncome(0);
+      this.props.receiveIncome(this.props.countries[0].name);
     }, 20);
   }
 
@@ -48,6 +48,8 @@ class CurrentGame extends React.Component {
           countries={this.props.countries}
           currentTurn={this.props.currentTurn}
           changeCurrentTurn={this.props.changeCurrentTurn}
+          makeUnitsActive={this.props.makeUnitsActive}
+          receiveIncome={this.props.receiveIncome}
         /><br/>
         {this.state.spaceInFocus ? <SpaceIntel
           countries={this.props.countries}

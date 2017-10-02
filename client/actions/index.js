@@ -28,9 +28,9 @@ const changeCurrentTurn = (countries) => ({
   countries
 });
 
-const receiveIncome = (countryIndex) => ({
+const receiveIncome = (countryName) => ({
   type: actionTypes.INCOME_RECEIVE,
-  countryIndex
+  countryName
 });
 
 const decrementFunds = (countryName, loss) => ({
@@ -49,7 +49,11 @@ const buildUnit = (unitType, countryName, position) => ({
 const destroyUnit = (index) => ({
   type: actionTypes.UNIT_DESTROY,
   index
-})
+});
+
+const makeUnitsActive = () => ({
+  type: actionTypes.UNITS_MAKE_ACTIVE
+});
 
 const moveUnit = (position) => ({
   type: actionTypes.UNIT_MOVE,
@@ -113,6 +117,7 @@ window.actionCreators = {
   decrementFunds,
   buildUnit,
   destroyUnit,
+  makeUnitsActive,
   moveUnit,
   incrementHp,
   decrementHp,
