@@ -13,6 +13,7 @@
   },
   "author": "Craig Gordon",
   "license": "ISC",
+  "engines" : { "node" : "8.5.0"},
   "bugs": {
     "url": "https://github.com/cyghfer/hrnyc10-solo-week/issues"
   },
