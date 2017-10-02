@@ -1,0 +1,64 @@
+body {
+  background-color: #DDF7E6;
+  margin-left: 30px;
+}
+
+.gameName, .map {
+  font-weight: 700;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0px;
+  margin: 0px;
+  border: 0px;
+  padding: 0px;
+  line-height: 0px;
+}
+
+tbody {
+  margin: 0px;
+  border: 0px;
+  padding: 0px;
+}
+
+tr {
+  height: 16px;
+  margin: 0px;
+  border: 0px;
+  padding: 0px;
+}
+
+td {
+  height: 16px;
+  width: 16px;
+  margin: 0px;
+  border: 0px;
+  padding: 0px;
+}
+
+.countries {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: minmax(100px, auto);
+}
+
+.country1 {
+  grid-row: 1;
+}
+
+.country2 {
+  grid-row: 2;
+}
+
+.P_undefined {
+  background-image: url('P_undefined.png');
+}
+
+.B_Floria {
+  background-image: url('B_Floria.png');
+}
+
+.B_Ranford {
+  background-image: url('B_Ranford.png');
+}

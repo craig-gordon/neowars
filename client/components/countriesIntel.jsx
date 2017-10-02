@@ -8,7 +8,7 @@ class CountriesIntel extends React.Component {
       <div>
         Country   Funds   Income
         {this.props.countries.map((country, i) => (
-          <div key={i}>
+          <div className={`country${i}`} key={i}>
             {country.name} {country.funds} {country.income} {this.props.currentTurn === country.name ? (<div onClick={() => {
               this.props.changeCurrentTurn(this.props.countries);
               this.props.makeUnitsActive();

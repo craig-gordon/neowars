@@ -22,12 +22,12 @@ class CreateNewGame extends React.Component {
   render() {
     return (
       <div>
-        <h3>Create Game</h3>
-        Game Name: <input type="text" value={this.state.gameName} onChange={this.updateName}></input><br/>
-        Select Map: <select name="map" onChange={this.updateMap}>
+        <h2>Create Game</h2>
+        <div className='gameName'>Game Name: <input type="text" value={this.state.gameName} onChange={this.updateName}></input></div>
+        <div className='map'>Select Map: <select name="map" onChange={this.updateMap}>
           <option>select...</option>
           {this.props.mapList.map((map, i) => <option key={i}>{map}</option>)}
-        </select><br/>
+        </select></div>
         <br/><br/>
         <Link to='/game'>
           <button onClick={this.props.setNameAndMap.bind(null, this.state.gameName, this.state.map)}>

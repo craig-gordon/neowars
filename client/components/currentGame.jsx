@@ -49,23 +49,27 @@ class CurrentGame extends React.Component {
         <h3>{this.props.gameName}</h3>
         Map: {this.props.map}<br/>
         Day: {this.props.day}<br/><br/>
-        <GameBoard
-          board={this.props.board}
-          units={this.props.units}
-          clickedSpace={this.state.clickedSpace}
-          readyToMove={this.state.readyToMove}
-          moveUnit={this.props.moveUnit}
-          toggleSpaceIntel={this.toggleSpaceIntel}
-          toggleUnitMove={this.toggleUnitMove}
-        /><br/>
-        <CountriesIntel
-          countries={this.props.countries}
-          currentTurn={this.props.currentTurn}
-          toggleSpaceIntel={this.toggleSpaceIntel}
-          changeCurrentTurn={this.props.changeCurrentTurn}
-          makeUnitsActive={this.props.makeUnitsActive}
-          receiveIncome={this.props.receiveIncome}
-        /><br/>
+        <div className='board'>
+          <GameBoard
+            board={this.props.board}
+            units={this.props.units}
+            clickedSpace={this.state.clickedSpace}
+            readyToMove={this.state.readyToMove}
+            moveUnit={this.props.moveUnit}
+            toggleSpaceIntel={this.toggleSpaceIntel}
+            toggleUnitMove={this.toggleUnitMove}
+          />
+        <div/>
+        <div className='countries'>
+          <CountriesIntel
+            countries={this.props.countries}
+            currentTurn={this.props.currentTurn}
+            toggleSpaceIntel={this.toggleSpaceIntel}
+            changeCurrentTurn={this.props.changeCurrentTurn}
+            makeUnitsActive={this.props.makeUnitsActive}
+            receiveIncome={this.props.receiveIncome}
+          />
+        <div/>
         {this.state.spaceInFocus ? <SpaceIntel
           currentTurn={this.props.currentTurn}
           countries={this.props.countries}

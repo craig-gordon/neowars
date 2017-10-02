@@ -66,7 +66,7 @@ INSERT INTO spaces (map_id, row_no, col_no, terrain, country) VALUES ((SELECT id
 INSERT INTO spaces (map_id, row_no, col_no, terrain, country) VALUES ((SELECT id FROM maps WHERE name="Sandalwood Plains"), 0, 1, 'P', null);
 INSERT INTO spaces (map_id, row_no, col_no, terrain, country) VALUES ((SELECT id FROM maps WHERE name="Sandalwood Plains"), 0, 2, 'P', null);
 INSERT INTO spaces (map_id, row_no, col_no, terrain, country) VALUES ((SELECT id FROM maps WHERE name="Sandalwood Plains"), 0, 3, 'B', 'Ranford');
-INSERT INTO spaces (map_id, row_no, col_no, terrain, country) VALUES ((SELECT id FROM maps WHERE name="Sandalwood Plains"), 0, 4, 'H', 'Ranford');
+INSERT INTO spaces (map_id, row_no, col_no, terrain, country) VALUES ((SELECT id FROM maps WHERE name="Sandalwood Plains"), 0, 4, 'B', 'Ranford');
 INSERT INTO spaces (map_id, row_no, col_no, terrain, country) VALUES ((SELECT id FROM maps WHERE name="Sandalwood Plains"), 1, 0, 'P', null);
 INSERT INTO spaces (map_id, row_no, col_no, terrain, country) VALUES ((SELECT id FROM maps WHERE name="Sandalwood Plains"), 1, 1, 'P', null);
 INSERT INTO spaces (map_id, row_no, col_no, terrain, country) VALUES ((SELECT id FROM maps WHERE name="Sandalwood Plains"), 1, 2, 'P', null);
@@ -82,7 +82,7 @@ INSERT INTO spaces (map_id, row_no, col_no, terrain, country) VALUES ((SELECT id
 INSERT INTO spaces (map_id, row_no, col_no, terrain, country) VALUES ((SELECT id FROM maps WHERE name="Sandalwood Plains"), 3, 2, 'P', null);
 INSERT INTO spaces (map_id, row_no, col_no, terrain, country) VALUES ((SELECT id FROM maps WHERE name="Sandalwood Plains"), 3, 3, 'P', null);
 INSERT INTO spaces (map_id, row_no, col_no, terrain, country) VALUES ((SELECT id FROM maps WHERE name="Sandalwood Plains"), 3, 4, 'P', null);
-INSERT INTO spaces (map_id, row_no, col_no, terrain, country) VALUES ((SELECT id FROM maps WHERE name="Sandalwood Plains"), 4, 0, 'H', 'Floria');
+INSERT INTO spaces (map_id, row_no, col_no, terrain, country) VALUES ((SELECT id FROM maps WHERE name="Sandalwood Plains"), 4, 0, 'B', 'Floria');
 INSERT INTO spaces (map_id, row_no, col_no, terrain, country) VALUES ((SELECT id FROM maps WHERE name="Sandalwood Plains"), 4, 1, 'B', 'Floria');
 INSERT INTO spaces (map_id, row_no, col_no, terrain, country) VALUES ((SELECT id FROM maps WHERE name="Sandalwood Plains"), 4, 2, 'P', null);
 INSERT INTO spaces (map_id, row_no, col_no, terrain, country) VALUES ((SELECT id FROM maps WHERE name="Sandalwood Plains"), 4, 3, 'P', null);
