@@ -26,7 +26,6 @@ class CurrentGame extends React.Component {
   }
 
   calculateInitialIncome(countryName) {
-    console.log('this.props.board:', this.props.board);
     return this.props.board.reduce((sum, row) => {
       return sum + row.reduce((total, space) => {
         return total + (space.country === countryName ? 1000 : 0);
@@ -50,8 +49,11 @@ class CurrentGame extends React.Component {
           currentTurn={this.props.currentTurn}
         /><br/>
         {this.state.spaceInFocus ? <SpaceIntel
+          countries={this.props.countries}
+          units={this.props.units}
           position={this.state.clickedSpace}
           space={this.props.board[this.state.clickedSpace[0]][this.state.clickedSpace[1]]}
+          buildUnit={this.props.buildUnit}
         /> : null}
       </div>
     )

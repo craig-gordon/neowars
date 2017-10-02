@@ -33,9 +33,11 @@ const receiveIncome = (countryIndex) => ({
   countryIndex
 });
 
-const buildUnit = (unitType) => ({
+const buildUnit = (unitType, countryName, position) => ({
   type: actionTypes.UNIT_BUILD,
-  unitType
+  unitType,
+  countryName,
+  position
 });
 
 const destroyUnit = (index) => ({

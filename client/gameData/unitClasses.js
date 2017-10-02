@@ -1,13 +1,14 @@
 class Unit {
-  constructor(owner) {
+  constructor(country, position) {
     this.hp = 100;
-    this.owner = owner;
+    this.country = country;
+    this.position = position;
   }
 }
 
 class Antiair extends Unit {
-  constructor(owner) {
-    super(owner);
+  constructor(country, position) {
+    super(country, position);
     this.type = 'antiair';
     this.zone = 'L';
     this.moveRange = 6;
@@ -46,8 +47,8 @@ class Antiair extends Unit {
 }
 
 class APC extends Unit {
-  constructor(owner) {
-    super(owner);
+  constructor(country, position) {
+    super(country, position);
     this.type = 'apc';
     this.zone = 'L';
     this.moveRange = 6;
@@ -63,8 +64,8 @@ class APC extends Unit {
 }
 
 class Artillery extends Unit {
-  constructor(owner) {
-    super(owner);
+  constructor(country, position) {
+    super(country, position);
     this.type = 'artillery';
     this.zone = 'L';
     this.moveRange = 5;
@@ -99,8 +100,8 @@ class Artillery extends Unit {
 }
 
 class Bcopter extends Unit {
-  constructor(owner) {
-    super(owner);
+  constructor(country, position) {
+    super(country, position);
     this.type = 'bcopter';
     this.zone = 'A';
     this.moveRange = 6;
@@ -142,8 +143,8 @@ class Bcopter extends Unit {
 }
 
 class Bomber extends Unit {
-  constructor(owner) {
-    super(owner);
+  constructor(country, position) {
+    super(country, position);
     this.type = 'bomber';
     this.zone = 'A';
     this.moveRange = 7;
@@ -178,8 +179,8 @@ class Bomber extends Unit {
 }
 
 class Fighter extends Unit {
-  constructor(owner) {
-    super(owner);
+  constructor(country, position) {
+    super(country, position);
     this.type = 'fighter';
     this.zone = 'A';
     this.moveRange = 9;
@@ -207,8 +208,8 @@ class Fighter extends Unit {
 }
 
 class Infantry extends Unit {
-  constructor(owner) {
-    super(owner);
+  constructor(country, position) {
+    super(country, position);
     this.type = 'infantry';
     this.zone = 'L';
     this.moveRange = 3;
@@ -245,8 +246,8 @@ class Infantry extends Unit {
 }
 
 class MdTank extends Unit {
-  constructor(owner) {
-    super(owner);
+  constructor(country, position) {
+    super(country, position);
     this.type = 'mdtank';
     this.zone = 'L';
     this.moveRange = 5;
@@ -284,8 +285,8 @@ class MdTank extends Unit {
 }
 
 class Mech extends Unit {
-  constructor(owner) {
-    super(owner);
+  constructor(country, position) {
+    super(country, position);
     this.type = 'mech';
     this.zone = 'L';
     this.moveRange = 2;
@@ -323,8 +324,8 @@ class Mech extends Unit {
 }
 
 class Missiles extends Unit {
-  constructor(owner) {
-    super(owner);
+  constructor(country, position) {
+    super(country, position);
     this.type = 'missiles';
     this.zone = 'L';
     this.moveRange = 5;
@@ -352,8 +353,8 @@ class Missiles extends Unit {
 }
 
 class Neotank extends Unit {
-  constructor(owner) {
-    super(owner);
+  constructor(country, position) {
+    super(country, position);
     this.type = 'neotank';
     this.zone = 'L';
     this.moveRange = 6;
@@ -391,8 +392,8 @@ class Neotank extends Unit {
 }
 
 class Recon extends Unit {
-  constructor(owner) {
-    super(owner);
+  constructor(country, position) {
+    super(country, position);
     this.type = 'recon';
     this.zone = 'L';
     this.moveRange = 8;
@@ -429,8 +430,8 @@ class Recon extends Unit {
 }
 
 class Rockets extends Unit {
-  constructor(owner) {
-    super(owner);
+  constructor(country, position) {
+    super(country, position);
     this.type = 'rockets';
     this.zone = 'L';
     this.moveRange = 5;
@@ -465,8 +466,8 @@ class Rockets extends Unit {
 }
 
 class Tcopter extends Unit {
-  constructor(owner) {
-    super(owner);
+  constructor(country, position) {
+    super(country, position);
     this.type = 'tcopter';
     this.zone = 'A';
     this.moveRange = 6;
@@ -482,8 +483,8 @@ class Tcopter extends Unit {
 }
 
 class Tank extends Unit {
-  constructor(owner) {
-    super(owner);
+  constructor(country, position) {
+    super(country, position);
     this.type = 'tank';
     this.zone = 'L';
     this.moveRange = 6;

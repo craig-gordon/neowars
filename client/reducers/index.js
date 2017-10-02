@@ -35,7 +35,6 @@ const board = (state = [[]], action) => {
 }
 
 const day = (state = 0, action) => {
-  console.log('action.type:', action.type);
   switch (action.type) {
     case 'DAY_INCREMENT':
       let newState = state + 1;
@@ -60,13 +59,11 @@ const countries = (state = (
       name: 'Floria',
       funds: 0,
       income: 0,
-      units: []
     },
     {
       name: 'Ranford',
       funds: 0,
       income: 0,
-      units: []
     }
   ]
 ), action) => {
@@ -86,7 +83,7 @@ const countries = (state = (
 const units = (state = [], action) => {
   switch (action.type) {
     case 'UNIT_BUILD':
-      return state.concat[new createUnit[action.unitType]];
+      return state.concat([new createUnit[action.unitType](action.countryName, action.position)]);
     case 'UNIT_DESTROY':
       return state.slice(0, action.index).concat(state.slice(action.index + 1));
     default:
