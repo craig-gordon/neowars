@@ -11,8 +11,8 @@ class SpaceIntel extends React.Component {
         {this.props.space.country ? `Owner: ${this.props.space.country}` : null}<br/>
         {this.props.space.canBuild ?
           (<ul>
-            {this.props.space.canBuild.map(unitTuple => (
-              <li>
+            {this.props.space.canBuild.map((unitTuple, i) => (
+              <li key={i}>
                 {unitTuple[0]} | {unitTuple[1]}
               </li>
             ))}

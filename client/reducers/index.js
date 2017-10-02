@@ -7,7 +7,7 @@ const mapList = (state = [], action) => {
   }
 }
 
-const gameName = (state = null, action) => {
+const gameName = (state = '', action) => {
   switch (action.type) {
     case 'GAME_NAME_SET':
       return action.gameName;
@@ -34,16 +34,18 @@ const board = (state = [[]], action) => {
   }
 }
 
-const day = (state = 1, action) => {
+const day = (state = 0, action) => {
+  console.log('action.type:', action.type);
   switch (action.type) {
     case 'DAY_INCREMENT':
-      return ++state;
+      let newState = state + 1;
+      return newState;
     default:
       return state;
   }
 }
 
-const currentTurn = (state = 'Floria', action) => {
+const currentTurn = (state = '', action) => {
   switch (action.type) {
     case 'CURRENT_TURN_CHANGE':
       return action.countryName;
@@ -68,10 +70,13 @@ const countries = (state = (
     }
   ]
 ), action) => {
+  let newState = Object.assign([], state);
   switch (action.type) {
     case 'INCOME_RECEIVE':
-      let newState = Object.assign({}, state);
-      newState[action.country].funds += state[action.country].income;
+      newState[action.countryIndex].funds += state[action.countryIndex].income;
+      return newState;
+    case 'INCOME_INCREMENT':
+      newState[action.countryIndex].income += action.gain;
       return newState;
     default:
       return state;

@@ -13,7 +13,7 @@ class Main extends React.Component {
     axios.get('http://localhost:8000/maps')
       .then(res => {
         let mapList = res.data.map(map => map.name);
-        store.dispatch(this.props.populateMapList(mapList));
+        this.props.populateMapList(mapList);
       })
       .catch(err => {
         console.log('Server error:', err);
@@ -24,9 +24,9 @@ class Main extends React.Component {
     axios.post('http://localhost:8000/board', {map})
       .then(res => {
         let board = this.assembleBoard(res.data);
-        store.dispatch(this.props.setGameName(gameName));
-        store.dispatch(this.props.setMap(map));
-        store.dispatch(this.props.setBoard(board));
+        this.props.setGameName(gameName);
+        this.props.setMap(map);
+        this.props.setBoard(board);
       });
   }
 
@@ -53,19 +53,11 @@ class Main extends React.Component {
           }/>
           <Route path='/new' render={
             () => <CreateNewGame
-              gameName={this.props.gameName}
-              map={this.props.map}
               mapList={this.props.mapList}
               setNameAndMap={this.setNameAndMap}
             />
           }/>
-          <Route path='/game' render={
-            () => <GameContainer
-              map={this.props.map}
-              gameName={this.props.gameName}
-              board={this.props.board}
-            />
-          }/>
+          <Route path='/game' component={GameContainer}/>
         </Switch>
       </div>
     )

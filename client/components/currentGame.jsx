@@ -6,14 +6,32 @@ class CurrentGame extends React.Component {
       clickedSpace: [0, 0]
     }
     this.toggleSpaceIntel = this.toggleSpaceIntel.bind(this);
+    this.calculateInitialIncome = this.calculateInitialIncome.bind(this);
   }
 
   componentDidMount() {
-    store.dispatch(this.props.changeCurrentTurn(this.props.countries[0].name));
+    this.props.incrementDay();
+    this.props.changeCurrentTurn(this.props.countries[0].name);
+    setTimeout(() => {
+      this.props.countries.forEach((country, i) => {
+        let amount = this.calculateInitialIncome(country.name);
+        this.props.incrementIncome(i, amount);
+      })
+      this.props.receiveIncome(0);
+    }, 20);
   }
 
   toggleSpaceIntel(position) {
     this.setState({spaceInFocus: true, clickedSpace: position});
+  }
+
+  calculateInitialIncome(countryName) {
+    console.log('this.props.board:', this.props.board);
+    return this.props.board.reduce((sum, row) => {
+      return sum + row.reduce((total, space) => {
+        return total + (space.country === countryName ? 1000 : 0);
+      }, 0);
+    }, 0);
   }
 
   render() {

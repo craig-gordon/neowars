@@ -28,9 +28,9 @@ const changeCurrentTurn = (countryName) => ({
   countryName
 });
 
-const receiveIncome = (income) => ({
+const receiveIncome = (countryIndex) => ({
   type: actionTypes.INCOME_RECEIVE,
-  income
+  countryIndex
 });
 
 const buildUnit = (unitType) => ({
@@ -78,8 +78,9 @@ const decrementFuel = (loss) => ({
   loss
 });
 
-const incrementIncome = (gain) => ({
+const incrementIncome = (countryIndex, gain) => ({
   type: actionTypes.INCOME_INCREMENT,
+  countryIndex,
   gain
 });
 
