@@ -8,7 +8,6 @@ pids
 *.seed
 
 # Compiled Directories
-client/components/compiled/
 
 # Dependency Directories
 # Deployed apps should consider commenting these lines out:
