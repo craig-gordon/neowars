@@ -3,6 +3,7 @@ class Unit {
     this.hp = 100;
     this.country = country;
     this.position = position;
+    this.canMove = false;
   }
 }
 

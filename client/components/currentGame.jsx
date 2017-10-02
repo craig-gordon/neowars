@@ -11,7 +11,7 @@ class CurrentGame extends React.Component {
 
   componentDidMount() {
     this.props.incrementDay();
-    this.props.changeCurrentTurn(this.props.countries[0].name);
+    this.props.changeCurrentTurn(this.props.countries);
     setTimeout(() => {
       this.props.countries.forEach((country, i) => {
         let amount = this.calculateInitialIncome(country.name);
@@ -47,6 +47,7 @@ class CurrentGame extends React.Component {
         <CountriesIntel
           countries={this.props.countries}
           currentTurn={this.props.currentTurn}
+          changeCurrentTurn={this.props.changeCurrentTurn}
         /><br/>
         {this.state.spaceInFocus ? <SpaceIntel
           countries={this.props.countries}

@@ -23,9 +23,9 @@ const incrementDay = (day) => ({
   day
 });
 
-const changeCurrentTurn = (countryName) => ({
+const changeCurrentTurn = (countries) => ({
   type: actionTypes.CURRENT_TURN_CHANGE,
-  countryName
+  countries
 });
 
 const receiveIncome = (countryIndex) => ({

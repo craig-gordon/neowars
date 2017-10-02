@@ -16,7 +16,6 @@ app.use(express.static(path.join(__dirname + '/../')));
 app.get('/maps', (req, res) => {
   db.getAllMaps()
     .then(maps => {
-      console.log('maps:', maps);
       res.send(maps);
     })
     .catch(err => res.send(err));

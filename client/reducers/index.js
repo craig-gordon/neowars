@@ -46,8 +46,9 @@ const day = (state = 0, action) => {
 
 const currentTurn = (state = '', action) => {
   switch (action.type) {
-    case 'CURRENT_TURN_CHANGE':
-      return action.countryName;
+    case 'CURRENT_TURN_CHANGE': // countries = [{'Floria'}, {'Ranford'}]
+      let indexOfCurrent = action.countries.reduce((memo, country, i) => country.name === memo ? i : memo, state);
+      return indexOfCurrent === '' ? action.countries[0].name : action.countries[(indexOfCurrent + 1) % action.countries.length].name;
     default:
       return state;
   }

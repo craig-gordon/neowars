@@ -11,7 +11,8 @@ class UnitIntel extends React.Component {
         HP: {Math.ceil(this.props.unit.hp / 10)}<br/>
         Move: {this.props.unit.moveRange}<br/>
         Fuel: {this.props.unit.fuel}<br/>
-        Ammo: {this.props.unit.weapons[0].ammo}<br/><br/>
+        Ammo: {this.props.unit.weapons[0].ammo}<br/>
+        {this.props.canMove ? Move Unit : null}<br/><br/>
       </div>
     )
   }
