@@ -94,6 +94,14 @@ const units = (state = [], action) => {
       return state.slice(0, action.index).concat(state.slice(action.index + 1));
     case 'UNITS_MAKE_ACTIVE':
       return state.map(unit => Object.assign(unit, {canMove: true}));
+    case 'UNIT_MOVE':
+      console.log('state:', state);
+      let unitIndex = state.reduce((memo, unit, i) => action.from === unit.position ? i : memo, null);
+      let movingUnit = state[unitIndex];
+      movingUnit.position = action.to;
+      let newState = [...state.slice(0, unitIndex), movingUnit, ...state.slice(unitIndex + 1)];
+      console.log('newState:', newState);
+      return newState;
     default:
       return state;
   }

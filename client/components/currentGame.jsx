@@ -2,10 +2,12 @@ class CurrentGame extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      spaceInFocus: null,
-      clickedSpace: []
+      spaceInFocus: false,
+      clickedSpace: [],
+      readyToMove: false
     }
     this.toggleSpaceIntel = this.toggleSpaceIntel.bind(this);
+    this.toggleUnitMove = this.toggleUnitMove.bind(this);
     this.calculateInitialIncome = this.calculateInitialIncome.bind(this);
   }
 
@@ -29,6 +31,10 @@ class CurrentGame extends React.Component {
     }
   }
 
+  toggleUnitMove() {
+    this.setState({readyToMove: !this.state.readyToMove});
+  }
+
   calculateInitialIncome(countryName) {
     return this.props.board.reduce((sum, row) => {
       return sum + row.reduce((total, space) => {
@@ -46,7 +52,11 @@ class CurrentGame extends React.Component {
         <GameBoard
           board={this.props.board}
           units={this.props.units}
+          clickedSpace={this.state.clickedSpace}
+          readyToMove={this.state.readyToMove}
+          moveUnit={this.props.moveUnit}
           toggleSpaceIntel={this.toggleSpaceIntel}
+          toggleUnitMove={this.toggleUnitMove}
         /><br/>
         <CountriesIntel
           countries={this.props.countries}
@@ -62,6 +72,8 @@ class CurrentGame extends React.Component {
           units={this.props.units}
           position={this.state.clickedSpace}
           space={this.props.board[this.state.clickedSpace[0]][this.state.clickedSpace[1]]}
+          readyToMove={this.state.readyToMove}
+          toggleUnitMove={this.toggleUnitMove}
           buildUnit={this.props.buildUnit}
           decrementFunds={this.props.decrementFunds}
         /> : null}

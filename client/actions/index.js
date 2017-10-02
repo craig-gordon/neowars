@@ -55,9 +55,10 @@ const makeUnitsActive = () => ({
   type: actionTypes.UNITS_MAKE_ACTIVE
 });
 
-const moveUnit = (position) => ({
+const moveUnit = (from, to) => ({
   type: actionTypes.UNIT_MOVE,
-  position
+  from,
+  to
 });
 
 const incrementHp = (gain) => ({

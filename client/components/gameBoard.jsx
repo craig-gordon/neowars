@@ -13,7 +13,11 @@ class GameBoard extends React.Component {
                 <BoardSpace
                   key={y}
                   space={space}
+                  clickedSpace={this.props.clickedSpace}
+                  readyToMove={this.props.readyToMove}
+                  moveUnit={this.props.moveUnit}
                   toggleSpaceIntel={this.props.toggleSpaceIntel}
+                  toggleUnitMove={this.props.toggleUnitMove}
                 />
               )
             })}</tr>
