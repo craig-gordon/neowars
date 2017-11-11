@@ -1,132 +1,130 @@
-const populateMapList = (maps) => ({
-  type: actionTypes.MAP_LIST_POPULATE,
+const MAP_LIST_POPULATE = 'MAP_LIST_POPULATE';
+const GAME_NAME_SET = 'GAME_NAME_SET';
+const MAP_SET = 'MAP_SET';
+const BOARD_SET = 'BOARD_SET';
+const DAY_INCREMENT = 'DAY_INCREMENT';
+const CURRENT_TURN_CHANGE = 'CURRENT_TURN_CHANGE';
+const INCOME_RECEIVE = 'INCOME_RECEIVE';
+const FUNDS_DECREMENT = 'FUNDS_DECREMENT';
+const UNIT_BUILD = 'UNIT_BUILD';
+const UNIT_DESTROY = 'UNIT_DESTROY';
+const UNITS_MAKE_ACTIVE = 'UNITS_MAKE_ACTIVE';
+const UNIT_MOVE = 'UNIT_MOVE';
+const HP_INCREMENT = 'HP_INCREMENT';
+const HP_DECREMENT = 'HP_DECREMENT';
+const AMMO_INCREMENT = 'AMMO_INCREMENT';
+const AMMO_DECREMENT = 'AMMO_DECREMENT';
+const FUEL_INCREMENT = 'FUEL_INCREMENT';
+const FUEL_DECREMENT = 'FUEL_DECREMENT';
+const INCOME_INCREMENT = 'INCOME_INCREMENT';
+const INCOME_DECREMENT = 'INCOME_DECREMENT';
+const PROPERTY_CAPTURE = 'PROPERTY_CAPTURE';
+
+export const populateMapList = (maps) => ({
+  type: MAP_LIST_POPULATE,
   maps
 });
 
-const setGameName = (gameName) => ({
-  type: actionTypes.GAME_NAME_SET,
+export const setGameName = (gameName) => ({
+  type: GAME_NAME_SET,
   gameName
 });
 
-const setMap = (map) => ({
-  type: actionTypes.MAP_SET,
+export const setMap = (map) => ({
+  type: MAP_SET,
   map
 });
 
-const setBoard = (board) => ({
-  type: actionTypes.BOARD_SET,
+export const setBoard = (board) => ({
+  type: BOARD_SET,
   board
 });
 
-const incrementDay = (day) => ({
-  type: actionTypes.DAY_INCREMENT,
+export const incrementDay = (day) => ({
+  type: DAY_INCREMENT,
   day
 });
 
-const changeCurrentTurn = (countries) => ({
-  type: actionTypes.CURRENT_TURN_CHANGE,
+export const changeCurrentTurn = (countries) => ({
+  type: CURRENT_TURN_CHANGE,
   countries
 });
 
-const receiveIncome = (countryName) => ({
-  type: actionTypes.INCOME_RECEIVE,
+export const receiveIncome = (countryName) => ({
+  type: INCOME_RECEIVE,
   countryName
 });
 
-const decrementFunds = (countryName, loss) => ({
-  type: actionTypes.FUNDS_DECREMENT,
+export const decrementFunds = (countryName, loss) => ({
+  type: FUNDS_DECREMENT,
   countryName,
   loss
 });
 
-const buildUnit = (unitType, countryName, position) => ({
-  type: actionTypes.UNIT_BUILD,
+export const buildUnit = (unitType, countryName, position) => ({
+  type: UNIT_BUILD,
   unitType,
   countryName,
   position
 });
 
-const destroyUnit = (index) => ({
-  type: actionTypes.UNIT_DESTROY,
+export const destroyUnit = (index) => ({
+  type: UNIT_DESTROY,
   index
 });
 
-const makeUnitsActive = () => ({
-  type: actionTypes.UNITS_MAKE_ACTIVE
+export const makeUnitsActive = () => ({
+  type: UNITS_MAKE_ACTIVE
 });
 
-const moveUnit = (from, to) => ({
-  type: actionTypes.UNIT_MOVE,
+export const moveUnit = (from, to) => ({
+  type: UNIT_MOVE,
   from,
   to
 });
 
-const incrementHp = (gain) => ({
-  type: actionTypes.HP_INCREMENT,
+export const incrementHp = (gain) => ({
+  type: HP_INCREMENT,
   gain
 });
 
-const decrementHp = (loss) => ({
-  type: actionTypes.HP_DECREMENT,
+export const decrementHp = (loss) => ({
+  type: HP_DECREMENT,
   loss
 });
 
-const incrementAmmo = (gain) => ({
-  type: actionTypes.AMMO_INCREMENT,
+export const incrementAmmo = (gain) => ({
+  type: AMMO_INCREMENT,
   gain
 })
 
-const decrementAmmo = (loss) => ({
-  type: actionTypes.AMMO_DECREMENT,
+export const decrementAmmo = (loss) => ({
+  type: AMMO_DECREMENT,
   loss
 });
 
-const incrementFuel = (gain) => ({
-  type: actionTypes.FUEL_INCREMENT,
+export const incrementFuel = (gain) => ({
+  type: FUEL_INCREMENT,
   gain
 });
 
-const decrementFuel = (loss) => ({
-  type: actionTypes.FUEL_DECREMENT,
+export const decrementFuel = (loss) => ({
+  type: FUEL_DECREMENT,
   loss
 });
 
-const incrementIncome = (countryIndex, gain) => ({
-  type: actionTypes.INCOME_INCREMENT,
+export const incrementIncome = (countryIndex, gain) => ({
+  type: INCOME_INCREMENT,
   countryIndex,
   gain
 });
 
-const decrementIncome = (loss) => ({
-  type: actionTypes.INCOME_DECREMENT,
+export const decrementIncome = (loss) => ({
+  type: INCOME_DECREMENT,
   loss
 });
 
-const captureProperty = (unitHp) => ({
-  type: actionTypes.PROPERTY_CAPTURE,
+export const captureProperty = (unitHp) => ({
+  type: PROPERTY_CAPTURE,
   unitHp
 });
-
-window.actionCreators = {
-  populateMapList,
-  setGameName,
-  setMap,
-  setBoard,
-  incrementDay,
-  changeCurrentTurn,
-  receiveIncome,
-  decrementFunds,
-  buildUnit,
-  destroyUnit,
-  makeUnitsActive,
-  moveUnit,
-  incrementHp,
-  decrementHp,
-  incrementAmmo,
-  decrementAmmo,
-  incrementFuel,
-  decrementFuel,
-  incrementIncome,
-  decrementIncome,
-  captureProperty
-};

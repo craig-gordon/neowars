@@ -1,8 +1,9 @@
-const Link = ReactRouterDOM.Link;
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 class Banner extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
   }
 
   render() {
@@ -13,3 +14,5 @@ class Banner extends React.Component {
     )
   }
 }
+
+export default Banner;

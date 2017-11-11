@@ -16,3 +16,10 @@ node_modules/
 
 # Database Authorization
 db/config.js
+
+# Package-Lock
+package-lock.json
+
+# Webpack
+bundle.js
+bundle.js.map

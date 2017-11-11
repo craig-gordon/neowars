@@ -3,13 +3,13 @@ const path = require('path');
 const axios = require('axios');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const compression = require('compression');
 const db = require('../db/db-mysql.js');
 const app = express();
 
 app.use(bodyParser.json());
 app.use(cors());
-
-console.log(path.join(__dirname + '/../'));
+app.use(compression());
 
 app.use(express.static(path.join(__dirname + '/../')));
 

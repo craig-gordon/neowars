@@ -1,3 +1,13 @@
+import React from 'react';
+import GameBoard from './GameBoard.jsx';
+import CountriesIntel from './CountriesIntel.jsx';
+import SpaceIntel from './SpaceIntel.jsx';
+
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as actionCreators from '../actions';
+
 class CurrentGame extends React.Component {
   constructor(props) {
     super(props);
@@ -12,14 +22,14 @@ class CurrentGame extends React.Component {
   }
 
   componentDidMount() {
-    this.props.incrementDay();
-    this.props.changeCurrentTurn(this.props.countries);
+    this.props.actions.incrementDay();
+    this.props.actions.changeCurrentTurn(this.props.countries);
     setTimeout(() => {
       this.props.countries.forEach((country, i) => {
         let amount = this.calculateInitialIncome(country.name);
-        this.props.incrementIncome(i, amount);
+        this.props.actions.incrementIncome(i, amount);
       })
-      this.props.receiveIncome(this.props.countries[0].name);
+      this.props.actions.receiveIncome(this.props.countries[0].name);
     }, 20);
   }
 
@@ -36,6 +46,7 @@ class CurrentGame extends React.Component {
   }
 
   calculateInitialIncome(countryName) {
+    console.log('?');
     return this.props.board.reduce((sum, row) => {
       return sum + row.reduce((total, space) => {
         return total + (space.country === countryName ? 1000 : 0);
@@ -59,7 +70,7 @@ class CurrentGame extends React.Component {
             toggleSpaceIntel={this.toggleSpaceIntel}
             toggleUnitMove={this.toggleUnitMove}
           />
-        <div/>
+        </div>
         <div className='countries'>
           <CountriesIntel
             countries={this.props.countries}
@@ -69,7 +80,7 @@ class CurrentGame extends React.Component {
             makeUnitsActive={this.props.makeUnitsActive}
             receiveIncome={this.props.receiveIncome}
           />
-        <div/>
+        </div>
         {this.state.spaceInFocus ? <SpaceIntel
           currentTurn={this.props.currentTurn}
           countries={this.props.countries}
@@ -85,3 +96,24 @@ class CurrentGame extends React.Component {
     )
   }
 }
+
+const mapStateToProps = (state) => ({
+  mapList: state.mapList,
+  gameName: state.gameName,
+  map: state.map,
+  day: state.day,
+  currentTurn: state.currentTurn,
+  board: state.board,
+  countries: state.countries,
+  units: state.units,
+  router: state.router
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  actions: bindActionCreators(actionCreators, dispatch)
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CurrentGame);

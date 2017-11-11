@@ -1,3 +1,6 @@
+import { combineReducers } from 'redux';
+import { routerReducer } from 'react-router-redux';
+
 const mapList = (state = [], action) => {
   switch (action.type) {
     case 'MAP_LIST_POPULATE':
@@ -5,7 +8,7 @@ const mapList = (state = [], action) => {
     default:
       return state;
   }
-}
+};
 
 const gameName = (state = '', action) => {
   switch (action.type) {
@@ -14,7 +17,7 @@ const gameName = (state = '', action) => {
     default:
       return state;
   }
-}
+};
 
 const map = (state = '', action) => {
   switch (action.type) {
@@ -23,7 +26,7 @@ const map = (state = '', action) => {
     default:
       return state;
   }
-}
+};
 
 const board = (state = [[]], action) => {
   switch (action.type) {
@@ -32,7 +35,7 @@ const board = (state = [[]], action) => {
     default:
       return state;
   }
-}
+};
 
 const day = (state = 0, action) => {
   switch (action.type) {
@@ -42,7 +45,7 @@ const day = (state = 0, action) => {
     default:
       return state;
   }
-}
+};
 
 const currentTurn = (state = '', action) => {
   switch (action.type) {
@@ -52,7 +55,7 @@ const currentTurn = (state = '', action) => {
     default:
       return state;
   }
-}
+};
 
 const countries = (state = (
   [
@@ -84,7 +87,7 @@ const countries = (state = (
     default:
       return state;
   }
-}
+};
 
 const units = (state = [], action) => {
   switch (action.type) {
@@ -107,7 +110,7 @@ const units = (state = [], action) => {
   }
 }
 
-window.reducers = {
+const rootReducer = combineReducers({
   mapList,
   gameName,
   map,
@@ -115,5 +118,8 @@ window.reducers = {
   day,
   currentTurn,
   countries,
-  units
-};
+  units,
+  router: routerReducer
+});
+
+export default rootReducer;

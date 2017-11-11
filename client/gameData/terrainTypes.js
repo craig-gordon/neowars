@@ -19,7 +19,7 @@ class Road extends Terrain {
   }
 }
 
-class Plain extends Terrain {
+class Plains extends Terrain {
   constructor(x, y) {
     super(x, y);
     this.terrain = 'P';
@@ -34,7 +34,7 @@ class Plain extends Terrain {
   }
 }
 
-class Wood extends Terrain {
+class Woods extends Terrain {
   constructor(x, y) {
     super(x, y);
     this.terrain = 'W';
@@ -195,13 +195,15 @@ class HQ extends Terrain {
   }
 }
 
-window.setTerrain = {
+const setTerrain = {
   R: Road,
-  P: Plain,
-  W: Wood,
+  P: Plains,
+  W: Woods,
   M: Mountain,
   C: City,
   B: Base,
   A: Airport,
   H: HQ
 };
+
+export default setTerrain;
