@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../actions';
 
-class LandingPage extends React.Component {
+export class LandingPage extends React.Component {
   constructor(props) {
     super(props);
   }
