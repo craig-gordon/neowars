@@ -1,4 +1,5 @@
 import React from 'react';
+import _ from 'lodash';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
@@ -10,41 +11,32 @@ import * as actionCreators from '../actions';
 export class LandingPage extends React.Component {
   constructor(props) {
     super(props);
+    this.getMapList = this.getMapList.bind(this);
   }
 
-  componentDidMount() {
+  getMapList() {
     axios.get('/maps')
       .then(res => {
-        let mapList = res.data.map(map => map.name);
-        this.props.actions.populateMapList(mapList);
+        this.props.actions.populateMapList(res.data);
+        this.props.history.push('/new');
       })
       .catch(err => {
-        console.log('Server error:', err);
+        console.log('Error retrieving map list from database:', err);
       });
   }
 
   render() {
     return (
       <div>
-        <Link to='/new'>
-          <button onClick={this.props.getMapList}>
-            Create New Game
-          </button>
-        </Link>
+        <button onClick={this.getMapList}>
+          Create New Game
+        </button>
       </div>
     )
   }
 }
 
 const mapStateToProps = (state) => ({
-  mapList: state.mapList,
-  gameName: state.gameName,
-  map: state.map,
-  day: state.day,
-  currentTurn: state.currentTurn,
-  board: state.board,
-  countries: state.countries,
-  units: state.units,
   router: state.router
 });
 
@@ -52,7 +44,7 @@ const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators(actionCreators, dispatch)
 });
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(LandingPage);
+)(LandingPage));

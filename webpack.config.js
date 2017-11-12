@@ -2,6 +2,7 @@
 
 const path = require('path');
 const webpack = require('webpack');
+const Dotenv = require('dotenv-webpack');
 
 const config = {
   entry: './client/index.jsx',
@@ -29,6 +30,12 @@ const config = {
       }
     ]
   },
+  plugins: [
+    new Dotenv({
+      path: './.env',
+      safe: false
+    })
+  ],
   node: {
     fs: 'empty'
   },

@@ -1,130 +1,130 @@
-const MAP_LIST_POPULATE = 'MAP_LIST_POPULATE';
-const GAME_NAME_SET = 'GAME_NAME_SET';
-const MAP_SET = 'MAP_SET';
-const BOARD_SET = 'BOARD_SET';
-const DAY_INCREMENT = 'DAY_INCREMENT';
-const CURRENT_TURN_CHANGE = 'CURRENT_TURN_CHANGE';
-const INCOME_RECEIVE = 'INCOME_RECEIVE';
-const FUNDS_DECREMENT = 'FUNDS_DECREMENT';
-const UNIT_BUILD = 'UNIT_BUILD';
-const UNIT_DESTROY = 'UNIT_DESTROY';
-const UNITS_MAKE_ACTIVE = 'UNITS_MAKE_ACTIVE';
-const UNIT_MOVE = 'UNIT_MOVE';
-const HP_INCREMENT = 'HP_INCREMENT';
-const HP_DECREMENT = 'HP_DECREMENT';
-const AMMO_INCREMENT = 'AMMO_INCREMENT';
-const AMMO_DECREMENT = 'AMMO_DECREMENT';
-const FUEL_INCREMENT = 'FUEL_INCREMENT';
-const FUEL_DECREMENT = 'FUEL_DECREMENT';
-const INCOME_INCREMENT = 'INCOME_INCREMENT';
-const INCOME_DECREMENT = 'INCOME_DECREMENT';
-const PROPERTY_CAPTURE = 'PROPERTY_CAPTURE';
+const POPULATE_MAP_LIST = 'POPULATE_MAP_LIST';
+const SET_CURRENT_GAME_NAME = 'SET_CURRENT_GAME_NAME';
+const SET_CURRENT_MAP = 'SET_CURRENT_MAP';
+const SET_CURRENT_BOARD = 'SET_CURRENT_BOARD';
+const INCREMENT_CURRENT_DAY = 'INCREMENT_CURRENT_DAY';
+const CHANGE_CURRENT_TURN = 'CHANGE_CURRENT_TURN';
+const RECEIVE_INCOME = 'RECEIVE_INCOME';
+const DECREMENT_FUNDS = 'DECREMENT_FUNDS';
+const BUILD_UNIT = 'BUILD_UNIT';
+const DESTROY_UNIT = 'DESTROY_UNIT';
+const MAKE_UNITS_ACTIVE = 'MAKE_UNITS_ACTIVE';
+const MOVE_UNIT = 'MOVE_UNIT';
+const INCREMENT_HP = 'INCREMENT_HP';
+const DECREMENT_HP = 'DECREMENT_HP';
+const INCREMENT_AMMO = 'INCREMENT_AMMO';
+const DECREMENT_AMMO = 'DECREMENT_AMMO';
+const INCREMENT_FUEL = 'INCREMENT_FUEL';
+const DECREMENT_FUEL = 'DECREMENT_FUEL';
+const INCREMENT_INCOME = 'INCREMENT_INCOME';
+const DECREMENT_INCOME = 'DECREMENT_INCOME';
+const CAPTURE_PROPERTY = 'CAPTURE_PROPERTY';
 
 export const populateMapList = (maps) => ({
-  type: MAP_LIST_POPULATE,
+  type: POPULATE_MAP_LIST,
   maps
 });
 
-export const setGameName = (gameName) => ({
-  type: GAME_NAME_SET,
+export const setCurrentGameName = (gameName) => ({
+  type: SET_CURRENT_GAME_NAME,
   gameName
 });
 
-export const setMap = (map) => ({
-  type: MAP_SET,
+export const setCurrentMap = (map) => ({
+  type: SET_CURRENT_MAP,
   map
 });
 
-export const setBoard = (board) => ({
-  type: BOARD_SET,
+export const setCurrentBoard = (board) => ({
+  type: SET_CURRENT_BOARD,
   board
 });
 
-export const incrementDay = (day) => ({
-  type: DAY_INCREMENT,
+export const incrementCurrentDay = (day) => ({
+  type: INCREMENT_CURRENT_DAY,
   day
 });
 
 export const changeCurrentTurn = (countries) => ({
-  type: CURRENT_TURN_CHANGE,
+  type: CHANGE_CURRENT_TURN,
   countries
 });
 
 export const receiveIncome = (countryName) => ({
-  type: INCOME_RECEIVE,
+  type: RECEIVE_INCOME,
   countryName
 });
 
 export const decrementFunds = (countryName, loss) => ({
-  type: FUNDS_DECREMENT,
+  type: DECREMENT_FUNDS,
   countryName,
   loss
 });
 
 export const buildUnit = (unitType, countryName, position) => ({
-  type: UNIT_BUILD,
+  type: BUILD_UNIT,
   unitType,
   countryName,
   position
 });
 
 export const destroyUnit = (index) => ({
-  type: UNIT_DESTROY,
+  type: DESTROY_UNIT,
   index
 });
 
 export const makeUnitsActive = () => ({
-  type: UNITS_MAKE_ACTIVE
+  type: MAKE_UNITS_ACTIVE
 });
 
 export const moveUnit = (from, to) => ({
-  type: UNIT_MOVE,
+  type: MOVE_UNIT,
   from,
   to
 });
 
 export const incrementHp = (gain) => ({
-  type: HP_INCREMENT,
+  type: INCREMENT_HP,
   gain
 });
 
 export const decrementHp = (loss) => ({
-  type: HP_DECREMENT,
+  type: DECREMENT_HP,
   loss
 });
 
 export const incrementAmmo = (gain) => ({
-  type: AMMO_INCREMENT,
+  type: INCREMENT_AMMO,
   gain
 })
 
 export const decrementAmmo = (loss) => ({
-  type: AMMO_DECREMENT,
+  type: DECREMENT_AMMO,
   loss
 });
 
 export const incrementFuel = (gain) => ({
-  type: FUEL_INCREMENT,
+  type: INCREMENT_FUEL,
   gain
 });
 
 export const decrementFuel = (loss) => ({
-  type: FUEL_DECREMENT,
+  type: DECREMENT_FUEL,
   loss
 });
 
 export const incrementIncome = (countryIndex, gain) => ({
-  type: INCOME_INCREMENT,
+  type: INCREMENT_INCOME,
   countryIndex,
   gain
 });
 
 export const decrementIncome = (loss) => ({
-  type: INCOME_DECREMENT,
+  type: DECREMENT_INCOME,
   loss
 });
 
 export const captureProperty = (unitHp) => ({
-  type: PROPERTY_CAPTURE,
+  type: CAPTURE_PROPERTY,
   unitHp
 });

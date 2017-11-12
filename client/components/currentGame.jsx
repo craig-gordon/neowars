@@ -1,4 +1,5 @@
 import React from 'react';
+import _ from 'lodash';
 import GameBoard from './GameBoard.jsx';
 import CountriesIntel from './CountriesIntel.jsx';
 import SpaceIntel from './SpaceIntel.jsx';
@@ -25,7 +26,7 @@ class CurrentGame extends React.Component {
     this.props.actions.incrementDay();
     this.props.actions.changeCurrentTurn(this.props.countries);
     setTimeout(() => {
-      this.props.countries.forEach((country, i) => {
+      _.each(this.props.countries, (country, i) => {
         let amount = this.calculateInitialIncome(country.name);
         this.props.actions.incrementIncome(i, amount);
       })
@@ -46,9 +47,8 @@ class CurrentGame extends React.Component {
   }
 
   calculateInitialIncome(countryName) {
-    console.log('?');
-    return this.props.board.reduce((sum, row) => {
-      return sum + row.reduce((total, space) => {
+    return _.reduce(this.props.board, (sum, row) => {
+      return sum + _.reduce(row, (total, space) => {
         return total + (space.country === countryName ? 1000 : 0);
       }, 0);
     }, 0);
@@ -60,7 +60,7 @@ class CurrentGame extends React.Component {
         <h3>{this.props.gameName}</h3>
         Map: {this.props.map}<br/>
         Day: {this.props.day}<br/><br/>
-        <div className='board'>
+        <div className="board">
           <GameBoard
             board={this.props.board}
             units={this.props.units}
@@ -71,7 +71,7 @@ class CurrentGame extends React.Component {
             toggleUnitMove={this.toggleUnitMove}
           />
         </div>
-        <div className='countries'>
+        <div className="countries">
           <CountriesIntel
             countries={this.props.countries}
             currentTurn={this.props.currentTurn}
@@ -113,7 +113,7 @@ const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators(actionCreators, dispatch)
 });
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(CurrentGame);
+)(CurrentGame));

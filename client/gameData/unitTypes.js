@@ -522,7 +522,7 @@ class Tank extends Unit {
   }
 }
 
-export default createUnit = {
+const unitTypes = {
   'antiair': Antiair,
   'apc': APC,
   'artillery': Artillery,
@@ -539,3 +539,5 @@ export default createUnit = {
   'tcopter': Tcopter,
   'tank': Tank
 };
+
+export default unitTypes;

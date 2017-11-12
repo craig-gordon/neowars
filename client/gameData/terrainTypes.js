@@ -7,7 +7,7 @@ class Terrain {
 class Road extends Terrain {
   constructor(x, y) {
     super(x, y);
-    this.terrain = 'R';
+    this.terrain = 'road';
     this.defense = 0;
     this.moveCosts = {
       A: 1,
@@ -22,7 +22,7 @@ class Road extends Terrain {
 class Plains extends Terrain {
   constructor(x, y) {
     super(x, y);
-    this.terrain = 'P';
+    this.terrain = 'plains';
     this.defense = 1;
     this.moveCosts = {
       A: 1,
@@ -37,7 +37,7 @@ class Plains extends Terrain {
 class Woods extends Terrain {
   constructor(x, y) {
     super(x, y);
-    this.terrain = 'W';
+    this.terrain = 'woods';
     this.defense = 2;
     this.moveCosts = {
       A: 1,
@@ -52,7 +52,7 @@ class Woods extends Terrain {
 class Mountain extends Terrain {
   constructor(x, y) {
     super(x, y);
-    this.terrain = 'M';
+    this.terrain = 'mountain';
     this.defense = 4;
     this.moveCosts = {
       A: 1,
@@ -65,7 +65,7 @@ class Mountain extends Terrain {
 class City extends Terrain {
   constructor(x, y, country = null) {
     super(x, y);
-    this.terrain = 'C';
+    this.terrain = 'city';
     this.defense = 3;
     this.moveCosts = {
       A: 1,
@@ -95,7 +95,7 @@ class City extends Terrain {
 class Base extends Terrain {
   constructor(x, y, country = null) {
     super(x, y);
-    this.terrain = 'B';
+    this.terrain = 'base';
     this.defense = 3;
     this.moveCosts = {
       A: 1,
@@ -138,7 +138,7 @@ class Base extends Terrain {
 class Airport extends Terrain {
   constructor(x, y, country = null) {
     super(x, y);
-    this.terrain = 'A';
+    this.terrain = 'airport';
     this.defense = 3;
     this.moveCosts = {
       A: 1,
@@ -167,7 +167,7 @@ class Airport extends Terrain {
 class HQ extends Terrain {
   constructor(x, y, country) {
     super(x, y);
-    this.terrain = 'H';
+    this.terrain = 'hq';
     this.defense = 4;
     this.moveCosts = {
       A: 1,
@@ -195,15 +195,15 @@ class HQ extends Terrain {
   }
 }
 
-const setTerrain = {
-  R: Road,
-  P: Plains,
-  W: Woods,
-  M: Mountain,
-  C: City,
-  B: Base,
-  A: Airport,
-  H: HQ
+const terrainTypes = {
+  'road': Road,
+  'plains': Plains,
+  'woods': Woods,
+  'mountain': Mountain,
+  'city': City,
+  'base': Base,
+  'airport': Airport,
+  'hq': HQ
 };
 
-export default setTerrain;
+export default terrainTypes;

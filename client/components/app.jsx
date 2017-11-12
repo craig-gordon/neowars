@@ -19,9 +19,9 @@ class App extends React.Component {
       <div>
         <Banner />
         <Switch>
-          <Route exact path='/' component={LandingPage}/>
-          <Route path='/new' component={CreateNewGame}/>
-          <Route path='/game' component={CurrentGame}/>
+          <Route exact path="/" component={LandingPage}/>
+          <Route path="/new" component={CreateNewGame}/>
+          <Route path="/game" component={CurrentGame}/>
         </Switch>
       </div>
     )
