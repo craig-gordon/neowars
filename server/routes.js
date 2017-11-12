@@ -3,30 +3,35 @@ const path = require('path');
 const axios = require('axios');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const db = require('../db/db-mysql.js');
+const compression = require('compression');
+const query = require('../db/queries.js');
 const app = express();
 
 app.use(bodyParser.json());
 app.use(cors());
-
-console.log(path.join(__dirname + '/../'));
+app.use(compression());
 
 app.use(express.static(path.join(__dirname + '/../')));
 
 app.get('/maps', (req, res) => {
-  db.getAllMaps()
+  query.getAllMaps()
     .then(maps => {
+      console.log('maps:', maps);
       res.send(maps);
     })
-    .catch(err => res.send(err));
+    .catch(err => {
+      res.send(err);
+    });
 });
 
 app.post('/board', (req, res) => {
-  db.getBoard(req.body.map)
+  query.getBoard(req.body.mapId)
     .then(board => {
       res.send(board);
     })
-    .catch(err => res.send(err));
+    .catch(err => {
+      res.send(err);
+    });
 });
 
 app.get('/*', (req, res) => {

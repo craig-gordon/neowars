@@ -1,40 +1,104 @@
-const Link = ReactRouterDOM.Link;
+import React from 'react';
+import _ from 'lodash';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
+import * as Terrain from '../gameData/terrainTypes';
+
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as actionCreators from '../actions';
 
 class CreateNewGame extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       gameName: '',
-      map: null
+      map: {}
     }
-    this.updateName = this.updateName.bind(this);
-    this.updateMap = this.updateMap.bind(this);
+    this.updateTypedName = this.updateTypedName.bind(this);
+    this.updateSelectedMap = this.updateSelectedMap.bind(this);
+    this.setNameAndMap = this.setNameAndMap.bind(this);
+    this.assembleBoard = this.assembleBoard.bind(this);
   }
 
-  updateName(e) {
+  updateTypedName(e) {
     this.setState({gameName: e.target.value});
   }
 
-  updateMap(e) {
-    this.setState({map: e.target.value});
+  updateSelectedMap(e) {
+    let map = _.filter(this.props.mapList, (map, i) => map.name === e.target.value);
+    this.setState({ map });
+  }
+
+  setNameAndMap(gameName, map) {
+    axios.post('/board', {
+      mapId: map.id
+    })
+      .then(res => {
+        let board = this.assembleBoard(res.data);
+        console.log('board:', board);
+        this.props.actions.setGameName(gameName);
+        this.props.actions.setCurrentMap(map);
+        this.props.actions.setCurrentBoard(board);
+      })
+      .catch(err => {
+        console.log('Error fetching board data from database:', err);
+      });
+  }
+
+  assembleBoard(dbArray) {
+    console.log('dbArray:', dbArray);
+    return _.reduce(dbArray, (matrix, space) => {
+      if (space.col === 0) {
+        matrix[space.row] = [new Terrain[space.terrain](space.row, space.col, space.country)];
+      } else {
+        matrix[space.row].push(new Terrain[space.terrain](space.row, space.col, space.country));
+      }
+      return matrix;
+    }, []);
   }
 
   render() {
     return (
       <div>
-        <h2>Create Game</h2>
-        <div className='gameName'>Game Name: <input type="text" value={this.state.gameName} onChange={this.updateName}></input></div>
-        <div className='map'>Select Map: <select name="map" onChange={this.updateMap}>
-          <option>select...</option>
-          {this.props.mapList.map((map, i) => <option key={i}>{map}</option>)}
-        </select></div>
+      
+        <h2> Create Game </h2>
+
+        <div className="gameName">Game Name:
+          <input type="text" value={this.state.gameName} onChange={this.updateTypedName}></input>
+        </div>
+
+        <div className="map">Select Map:
+          <select name="map" onChange={this.updateSelectedMap}>
+            <option>select...</option>
+            {_.map(this.props.mapList, (map, i) => <option key={i}> {map.name} </option>)}
+          </select>
+        </div>
+
         <br/><br/>
-        <Link to='/game'>
-          <button onClick={this.props.setNameAndMap.bind(null, this.state.gameName, this.state.map)}>
+
+        <Link to="/game">
+          <button onClick={this.setNameAndMap.bind(null, this.state.gameName, this.state.map)}>
             Start Game
           </button>
         </Link>
+
       </div>
     )
   }
 }
+
+const mapStateToProps = (state) => ({
+  mapList: state.mapList,
+  router: state.router
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  actions: bindActionCreators(actionCreators, dispatch)
+});
+
+export default withRouter(connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CreateNewGame));

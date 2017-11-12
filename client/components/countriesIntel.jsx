@@ -1,3 +1,10 @@
+import React from 'react';
+
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as actionCreators from '../actions';
+
 class CountriesIntel extends React.Component {
   constructor(props) {
     super(props);
@@ -23,3 +30,24 @@ class CountriesIntel extends React.Component {
     )
   }
 }
+
+const mapStateToProps = (state) => ({
+  mapList: state.mapList,
+  gameName: state.gameName,
+  map: state.map,
+  day: state.day,
+  currentTurn: state.currentTurn,
+  board: state.board,
+  countries: state.countries,
+  units: state.units,
+  router: state.router
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  actions: bindActionCreators(actionCreators, dispatch)
+});
+
+export default connect(withRouter(
+  mapStateToProps,
+  mapDispatchToProps
+))(CountriesIntel);

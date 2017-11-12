@@ -1,43 +1,63 @@
 {
-  "name": "hrnyc10-solo-week",
+  "name": "neowars",
   "version": "1.0.0",
-  "description": "Solo Week Project -- Turn-Based Strategy Game",
-  "main": "index.js",
+  "description": "Advance Wars Browser Simulation",
+  "main": "webpack.config.js",
   "scripts": {
-    "start": "node server/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "compile": "webpack -w",
+    "start": "nodemon server/index.js",
+    "test": "jest --verbose --watchAll"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cyghfer/hrnyc10-solo-week.git"
+    "url": "git+https://github.com/craig-gordon/neowars.git"
   },
   "author": "Craig Gordon",
   "license": "ISC",
-  "engines" : { "node" : "8.5.0"},
-  "bugs": {
-    "url": "https://github.com/cyghfer/hrnyc10-solo-week/issues"
+  "engines": {
+    "node": "8.5.0"
   },
-  "homepage": "https://github.com/cyghfer/hrnyc10-solo-week#readme",
+  "bugs": {
+    "url": "https://github.com/craig-gordon/neowars/issues"
+  },
+  "homepage": "https://github.com/craig-gordon/neowars#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-jest": "^21.2.0",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-plugin-transform-react-jsx-source": "^6.22.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "enzyme": "^3.1.1",
+    "enzyme-adapter-react-16": "^1.0.4",
+    "enzyme-to-json": "^3.2.2",
+    "jest": "^21.2.1",
+    "jest-cli": "^21.2.1",
+    "redux-devtools": "^3.4.1",
+    "webpack": "^3.8.1",
+    "webpack-dev-middleware": "^1.12.0",
+    "webpack-dev-server": "^2.9.4"
+  },
   "dependencies": {
     "axios": "^0.16.2",
     "body-parser": "^1.18.2",
+    "compression": "^1.7.1",
     "cors": "^2.8.4",
+    "dotenv": "^4.0.0",
+    "dotenv-webpack": "^1.5.4",
     "express": "^4.15.5",
     "history": "^4.7.2",
-    "mysql": "^2.14.1",
+    "lodash": "^4.17.4",
     "mysql2": "^1.4.2",
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1",
+    "prop-types": "^15.6.0",
+    "react": "^16.1.0",
+    "react-dom": "^16.1.0",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
-    "react-router-redux": "^5.0.0-alpha.6",
-    "redux": "^3.7.2"
-  },
-  "devDependencies": {
-    "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.2",
-    "babel-preset-es2015": "^6.24.1",
-    "babel-preset-react": "^6.24.1",
-    "redux-devtools": "^3.4.0"
+    "react-router-redux": "^5.0.0-alpha.8",
+    "redux": "^3.7.2",
+    "redux-saga": "^0.16.0",
+    "sequelize": "^4.22.6"
   }
 }
