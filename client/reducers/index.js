@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import * as Unit from '../gameData/unitTypes';
+import { unitTypes as Unit } from '../gameData/unitTypes';
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 
@@ -98,21 +98,19 @@ const units = (state = [], action) => {
     case 'BUILD_UNIT':
       return [...state, new Unit[action.unitType](action.countryName, action.position)];
     case 'DESTROY_UNIT':
-      return [...state.slice(0, action.index), ...state.slice(action.index + 1)];
+      return [...state.slice(0, action.idx), ...state.slice(action.idx + 1)];
     case 'MAKE_UNITS_ACTIVE':
       return state.map(unit => _.assign(unit, {canMove: true}));
     case 'MOVE_UNIT':
-      console.log('state:', state);
       let idx = state.reduce((acc, unit, i) => action.from === unit.position ? i : acc, null);
       let movingUnit = state[idx];
       movingUnit.position = action.to;
       let newState = [...state.slice(0, idx), movingUnit, ...state.slice(idx + 1)];
-      console.log('newState:', newState);
       return newState;
     default:
       return state;
   }
-}
+};
 
 const rootReducer = combineReducers({
   mapList,

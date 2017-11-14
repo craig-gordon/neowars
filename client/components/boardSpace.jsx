@@ -13,20 +13,23 @@ class BoardSpace extends React.Component {
 
   render() {
     let space = this.props.space;
-    let unit = this.props.units.filter(unit => unit.position === space.position);
+    let occupyingUnit = this.props.units.filter(unit => unit.position === space.position)[0];
+    let movingUnit = this.props.movingUnit;
+    let clickedPos = this.props.clickedSpace.position;
     return (
       <td
         className={`${space.terrain}_${space.countryName}`}
         onClick={() => {
-          if (this.props.readyToMove) {
-            if (Math.abs(this.props.clickedSpace[0] - space.position[0]) + Math.abs(this.props.clickedSpace[1] - space.position[1]) <= 3) {
-              this.props.actions.moveUnit(this.props.clickedSpace, space.position);
+          if (this.props.movingUnit) {
+            if (!occupyingUnit && Math.abs(clickedPos[0] - space.position[0]) + Math.abs(clickedPos[1] - space.position[1]) <= movingUnit.moveRange) {
+              this.props.actions.moveUnit(clickedPos, space.position);
               this.props.toggleUnitMove();
             }
           }
           this.props.toggleSpaceIntel(space);
-        }}>
-        {unit.length ? <img src={`assets/images/${unit[0].type}_${unit[0].countryName}.png`} /> : null}
+        }}
+      >
+        {occupyingUnit ? <img src={`assets/images/${occupyingUnit.type}_${occupyingUnit.countryName}.png`} /> : null}
       </td>
     )
   }

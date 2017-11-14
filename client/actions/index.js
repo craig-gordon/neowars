@@ -68,9 +68,9 @@ export const buildUnit = (unitType, countryName, position) => ({
   position
 });
 
-export const destroyUnit = (index) => ({
+export const destroyUnit = (idx) => ({
   type: DESTROY_UNIT,
-  index
+  idx
 });
 
 export const makeUnitsActive = () => ({

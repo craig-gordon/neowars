@@ -10,6 +10,12 @@ class CountriesIntel extends React.Component {
     super(props);
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (this.props.currentTurn && nextProps.currentTurn !== this.props.currentTurn) {
+      this.props.actions.receiveIncome(nextProps.currentTurn);
+    }
+  }
+
   render() {
     return (
       <div className="countries">
@@ -25,7 +31,6 @@ class CountriesIntel extends React.Component {
                   this.props.actions.changeCurrentTurn(this.props.countries);
                   this.props.actions.makeUnitsActive();
                   this.props.toggleSpaceIntel();
-                  this.props.actions.receiveIncome(this.props.currentTurn);
                 }}> End Turn </div>
 
               ) : null}

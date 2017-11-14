@@ -1,15 +1,17 @@
 class Unit {
-  constructor(country, position) {
+  constructor(countryName, position) {
     this.hp = 100;
-    this.country = country;
+    this.countryName = countryName;
     this.position = position;
     this.canMove = false;
+    this.canAttack = false;
+    this.hasTargetInRange = false;
   }
 }
 
 class Antiair extends Unit {
-  constructor(country, position) {
-    super(country, position);
+  constructor(countryName, position) {
+    super(countryName, position);
     this.type = 'antiair';
     this.zone = 'L';
     this.moveRange = 6;
@@ -48,8 +50,8 @@ class Antiair extends Unit {
 }
 
 class APC extends Unit {
-  constructor(country, position) {
-    super(country, position);
+  constructor(countryName, position) {
+    super(countryName, position);
     this.type = 'apc';
     this.zone = 'L';
     this.moveRange = 6;
@@ -65,8 +67,8 @@ class APC extends Unit {
 }
 
 class Artillery extends Unit {
-  constructor(country, position) {
-    super(country, position);
+  constructor(countryName, position) {
+    super(countryName, position);
     this.type = 'artillery';
     this.zone = 'L';
     this.moveRange = 5;
@@ -101,8 +103,8 @@ class Artillery extends Unit {
 }
 
 class Bcopter extends Unit {
-  constructor(country, position) {
-    super(country, position);
+  constructor(countryName, position) {
+    super(countryName, position);
     this.type = 'bcopter';
     this.zone = 'A';
     this.moveRange = 6;
@@ -144,8 +146,8 @@ class Bcopter extends Unit {
 }
 
 class Bomber extends Unit {
-  constructor(country, position) {
-    super(country, position);
+  constructor(countryName, position) {
+    super(countryName, position);
     this.type = 'bomber';
     this.zone = 'A';
     this.moveRange = 7;
@@ -180,8 +182,8 @@ class Bomber extends Unit {
 }
 
 class Fighter extends Unit {
-  constructor(country, position) {
-    super(country, position);
+  constructor(countryName, position) {
+    super(countryName, position);
     this.type = 'fighter';
     this.zone = 'A';
     this.moveRange = 9;
@@ -209,8 +211,8 @@ class Fighter extends Unit {
 }
 
 class Infantry extends Unit {
-  constructor(country, position) {
-    super(country, position);
+  constructor(countryName, position) {
+    super(countryName, position);
     this.type = 'infantry';
     this.zone = 'L';
     this.moveRange = 3;
@@ -247,8 +249,8 @@ class Infantry extends Unit {
 }
 
 class MdTank extends Unit {
-  constructor(country, position) {
-    super(country, position);
+  constructor(countryName, position) {
+    super(countryName, position);
     this.type = 'mdtank';
     this.zone = 'L';
     this.moveRange = 5;
@@ -286,8 +288,8 @@ class MdTank extends Unit {
 }
 
 class Mech extends Unit {
-  constructor(country, position) {
-    super(country, position);
+  constructor(countryName, position) {
+    super(countryName, position);
     this.type = 'mech';
     this.zone = 'L';
     this.moveRange = 2;
@@ -325,8 +327,8 @@ class Mech extends Unit {
 }
 
 class Missiles extends Unit {
-  constructor(country, position) {
-    super(country, position);
+  constructor(countryName, position) {
+    super(countryName, position);
     this.type = 'missiles';
     this.zone = 'L';
     this.moveRange = 5;
@@ -354,8 +356,8 @@ class Missiles extends Unit {
 }
 
 class Neotank extends Unit {
-  constructor(country, position) {
-    super(country, position);
+  constructor(countryName, position) {
+    super(countryName, position);
     this.type = 'neotank';
     this.zone = 'L';
     this.moveRange = 6;
@@ -393,8 +395,8 @@ class Neotank extends Unit {
 }
 
 class Recon extends Unit {
-  constructor(country, position) {
-    super(country, position);
+  constructor(countryName, position) {
+    super(countryName, position);
     this.type = 'recon';
     this.zone = 'L';
     this.moveRange = 8;
@@ -431,8 +433,8 @@ class Recon extends Unit {
 }
 
 class Rockets extends Unit {
-  constructor(country, position) {
-    super(country, position);
+  constructor(countryName, position) {
+    super(countryName, position);
     this.type = 'rockets';
     this.zone = 'L';
     this.moveRange = 5;
@@ -467,8 +469,8 @@ class Rockets extends Unit {
 }
 
 class Tcopter extends Unit {
-  constructor(country, position) {
-    super(country, position);
+  constructor(countryName, position) {
+    super(countryName, position);
     this.type = 'tcopter';
     this.zone = 'A';
     this.moveRange = 6;
@@ -484,8 +486,8 @@ class Tcopter extends Unit {
 }
 
 class Tank extends Unit {
-  constructor(country, position) {
-    super(country, position);
+  constructor(countryName, position) {
+    super(countryName, position);
     this.type = 'tank';
     this.zone = 'L';
     this.moveRange = 6;
@@ -522,7 +524,7 @@ class Tank extends Unit {
   }
 }
 
-const unitTypes = {
+export const unitTypes = {
   'antiair': Antiair,
   'apc': APC,
   'artillery': Artillery,
@@ -539,5 +541,3 @@ const unitTypes = {
   'tcopter': Tcopter,
   'tank': Tank
 };
-
-export default unitTypes;

@@ -15,8 +15,7 @@ class CurrentGame extends React.Component {
     this.state = {
       spaceInFocus: false,
       clickedSpace: {},
-      clickedPosition: [],
-      readyToMove: false
+      movingUnit: null
     }
     this.toggleSpaceIntel = this.toggleSpaceIntel.bind(this);
     this.toggleUnitMove = this.toggleUnitMove.bind(this);
@@ -33,13 +32,13 @@ class CurrentGame extends React.Component {
     this.props.actions.receiveIncome(this.props.countries[0].name)
   }
 
-  toggleSpaceIntel(space) {
+  toggleSpaceIntel(space = null) {
     if (space.position === this.state.clickedPosition) this.setState({spaceInFocus: false, clickedSpace: {}});
     else this.setState({spaceInFocus: true, clickedSpace: space});
   }
 
-  toggleUnitMove() {
-    this.setState({readyToMove: !this.state.readyToMove});
+  toggleUnitMove(unit) {
+    this.setState({movingUnit: unit ? unit : null});
   }
 
   calculateInitialIncome(countryName) {
@@ -58,7 +57,8 @@ class CurrentGame extends React.Component {
         <div>Day: {this.props.currentDay}</div><br/>
         <GameBoard
           clickedSpace={this.state.clickedSpace}
-          readyToMove={this.state.readyToMove}
+          clickedUnit={this.state.clickedUnit}
+          movingUnit={this.state.movingUnit}
           toggleSpaceIntel={this.toggleSpaceIntel}
           toggleUnitMove={this.toggleUnitMove}
         />
@@ -67,7 +67,8 @@ class CurrentGame extends React.Component {
         />
         {this.state.spaceInFocus ? <SpaceIntel
           space={this.state.clickedSpace}
-          readyToMove={this.state.readyToMove}
+          movingUnit={this.state.movingUnit}
+          toggleSpaceIntel={this.toggleSpaceIntel}
           toggleUnitMove={this.toggleUnitMove}
         /> : null}
       </div>

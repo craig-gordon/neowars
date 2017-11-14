@@ -21,30 +21,28 @@ class SpaceIntel extends React.Component {
         {unit ? <UnitIntel
           unit={unit}
           toggleUnitMove={this.props.toggleUnitMove}
-          readyToMove={this.props.readyToMove}
+          movingUnit={this.props.movingUnit}
         /> : null}
 
         Terrain: {space.terrain}<br/>
         Defense: {space.defense}<br/>
 
-        {space.countryName ? `Owner: ${space.countryName}` : null}<br/>
+        {space.countryName ? <div>Owner: {space.countryName}</div> : null}<br/>
 
-        {space.canBuild && this.props.currentTurn === space.countryName && unit ?
+        {space.canBuild && this.props.currentTurn === space.countryName ?
           (<div>
 
             {space.unitList.map((unit, i) => (
-              unit.cost <= spaceOwner.funds ? 
+              unit.cost <= spaceOwner.funds ? (
                 <div
                   key={i}
                   onClick={() => {
                     this.props.actions.buildUnit(unit.name, space.countryName, space.position);
                     this.props.actions.decrementFunds(space.countryName, unit.cost);
+                    this.props.toggleSpaceIntel();
                   }}
-                >
-                  {unit.name} | {unit.cost}
-                </div>
-              :
-                null
+                > {unit.name} | {unit.cost} </div>
+              ) : null
             ))}
 
           </div>)
