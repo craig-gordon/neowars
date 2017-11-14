@@ -113,9 +113,9 @@ export const decrementFuel = (loss) => ({
   loss
 });
 
-export const incrementIncome = (countryIndex, gain) => ({
+export const incrementIncome = (countryIdx, gain) => ({
   type: INCREMENT_INCOME,
-  countryIndex,
+  countryIdx,
   gain
 });
 

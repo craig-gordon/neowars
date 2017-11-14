@@ -42,7 +42,7 @@ const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators(actionCreators, dispatch)
 });
 
-export default connect(withRouter(
+export default connect(
   mapStateToProps,
   mapDispatchToProps
-))(UnitIntel);
+)(UnitIntel);

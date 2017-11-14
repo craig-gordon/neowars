@@ -195,7 +195,7 @@ class HQ extends Terrain {
   }
 }
 
-const terrainTypes = {
+export const terrainTypes = {
   'road': Road,
   'plains': Plains,
   'woods': Woods,
@@ -205,5 +205,3 @@ const terrainTypes = {
   'airport': Airport,
   'hq': HQ
 };
-
-export default terrainTypes;

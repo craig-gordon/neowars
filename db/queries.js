@@ -19,8 +19,7 @@ const getBoard = (mapId) => {
     }
   })
     .then(data => {
-      console.log('data:', data);
-      return data[0]
+      return data.map(spaceEntry => spaceEntry.dataValues);
     })
     .catch(err => {
       return err;

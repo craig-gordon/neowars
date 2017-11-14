@@ -16,14 +16,19 @@ class SpaceIntel extends React.Component {
     let unit = this.props.units.filter(unit => unit.position === this.props.space.position);
     return (
       <div>
+
         {unit.length ? <UnitIntel
           unit={unit[0]}
           toggleUnitMove={this.props.toggleUnitMove}
           readyToMove={this.props.readyToMove}
         /> : null}
+
         Terrain: {this.props.space.terrain}<br/>
+
         Defense: {this.props.space.defense}<br/>
+
         {this.props.space.country ? `Owner: ${this.props.space.country}` : null}<br/>
+
         {this.props.space.canBuild && this.props.currentTurn === this.props.space.country && unit.length === 0 ?
           (<ul>
             {this.props.space.canBuild.map((unitTuple, i) => (
@@ -41,18 +46,14 @@ class SpaceIntel extends React.Component {
             ))}
           </ul>)
         : null}
+        
       </div>
     )
   }
 }
 
 const mapStateToProps = (state) => ({
-  mapList: state.mapList,
-  gameName: state.gameName,
-  map: state.map,
-  day: state.day,
   currentTurn: state.currentTurn,
-  board: state.board,
   countries: state.countries,
   units: state.units,
   router: state.router
@@ -62,7 +63,7 @@ const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators(actionCreators, dispatch)
 });
 
-export default connect(withRouter(
+export default connect(
   mapStateToProps,
   mapDispatchToProps
-))(SpaceIntel);
+)(SpaceIntel);

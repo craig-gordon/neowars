@@ -23,7 +23,7 @@ class CurrentGame extends React.Component {
   }
 
   componentDidMount() {
-    this.props.actions.incrementDay();
+    this.props.actions.incrementCurrentDay();
     this.props.actions.changeCurrentTurn(this.props.countries);
     setTimeout(() => {
       _.each(this.props.countries, (country, i) => {
@@ -57,13 +57,11 @@ class CurrentGame extends React.Component {
   render() {
     return (
       <div>
-        <h3>{this.props.gameName}</h3>
-        Map: {this.props.map}<br/>
-        Day: {this.props.day}<br/><br/>
+        <h3>{this.props.currentGameName}</h3>
+        Map: {this.props.currentMap.name}<br/>
+        Day: {this.props.currentDay}<br/><br/>
         <div className="board">
           <GameBoard
-            board={this.props.board}
-            units={this.props.units}
             clickedSpace={this.state.clickedSpace}
             readyToMove={this.state.readyToMove}
             moveUnit={this.props.moveUnit}
@@ -73,12 +71,7 @@ class CurrentGame extends React.Component {
         </div>
         <div className="countries">
           <CountriesIntel
-            countries={this.props.countries}
-            currentTurn={this.props.currentTurn}
             toggleSpaceIntel={this.toggleSpaceIntel}
-            changeCurrentTurn={this.props.changeCurrentTurn}
-            makeUnitsActive={this.props.makeUnitsActive}
-            receiveIncome={this.props.receiveIncome}
           />
         </div>
         {this.state.spaceInFocus ? <SpaceIntel
@@ -99,11 +92,11 @@ class CurrentGame extends React.Component {
 
 const mapStateToProps = (state) => ({
   mapList: state.mapList,
-  gameName: state.gameName,
-  map: state.map,
-  day: state.day,
+  currentGameName: state.currentGameName,
+  currentMap: state.currentMap,
+  currentBoard: state.currentBoard,
+  currentDay: state.currentDay,
   currentTurn: state.currentTurn,
-  board: state.board,
   countries: state.countries,
   units: state.units,
   router: state.router
@@ -113,7 +106,7 @@ const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators(actionCreators, dispatch)
 });
 
-export default withRouter(connect(
+export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(CurrentGame));
+)(CurrentGame);
