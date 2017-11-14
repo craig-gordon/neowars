@@ -13,24 +13,26 @@ class GameBoard extends React.Component {
 
   render() {
     return (
-      <table>
-        <tbody>
-          {this.props.currentBoard.map((row, x) => {
-            return <tr className='row' key={x}>{row.map((space, y) => {
-              return (
-                <BoardSpace
-                  key={y}
-                  space={space}
-                  clickedSpace={this.props.clickedSpace}
-                  readyToMove={this.props.readyToMove}
-                  toggleSpaceIntel={this.props.toggleSpaceIntel}
-                  toggleUnitMove={this.props.toggleUnitMove}
-                />
-              )
-            })}</tr>
-          })}
-        </tbody>
-      </table>
+      <div className="board">
+        <table>
+          <tbody>
+            {this.props.currentBoard.map((row, x) => {
+              return <tr className='row' key={x}>{row.map((space, y) => {
+                return (
+                  <BoardSpace
+                    key={y}
+                    space={space}
+                    clickedSpace={this.props.clickedSpace}
+                    readyToMove={this.props.readyToMove}
+                    toggleSpaceIntel={this.props.toggleSpaceIntel}
+                    toggleUnitMove={this.props.toggleUnitMove}
+                  />
+                )
+              })}</tr>
+            })}
+          </tbody>
+        </table>
+      </div>
     )
   }
 }

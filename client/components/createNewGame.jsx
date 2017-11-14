@@ -28,7 +28,6 @@ class CreateNewGame extends React.Component {
 
   updateSelectedMap(e) {
     let map = _.filter(this.props.mapList, (map, i) => map.name === e.target.value)[0];
-    console.log('map:', map);
     this.setState({ map });
   }
 
@@ -49,9 +48,8 @@ class CreateNewGame extends React.Component {
       });
   }
 
-  assembleBoard(dbArray) {
-    console.log('dbArray:', dbArray);
-    return _.reduce(dbArray, (matrix, space) => {
+  assembleBoard(spaces) {
+    return _.reduce(spaces, (matrix, space) => {
       if (space.col === 0) {
         matrix[space.row] = [new Terrain[space.terrain](space.row, space.col, space.country)];
       } else {

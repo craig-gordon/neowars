@@ -52,13 +52,13 @@ td {
 }
 
 .plains_undefined {
-  background-image: url('/assets/images/P_undefined.png');
+  background-image: url('/assets/images/plains_undefined.png');
 }
 
 .base_Floria {
-  background-image: url('/assets/images/B_Floria.png');
+  background-image: url('/assets/images/base_Floria.png');
 }
 
 .base_Ranford {
-  background-image: url('/assets/images/B_Ranford.png');
+  background-image: url('/assets/images/base_Ranford.png');
 }

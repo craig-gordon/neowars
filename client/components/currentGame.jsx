@@ -14,7 +14,8 @@ class CurrentGame extends React.Component {
     super(props);
     this.state = {
       spaceInFocus: false,
-      clickedSpace: [],
+      clickedSpace: {},
+      clickedPosition: [],
       readyToMove: false
     }
     this.toggleSpaceIntel = this.toggleSpaceIntel.bind(this);
@@ -25,21 +26,16 @@ class CurrentGame extends React.Component {
   componentDidMount() {
     this.props.actions.incrementCurrentDay();
     this.props.actions.changeCurrentTurn(this.props.countries);
-    setTimeout(() => {
-      _.each(this.props.countries, (country, i) => {
-        let amount = this.calculateInitialIncome(country.name);
-        this.props.actions.incrementIncome(i, amount);
-      })
-      this.props.actions.receiveIncome(this.props.countries[0].name);
-    }, 20);
+    _.each(this.props.countries, (country, i) => {
+      let amount = this.calculateInitialIncome(country.name);
+      this.props.actions.incrementIncome(i, amount);
+    })
+    this.props.actions.receiveIncome(this.props.countries[0].name)
   }
 
-  toggleSpaceIntel(position) {
-    if (position === this.state.clickedSpace || position === undefined) {
-      this.setState({spaceInFocus: false, clickedSpace: []});
-    } else {
-      this.setState({spaceInFocus: true, clickedSpace: position});
-    }
+  toggleSpaceIntel(space) {
+    if (space.position === this.state.clickedPosition) this.setState({spaceInFocus: false, clickedSpace: {}});
+    else this.setState({spaceInFocus: true, clickedSpace: space});
   }
 
   toggleUnitMove() {
@@ -47,9 +43,9 @@ class CurrentGame extends React.Component {
   }
 
   calculateInitialIncome(countryName) {
-    return _.reduce(this.props.board, (sum, row) => {
+    return _.reduce(this.props.currentBoard, (sum, row) => {
       return sum + _.reduce(row, (total, space) => {
-        return total + (space.country === countryName ? 1000 : 0);
+        return total + (space.countryName === countryName ? 1000 : 0);
       }, 0);
     }, 0);
   }
@@ -58,32 +54,21 @@ class CurrentGame extends React.Component {
     return (
       <div>
         <h3>{this.props.currentGameName}</h3>
-        Map: {this.props.currentMap.name}<br/>
-        Day: {this.props.currentDay}<br/><br/>
-        <div className="board">
-          <GameBoard
-            clickedSpace={this.state.clickedSpace}
-            readyToMove={this.state.readyToMove}
-            moveUnit={this.props.moveUnit}
-            toggleSpaceIntel={this.toggleSpaceIntel}
-            toggleUnitMove={this.toggleUnitMove}
-          />
-        </div>
-        <div className="countries">
-          <CountriesIntel
-            toggleSpaceIntel={this.toggleSpaceIntel}
-          />
-        </div>
+        <div>Map: {this.props.currentMap.name}</div>
+        <div>Day: {this.props.currentDay}</div><br/>
+        <GameBoard
+          clickedSpace={this.state.clickedSpace}
+          readyToMove={this.state.readyToMove}
+          toggleSpaceIntel={this.toggleSpaceIntel}
+          toggleUnitMove={this.toggleUnitMove}
+        />
+        <CountriesIntel
+          toggleSpaceIntel={this.toggleSpaceIntel}
+        />
         {this.state.spaceInFocus ? <SpaceIntel
-          currentTurn={this.props.currentTurn}
-          countries={this.props.countries}
-          units={this.props.units}
-          position={this.state.clickedSpace}
-          space={this.props.board[this.state.clickedSpace[0]][this.state.clickedSpace[1]]}
+          space={this.state.clickedSpace}
           readyToMove={this.state.readyToMove}
           toggleUnitMove={this.toggleUnitMove}
-          buildUnit={this.props.buildUnit}
-          decrementFunds={this.props.decrementFunds}
         /> : null}
       </div>
     )
@@ -91,7 +76,6 @@ class CurrentGame extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  mapList: state.mapList,
   currentGameName: state.currentGameName,
   currentMap: state.currentMap,
   currentBoard: state.currentBoard,

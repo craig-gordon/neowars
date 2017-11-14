@@ -12,20 +12,28 @@ class CountriesIntel extends React.Component {
 
   render() {
     return (
-      <div>
-        Country   Funds   Income
-        {this.props.countries.map((country, i) => (
-          <div className={`country${i}`} key={i}>
-            {country.name} {country.funds} {country.income} {this.props.currentTurn === country.name ? (<div onClick={() => {
-              this.props.actions.changeCurrentTurn(this.props.countries);
-              this.props.actions.makeUnitsActive();
-              this.props.toggleSpaceIntel();
-              setTimeout(() => {
-                this.props.actions.receiveIncome(country.name);
-              }, 5);
-            }}>End Turn</div>) : null}
-          </div>
-        ))}
+      <div className="countries">
+        <div>
+          Country   Funds   Income
+
+          {this.props.countries.map((country, i) => (
+            <div className={`country${i}`} key={i}>
+
+              {country.name} {country.funds} {country.income} {this.props.currentTurn === country.name ? (
+
+                <div onClick={() => {
+                  this.props.actions.changeCurrentTurn(this.props.countries);
+                  this.props.actions.makeUnitsActive();
+                  this.props.toggleSpaceIntel();
+                  this.props.actions.receiveIncome(this.props.currentTurn);
+                }}> End Turn </div>
+
+              ) : null}
+
+            </div>
+          ))}
+
+        </div>
       </div>
     )
   }

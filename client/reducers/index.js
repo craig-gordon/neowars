@@ -51,7 +51,7 @@ const currentDay = (state = 0, action) => {
 const currentTurn = (state = '', action) => {
   switch (action.type) {
     case 'CHANGE_CURRENT_TURN':
-      let idx = _.reduce(action.countries, (acc, country, i) => country.name === acc ? i : acc, state);
+      var idx = _.reduce(action.countries, (acc, country, i) => country.name === acc ? i : acc, state);
       return idx === '' ? action.countries[0].name : action.countries[(idx + 1) % action.countries.length].name;
     default:
       return state;
@@ -72,16 +72,20 @@ const countries = (state = (
     }
   ]
 ), action) => {
-  let newState = [...state];
-  let countryIdx = _.reduce(state, (acc, country, i) => country.name === action.countryName ? i : acc, null);
   switch (action.type) {
     case 'RECEIVE_INCOME': // state = [{'Floria'}, {'Ranford'}]
-      newState[countryIdx].funds += newState[countryIdx].income;
+      var newState = [...state.map(country => _.assign({}, country))];
+      var idx = _.reduce(newState, (acc, country, i) => country.name === action.countryName ? i : acc, null);
+      newState[idx].funds += newState[idx].income;
+      console.log('newState:', newState);
       return newState;
     case 'DECREMENT_FUNDS':
-      newState[countryIdx].funds -= action.loss;
+      var newState = [...state.map(country => _.assign({}, country))];
+      var idx = _.reduce(newState, (acc, country, i) => country.name === action.countryName ? i : acc, null);
+      newState[idx].funds -= action.loss;
       return newState;
     case 'INCREMENT_INCOME':
+      var newState = [...state.map(country => _.assign({}, country))];
       newState[action.countryIdx].income += action.gain;
       return newState;
     default:

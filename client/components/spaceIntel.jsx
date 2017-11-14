@@ -12,41 +12,45 @@ class SpaceIntel extends React.Component {
   }
 
   render() {
-    let country = this.props.countries.filter(country => country.name === this.props.space.country)[0];
-    let unit = this.props.units.filter(unit => unit.position === this.props.space.position);
+    let space = this.props.space;
+    let spaceOwner = this.props.countries.filter(country => country.name === space.countryName)[0];
+    let unit = this.props.units.filter(unit => unit.position === space.position)[0];
     return (
       <div>
 
-        {unit.length ? <UnitIntel
-          unit={unit[0]}
+        {unit ? <UnitIntel
+          unit={unit}
           toggleUnitMove={this.props.toggleUnitMove}
           readyToMove={this.props.readyToMove}
         /> : null}
 
-        Terrain: {this.props.space.terrain}<br/>
+        Terrain: {space.terrain}<br/>
+        Defense: {space.defense}<br/>
 
-        Defense: {this.props.space.defense}<br/>
+        {space.countryName ? `Owner: ${space.countryName}` : null}<br/>
 
-        {this.props.space.country ? `Owner: ${this.props.space.country}` : null}<br/>
+        {space.canBuild && this.props.currentTurn === space.countryName && unit ?
+          (<div>
 
-        {this.props.space.canBuild && this.props.currentTurn === this.props.space.country && unit.length === 0 ?
-          (<ul>
-            {this.props.space.canBuild.map((unitTuple, i) => (
-              unitTuple[1] <= country.funds ? 
-                <li
+            {space.unitList.map((unit, i) => (
+              unit.cost <= spaceOwner.funds ? 
+                <div
                   key={i}
                   onClick={() => {
-                    this.props.buildUnit.call(null, unitTuple[0], this.props.space.country, this.props.space.position);
-                    this.props.decrementFunds.call(null, country.name, unitTuple[1]);
+                    this.props.actions.buildUnit(unit.name, space.countryName, space.position);
+                    this.props.actions.decrementFunds(space.countryName, unit.cost);
                   }}
                 >
-                  {unitTuple[0]} | {unitTuple[1]}
-                </li>
-              : null
+                  {unit.name} | {unit.cost}
+                </div>
+              :
+                null
             ))}
-          </ul>)
-        : null}
-        
+
+          </div>)
+        :
+          null}
+
       </div>
     )
   }

@@ -29,14 +29,6 @@ class App extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  mapList: state.mapList,
-  currentGameName: state.currentGameName,
-  currentMap: state.currentMap,
-  currentBoard: state.currentBoard,
-  currentDay: state.currentDay,
-  currentTurn: state.currentTurn,
-  countries: state.countries,
-  units: state.units,
   router: state.router
 });
 
