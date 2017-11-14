@@ -23,8 +23,8 @@ class UnitIntel extends React.Component {
         {unit.canMove ? (
           <div onClick={this.props.toggleUnitMove.bind(null, unit)}> Move Unit </div>
         ) : null}
-        {this.props.canAttack && unit.targetsInRange.length ? (
-          <div onClick={this.props.toggleAttacking.bind(null, unit)}> Fire </div>
+        {unit.canAttack && unit.targetsInRange.length ? (
+          <div onClick={this.props.toggleUnitAttack.bind(null, unit)}> Fire </div>
         ) : null}
         {this.props.movingUnit ? `to...` : null}<br/><br/>
       </div>

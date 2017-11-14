@@ -1,7 +1,5 @@
-import raf from 'raf';
-
+import 'raf/polyfill';
 import { unitTypes as Unit } from '../client/gameData/unitTypes';
-
 import { countTilesBetweenUnits, findAllTargetsInRange } from '../client/gameData/calculations';
 
 describe('countTilesBetweenUnits', () => {
@@ -30,7 +28,7 @@ describe('findAllTargetsInRange', () => {
   let dUnit4 = new Unit['apc']('Floria', [2, 1]);
   let units = [aUnit, dUnit1, dUnit2, dUnit3, dUnit4];
 
-  it('identifies every unit in firing range of an attacking unit for both of its weapons', () => {
+  it('identifies every enemy unit in firing range of an attacking unit for each weapon', () => {
     expect(findAllTargetsInRange(0, units)).toHaveLength(3);
   });
 })

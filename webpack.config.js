@@ -5,7 +5,7 @@ const webpack = require('webpack');
 const Dotenv = require('dotenv-webpack');
 
 const config = {
-  entry: './client/index.jsx',
+  entry: ['babel-polyfill', './client/index.jsx'],
   output: {
     path: path.join(__dirname + '/client'),
     filename: 'bundle.js'

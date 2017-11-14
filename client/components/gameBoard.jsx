@@ -27,6 +27,7 @@ class GameBoard extends React.Component {
                     movingUnit={this.props.movingUnit}
                     toggleSpaceIntel={this.props.toggleSpaceIntel}
                     toggleUnitMove={this.props.toggleUnitMove}
+                    toggleUnitAttack={this.props.toggleUnitAttack}
                   />
                 )
               })}</tr>

@@ -21,6 +21,7 @@ class SpaceIntel extends React.Component {
         {unit ? <UnitIntel
           unit={unit}
           toggleUnitMove={this.props.toggleUnitMove}
+          toggleUnitAttack={this.props.toggleUnitAttack}
           movingUnit={this.props.movingUnit}
         /> : null}
 

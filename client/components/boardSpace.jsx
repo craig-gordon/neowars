@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { countTilesBetweenUnits } from '../gameData/calculations';
 
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -23,6 +24,7 @@ class BoardSpace extends React.Component {
           if (this.props.movingUnit) {
             if (!occupyingUnit && countTilesBetweenUnits(clickedPosition, space.position) <= movingUnit.moveRange) {
               this.props.actions.moveUnit(clickedPosition, space.position);
+              this.props.actions.updateTargetsInRange(space.position);
               this.props.toggleUnitMove();
             }
           }

@@ -3,7 +3,7 @@ import equal from 'deep-equal';
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 import { unitTypes as Unit } from '../gameData/unitTypes';
-import { findAllTargetsInRange } from '../gameData/calculations';
+import { countTilesBetweenUnits, findAllTargetsInRange } from '../gameData/calculations';
 
 const mapList = (state = [], action) => {
   switch (action.type) {
@@ -102,17 +102,18 @@ const units = (state = [], action) => {
     case 'DESTROY_UNIT':
       return [...state.slice(0, action.idx), ...state.slice(action.idx + 1)];
     case 'MAKE_UNITS_ACTIVE':
-      return state.map(unit => _.assign(unit, {canMove: true}));
+      return state.map(unit => _.assign(unit, {canMove: true, canAttack: true}));
     case 'MOVE_UNIT':
-      console.log(action.from === state[0].position);
-      var idx = state.reduce((acc, unit, i) => action.from === unit.position ? i : acc, null);
+      var idx = _.reduce(state, (acc, unit, i) => equal(action.from, unit.position) ? i : acc, null);
       var unit = state[idx];
       unit.position = action.to;
       unit.canMove = false;
-      var newState = [...state.slice(0, idx), unit, ...state.slice(idx + 1)];
-      return newState;
-    case 'CHECK_TARGETS_IN_RANGE':
-      var idx = state.reduce((acc, unit, i) => action.from === unit.position ? i : acc, null);
+      return [...state.slice(0, idx), unit, ...state.slice(idx + 1)];
+    case 'UPDATE_TARGETS_IN_RANGE':
+      var idx = _.reduce(state, (acc, unit, i) => equal(action.position, unit.position) ? i : acc, null);
+      var unit = state[idx];
+      unit.targetsInRange = findAllTargetsInRange(idx, state.slice());
+      return [...state.slice(0, idx), unit, ...state.slice(idx + 1)];
     default:
       return state;
   }

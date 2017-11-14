@@ -15,10 +15,12 @@ class CurrentGame extends React.Component {
     this.state = {
       spaceInFocus: false,
       clickedSpace: {},
-      movingUnit: null
+      movingUnit: null,
+      attackingUnit: null
     }
     this.toggleSpaceIntel = this.toggleSpaceIntel.bind(this);
     this.toggleUnitMove = this.toggleUnitMove.bind(this);
+    this.toggleUnitAttack = this.toggleUnitAttack.bind(this);
     this.calculateInitialIncome = this.calculateInitialIncome.bind(this);
   }
 
@@ -41,6 +43,10 @@ class CurrentGame extends React.Component {
     this.setState({movingUnit: unit ? unit : null});
   }
 
+  toggleUnitAttack(unit) {
+    this.setState({attackingUnit: unit ? unit : null});
+  }
+
   calculateInitialIncome(countryName) {
     return _.reduce(this.props.currentBoard, (sum, row) => {
       return sum + _.reduce(row, (total, space) => {
@@ -61,6 +67,7 @@ class CurrentGame extends React.Component {
           movingUnit={this.state.movingUnit}
           toggleSpaceIntel={this.toggleSpaceIntel}
           toggleUnitMove={this.toggleUnitMove}
+          toggleUnitAttack={this.toggleUnitAttack}
         />
         <CountriesIntel
           toggleSpaceIntel={this.toggleSpaceIntel}
@@ -70,6 +77,7 @@ class CurrentGame extends React.Component {
           movingUnit={this.state.movingUnit}
           toggleSpaceIntel={this.toggleSpaceIntel}
           toggleUnitMove={this.toggleUnitMove}
+          toggleUnitAttack={this.toggleUnitAttack}
         /> : null}
       </div>
     )

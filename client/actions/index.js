@@ -10,7 +10,7 @@ const BUILD_UNIT = 'BUILD_UNIT';
 const DESTROY_UNIT = 'DESTROY_UNIT';
 const MAKE_UNITS_ACTIVE = 'MAKE_UNITS_ACTIVE';
 const MOVE_UNIT = 'MOVE_UNIT';
-const CHECK_TARGETS_IN_RANGE = 'CHECK_TARGETS_IN_RANGE';
+const UPDATE_TARGETS_IN_RANGE = 'UPDATE_TARGETS_IN_RANGE';
 const INCREMENT_HP = 'INCREMENT_HP';
 const DECREMENT_HP = 'DECREMENT_HP';
 const INCREMENT_AMMO = 'INCREMENT_AMMO';
@@ -84,9 +84,9 @@ export const moveUnit = (from, to) => ({
   to
 });
 
-export const checkTargetsInRange = (idx) => ({
-  type: CHECK_TARGETS_IN_RANGE,
-  idx
+export const updateTargetsInRange = (position) => ({
+  type: UPDATE_TARGETS_IN_RANGE,
+  position
 });
 
 export const incrementHp = (gain) => ({
