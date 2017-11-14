@@ -5,7 +5,7 @@ class Unit {
     this.position = position;
     this.canMove = false;
     this.canAttack = false;
-    this.hasTargetInRange = false;
+    this.targetsInRange = [];
   }
 }
 
@@ -515,7 +515,22 @@ class Tank extends Unit {
       {
         name: 'machine gun',
         range: 1,
-        ammo: Infinity
+        ammo: Infinity,
+        damageTo: {
+          antiair: 5,
+          apc: 45,
+          artillery: 45,
+          bcopter: 10,
+          infantry: 75,
+          mdtank: 1,
+          mech: 70,
+          missiles: 30,
+          neotank: 1,
+          recon: 12,
+          rockets: 55,
+          tcopter: 40,
+          tank: 6
+        }
       }
     ];
     this.fireAfterMove = true;

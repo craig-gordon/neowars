@@ -1,7 +1,9 @@
 import _ from 'lodash';
-import { unitTypes as Unit } from '../gameData/unitTypes';
+import equal from 'deep-equal';
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
+import { unitTypes as Unit } from '../gameData/unitTypes';
+import { findAllTargetsInRange } from '../gameData/calculations';
 
 const mapList = (state = [], action) => {
   switch (action.type) {
@@ -102,11 +104,15 @@ const units = (state = [], action) => {
     case 'MAKE_UNITS_ACTIVE':
       return state.map(unit => _.assign(unit, {canMove: true}));
     case 'MOVE_UNIT':
-      let idx = state.reduce((acc, unit, i) => action.from === unit.position ? i : acc, null);
-      let movingUnit = state[idx];
-      movingUnit.position = action.to;
-      let newState = [...state.slice(0, idx), movingUnit, ...state.slice(idx + 1)];
+      console.log(action.from === state[0].position);
+      var idx = state.reduce((acc, unit, i) => action.from === unit.position ? i : acc, null);
+      var unit = state[idx];
+      unit.position = action.to;
+      unit.canMove = false;
+      var newState = [...state.slice(0, idx), unit, ...state.slice(idx + 1)];
       return newState;
+    case 'CHECK_TARGETS_IN_RANGE':
+      var idx = state.reduce((acc, unit, i) => action.from === unit.position ? i : acc, null);
     default:
       return state;
   }

@@ -32,7 +32,7 @@ class CurrentGame extends React.Component {
     this.props.actions.receiveIncome(this.props.countries[0].name)
   }
 
-  toggleSpaceIntel(space = null) {
+  toggleSpaceIntel(space = {}) {
     if (space.position === this.state.clickedPosition) this.setState({spaceInFocus: false, clickedSpace: {}});
     else this.setState({spaceInFocus: true, clickedSpace: space});
   }

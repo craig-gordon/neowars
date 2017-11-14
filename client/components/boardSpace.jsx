@@ -15,14 +15,14 @@ class BoardSpace extends React.Component {
     let space = this.props.space;
     let occupyingUnit = this.props.units.filter(unit => unit.position === space.position)[0];
     let movingUnit = this.props.movingUnit;
-    let clickedPos = this.props.clickedSpace.position;
+    let clickedPosition = this.props.clickedSpace.position;
     return (
       <td
         className={`${space.terrain}_${space.countryName}`}
         onClick={() => {
           if (this.props.movingUnit) {
-            if (!occupyingUnit && Math.abs(clickedPos[0] - space.position[0]) + Math.abs(clickedPos[1] - space.position[1]) <= movingUnit.moveRange) {
-              this.props.actions.moveUnit(clickedPos, space.position);
+            if (!occupyingUnit && countTilesBetweenUnits(clickedPosition, space.position) <= movingUnit.moveRange) {
+              this.props.actions.moveUnit(clickedPosition, space.position);
               this.props.toggleUnitMove();
             }
           }
