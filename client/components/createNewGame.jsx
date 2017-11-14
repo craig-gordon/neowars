@@ -2,7 +2,7 @@ import React from 'react';
 import _ from 'lodash';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import * as Terrain from '../gameData/terrainTypes';
+import { terrainTypes as Terrain } from '../gameData/terrainTypes';
 
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -27,7 +27,7 @@ class CreateNewGame extends React.Component {
   }
 
   updateSelectedMap(e) {
-    let map = _.filter(this.props.mapList, (map, i) => map.name === e.target.value);
+    let map = _.filter(this.props.mapList, (map, i) => map.name === e.target.value)[0];
     this.setState({ map });
   }
 
@@ -38,18 +38,18 @@ class CreateNewGame extends React.Component {
       .then(res => {
         let board = this.assembleBoard(res.data);
         console.log('board:', board);
-        this.props.actions.setGameName(gameName);
+        this.props.actions.setCurrentGameName(gameName);
         this.props.actions.setCurrentMap(map);
         this.props.actions.setCurrentBoard(board);
+        this.props.history.push('/game');
       })
       .catch(err => {
         console.log('Error fetching board data from database:', err);
       });
   }
 
-  assembleBoard(dbArray) {
-    console.log('dbArray:', dbArray);
-    return _.reduce(dbArray, (matrix, space) => {
+  assembleBoard(spaces) {
+    return _.reduce(spaces, (matrix, space) => {
       if (space.col === 0) {
         matrix[space.row] = [new Terrain[space.terrain](space.row, space.col, space.country)];
       } else {
@@ -78,11 +78,9 @@ class CreateNewGame extends React.Component {
 
         <br/><br/>
 
-        <Link to="/game">
-          <button onClick={this.setNameAndMap.bind(null, this.state.gameName, this.state.map)}>
-            Start Game
-          </button>
-        </Link>
+        <button onClick={this.setNameAndMap.bind(null, this.state.gameName, this.state.map)}>
+          Start Game
+        </button>
 
       </div>
     )
@@ -98,7 +96,7 @@ const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators(actionCreators, dispatch)
 });
 
-export default withRouter(connect(
+export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(CreateNewGame));
+)(CreateNewGame);

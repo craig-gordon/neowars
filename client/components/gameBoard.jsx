@@ -13,38 +13,34 @@ class GameBoard extends React.Component {
 
   render() {
     return (
-      <table>
-        <tbody>
-          {this.props.board.map((row, x) => {
-            return <tr className='row' key={x}>{row.map((space, y) => {
-              return (
-                <BoardSpace
-                  key={y}
-                  space={space}
-                  units={this.props.units}
-                  clickedSpace={this.props.clickedSpace}
-                  readyToMove={this.props.readyToMove}
-                  moveUnit={this.props.moveUnit}
-                  toggleSpaceIntel={this.props.toggleSpaceIntel}
-                  toggleUnitMove={this.props.toggleUnitMove}
-                />
-              )
-            })}</tr>
-          })}
-        </tbody>
-      </table>
+      <div className="board">
+        <table>
+          <tbody>
+            {this.props.currentBoard.map((row, x) => {
+              return <tr className='row' key={x}>{row.map((space, y) => {
+                return (
+                  <BoardSpace
+                    key={y}
+                    space={space}
+                    clickedSpace={this.props.clickedSpace}
+                    clickedUnit={this.props.clickedUnit}
+                    movingUnit={this.props.movingUnit}
+                    toggleSpaceIntel={this.props.toggleSpaceIntel}
+                    toggleUnitMove={this.props.toggleUnitMove}
+                    toggleUnitAttack={this.props.toggleUnitAttack}
+                  />
+                )
+              })}</tr>
+            })}
+          </tbody>
+        </table>
+      </div>
     )
   }
 }
 
 const mapStateToProps = (state) => ({
-  mapList: state.mapList,
-  gameName: state.gameName,
-  map: state.map,
-  day: state.day,
-  currentTurn: state.currentTurn,
-  board: state.board,
-  countries: state.countries,
+  currentBoard: state.currentBoard,
   units: state.units,
   router: state.router
 });
@@ -53,7 +49,7 @@ const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators(actionCreators, dispatch)
 });
 
-export default connect(withRouter(
+export default connect(
   mapStateToProps,
   mapDispatchToProps
-))(GameBoard);
+)(GameBoard);

@@ -63,7 +63,7 @@ class Mountain extends Terrain {
 }
 
 class City extends Terrain {
-  constructor(x, y, country = null) {
+  constructor(x, y, countryName = null) {
     super(x, y);
     this.terrain = 'city';
     this.defense = 3;
@@ -75,25 +75,26 @@ class City extends Terrain {
       W: 1
     };
     this.captureHp = 20;
-    this.country = country;
-    this.canHeal = [
-      'antiair',
-      'apc',
-      'artillery',
-      'infantry',
-      'mdtank',
-      'mech',
-      'missiles',
-      'neotank',
-      'recon',
-      'rockets',
-      'tank'
+    this.countryName = countryName;
+    this.canBuild = false;
+    this.unitList = [
+      {name: 'antiair'},
+      {name: 'apc'},
+      {name: 'artillery'},
+      {name: 'infantry'},
+      {name: 'mdtank'},
+      {name: 'mech'},
+      {name: 'missiles'},
+      {name: 'neotank'},
+      {name: 'recon'},
+      {name: 'rockets'},
+      {name: 'tank'}
     ];
   }
 }
 
 class Base extends Terrain {
-  constructor(x, y, country = null) {
+  constructor(x, y, countryName = null) {
     super(x, y);
     this.terrain = 'base';
     this.defense = 3;
@@ -105,38 +106,26 @@ class Base extends Terrain {
       W: 1
     };
     this.captureHp = 20;
-    this.country = country;
-    this.canHeal = [
-      'antiair',
-      'apc',
-      'artillery',
-      'infantry',
-      'mdtank',
-      'mech',
-      'missiles',
-      'neotank',
-      'recon',
-      'rockets',
-      'tank'
-    ];
-    this.canBuild = [
-      ['antiair', 7000],
-      ['apc', 5000],
-      ['artillery', 6000],
-      ['infantry', 1500],
-      ['mdtank', 14000],
-      ['mech', 2500],
-      ['missiles', 10000],
-      ['neotank', 20000],
-      ['recon', 4000],
-      ['rockets', 15000],
-      ['tank', 7000]
+    this.countryName = countryName;
+    this.canBuild = true;
+    this.unitList = [
+      {name: 'antiair', cost: 7000},
+      {name: 'apc', cost: 5000},
+      {name: 'artillery', cost: 6000},
+      {name: 'infantry', cost: 1500},
+      {name: 'mdtank', cost: 14000},
+      {name: 'mech', cost: 2500},
+      {name: 'missiles', cost: 10000},
+      {name: 'neotank', cost: 20000},
+      {name: 'recon', cost: 4000},
+      {name: 'rockets', cost: 15000},
+      {name: 'tank', cost: 7000}
     ];
   }
 }
 
 class Airport extends Terrain {
-  constructor(x, y, country = null) {
+  constructor(x, y, countryName = null) {
     super(x, y);
     this.terrain = 'airport';
     this.defense = 3;
@@ -148,24 +137,19 @@ class Airport extends Terrain {
       W: 1
     };
     this.captureHp = 20;
-    this.country = country;
-    this.canHeal = [
-      'bcopter',
-      'bomber',
-      'fighter',
-      'tcopter'
-    ];
-    this.canBuild = [
-      ['bcopter', 9000],
-      ['bomber', 20000],
-      ['fighter', 16000],
-      ['tcopter', 5000]
+    this.countryName = countryName;
+    this.canBuild = true;
+    this.unitList = [
+      {name: 'bcopter', cost: 9000},
+      {name: 'bomber', cost: 20000},
+      {name: 'fighter', cost: 16000},
+      {name: 'tcopter', cost: 5000}
     ];
   }
 }
 
 class HQ extends Terrain {
-  constructor(x, y, country) {
+  constructor(x, y, countryName) {
     super(x, y);
     this.terrain = 'hq';
     this.defense = 4;
@@ -177,25 +161,26 @@ class HQ extends Terrain {
       W: 1
     };
     this.captureHp = 20;
-    this.country = country;
+    this.countryName = countryName;
     this.endsGame = true;
-    this.canHeal = [
-      'antiair',
-      'apc',
-      'artillery',
-      'infantry',
-      'mdtank',
-      'mech',
-      'missiles',
-      'neotank',
-      'recon',
-      'rockets',
-      'tank'
+    this.canBuild = false;
+    this.unitList = [
+      {name: 'antiair'},
+      {name: 'apc'},
+      {name: 'artillery'},
+      {name: 'infantry'},
+      {name: 'mdtank'},
+      {name: 'mech'},
+      {name: 'missiles'},
+      {name: 'neotank'},
+      {name: 'recon'},
+      {name: 'rockets'},
+      {name: 'tank'}
     ];
   }
 }
 
-const terrainTypes = {
+export const terrainTypes = {
   'road': Road,
   'plains': Plains,
   'woods': Woods,
@@ -205,5 +190,3 @@ const terrainTypes = {
   'airport': Airport,
   'hq': HQ
 };
-
-export default terrainTypes;

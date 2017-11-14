@@ -51,14 +51,14 @@ td {
   grid-row: 2;
 }
 
-.P_undefined {
-  background-image: url('P_undefined.png');
+.plains_undefined {
+  background-image: url('/assets/images/plains_undefined.png');
 }
 
-.B_Floria {
-  background-image: url('B_Floria.png');
+.base_Floria {
+  background-image: url('/assets/images/base_Floria.png');
 }
 
-.B_Ranford {
-  background-image: url('B_Ranford.png');
+.base_Ranford {
+  background-image: url('/assets/images/base_Ranford.png');
 }

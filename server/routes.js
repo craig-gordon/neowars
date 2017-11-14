@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 app.use(cors());
 app.use(compression());
 
-app.use(express.static(path.join(__dirname + '/../')));
+app.use(express.static(path.join(__dirname + '/../client/')));
 
 app.get('/maps', (req, res) => {
   query.getAllMaps()
@@ -27,6 +27,7 @@ app.get('/maps', (req, res) => {
 app.post('/board', (req, res) => {
   query.getBoard(req.body.mapId)
     .then(board => {
+      console.log('board:', board);
       res.send(board);
     })
     .catch(err => {
@@ -35,7 +36,7 @@ app.post('/board', (req, res) => {
 });
 
 app.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname + '/../index.html'));
+  res.sendFile(path.join(__dirname + '/../client/index.html'));
 })
 
 module.exports = app;

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { countTilesBetweenUnits } from '../gameData/calculations';
 
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -12,31 +13,31 @@ class BoardSpace extends React.Component {
   }
 
   render() {
-    let unit = this.props.units.filter(unit => unit.position === this.props.space.position);
+    let space = this.props.space;
+    let occupyingUnit = this.props.units.filter(unit => unit.position === space.position)[0];
+    let movingUnit = this.props.movingUnit;
+    let clickedPosition = this.props.clickedSpace.position;
     return (
-      <td className={`${this.props.space.terrain}_${this.props.space.country}`} onClick={() => {
-        if (this.props.readyToMove) {
-          if (Math.abs(this.props.clickedSpace[0] - this.props.space.position[0]) + Math.abs(this.props.clickedSpace[1] - this.props.space.position[1]) <= 3) {
-            this.props.moveUnit(this.props.clickedSpace, this.props.space.position);
-            this.props.toggleUnitMove();
+      <td
+        className={`${space.terrain}_${space.countryName}`}
+        onClick={() => {
+          if (this.props.movingUnit) {
+            if (!occupyingUnit && countTilesBetweenUnits(clickedPosition, space.position) <= movingUnit.moveRange) {
+              this.props.actions.moveUnit(clickedPosition, space.position);
+              this.props.actions.updateTargetsInRange(space.position);
+              this.props.toggleUnitMove();
+            }
           }
-        }
-        this.props.toggleSpaceIntel(this.props.space.position);
-      }}>
-        {unit.length ? <img src={`assets/${unit[0].type}_${unit[0].country}.png`} /> : null}
+          this.props.toggleSpaceIntel(space);
+        }}
+      >
+        {occupyingUnit ? <img src={`assets/images/${occupyingUnit.type}_${occupyingUnit.countryName}.png`} /> : null}
       </td>
     )
   }
 }
 
 const mapStateToProps = (state) => ({
-  mapList: state.mapList,
-  gameName: state.gameName,
-  map: state.map,
-  day: state.day,
-  currentTurn: state.currentTurn,
-  board: state.board,
-  countries: state.countries,
   units: state.units,
   router: state.router
 });
@@ -45,7 +46,7 @@ const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators(actionCreators, dispatch)
 });
 
-export default connect(withRouter(
+export default connect(
   mapStateToProps,
   mapDispatchToProps
-))(BoardSpace);
+)(BoardSpace);

@@ -10,6 +10,7 @@ const BUILD_UNIT = 'BUILD_UNIT';
 const DESTROY_UNIT = 'DESTROY_UNIT';
 const MAKE_UNITS_ACTIVE = 'MAKE_UNITS_ACTIVE';
 const MOVE_UNIT = 'MOVE_UNIT';
+const UPDATE_TARGETS_IN_RANGE = 'UPDATE_TARGETS_IN_RANGE';
 const INCREMENT_HP = 'INCREMENT_HP';
 const DECREMENT_HP = 'DECREMENT_HP';
 const INCREMENT_AMMO = 'INCREMENT_AMMO';
@@ -68,9 +69,9 @@ export const buildUnit = (unitType, countryName, position) => ({
   position
 });
 
-export const destroyUnit = (index) => ({
+export const destroyUnit = (idx) => ({
   type: DESTROY_UNIT,
-  index
+  idx
 });
 
 export const makeUnitsActive = () => ({
@@ -81,6 +82,11 @@ export const moveUnit = (from, to) => ({
   type: MOVE_UNIT,
   from,
   to
+});
+
+export const updateTargetsInRange = (position) => ({
+  type: UPDATE_TARGETS_IN_RANGE,
+  position
 });
 
 export const incrementHp = (gain) => ({
@@ -113,9 +119,9 @@ export const decrementFuel = (loss) => ({
   loss
 });
 
-export const incrementIncome = (countryIndex, gain) => ({
+export const incrementIncome = (countryIdx, gain) => ({
   type: INCREMENT_INCOME,
-  countryIndex,
+  countryIdx,
   gain
 });
 

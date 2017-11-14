@@ -11,16 +11,22 @@ class UnitIntel extends React.Component {
   }
 
   render() {
+    let unit = this.props.unit;
     return (
       <div>
-        Unit: {this.props.unit.type}<br/>
-        Country: {this.props.unit.country}<br/>
-        HP: {Math.ceil(this.props.unit.hp / 10)}<br/>
-        Move: {this.props.unit.moveRange}<br/>
-        Fuel: {this.props.unit.fuel}<br/>
-        {this.props.unit.weapons[0].ammo ? `Ammo: ${this.props.unit.weapons[0].ammo}` : null}<br/>
-        {this.props.unit.canMove ? <div onClick={this.props.toggleUnitMove.bind(null, this.props.unit)}>Move Unit</div> : null}
-        {this.props.readyToMove ? `to...` : null}<br/><br/>
+        <div> Unit: {unit.type} </div>
+        <div> Country: {unit.countryName} </div>
+        <div> HP: {Math.ceil(unit.hp / 10)} </div>
+        <div> Move: {unit.moveRange} </div>
+        <div> Fuel: {unit.fuel} </div>
+        <div> {unit.weapons[0].ammo ? `Ammo: ${unit.weapons[0].ammo}` : null} </div>
+        {unit.canMove ? (
+          <div onClick={this.props.toggleUnitMove.bind(null, unit)}> Move Unit </div>
+        ) : null}
+        {unit.canAttack && unit.targetsInRange.length ? (
+          <div onClick={this.props.toggleUnitAttack.bind(null, unit)}> Fire </div>
+        ) : null}
+        {this.props.movingUnit ? `to...` : null}<br/><br/>
       </div>
     )
   }
@@ -42,7 +48,7 @@ const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators(actionCreators, dispatch)
 });
 
-export default connect(withRouter(
+export default connect(
   mapStateToProps,
   mapDispatchToProps
-))(UnitIntel);
+)(UnitIntel);
