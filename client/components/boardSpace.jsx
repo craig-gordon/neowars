@@ -30,17 +30,14 @@ class BoardSpace extends React.Component {
               this.props.toggleUnitMove();
             }
           } else if (attackingUnit) {
-            console.log('attack?');
-            console.log('attackingUnit.targetsInRange:', attackingUnit.targetsInRange);
             let occupyingInAttackRange = attackingUnit.targetsInRange.some(target => (
               equal(target.position, space.position)
             ));
-            console.log('occupyingInAttackRange:', occupyingInAttackRange);
             if (occupyingInAttackRange) {
               let damageValues = calculateDamage(attackingUnit, occupyingUnit, this.props.clickedSpace.defense, space.defense);
-              console.log('damageValues:', damageValues);
               this.props.actions.decrementHp(occupyingUnit.position, damageValues[0]);
               if (damageValues[1]) this.props.actions.decrementHp(attackingUnit.position, damageValues[1]);
+              this.props.toggleUnitAttack();
             }
           }
           this.props.toggleSpaceIntel(space);

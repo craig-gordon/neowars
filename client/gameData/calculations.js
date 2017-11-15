@@ -35,6 +35,7 @@ export const calculateDamage = (aUnit, dUnit, aTerrainBonus, dTerrainBonus) => {
     dHP = Math.ceil((dUnit.hp - dLoss) / 10);
     let aLoss = Math.floor([base * dCO / 100 + Math.floor(Math.random() * 9)] * (dHP / 10) * [(200 - (aCO + aTerrainBonus * aHP)) / 100]);
     return [dLoss, aLoss];
+  } else {
+    return [dLoss, null];
   }
-  return [dLoss, null];
 }
