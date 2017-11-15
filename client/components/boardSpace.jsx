@@ -1,6 +1,7 @@
 import React from 'react';
+import equal from 'deep-equal';
 import { Link } from 'react-router-dom';
-import { countTilesBetweenUnits } from '../gameData/calculations';
+import { countTilesBetweenUnits, calculateDamage } from '../gameData/calculations';
 
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -16,16 +17,30 @@ class BoardSpace extends React.Component {
     let space = this.props.space;
     let occupyingUnit = this.props.units.filter(unit => unit.position === space.position)[0];
     let movingUnit = this.props.movingUnit;
+    let attackingUnit = this.props.attackingUnit;
     let clickedPosition = this.props.clickedSpace.position;
     return (
       <td
         className={`${space.terrain}_${space.countryName}`}
         onClick={() => {
-          if (this.props.movingUnit) {
+          if (movingUnit) {
             if (!occupyingUnit && countTilesBetweenUnits(clickedPosition, space.position) <= movingUnit.moveRange) {
               this.props.actions.moveUnit(clickedPosition, space.position);
               this.props.actions.updateTargetsInRange(space.position);
               this.props.toggleUnitMove();
+            }
+          } else if (attackingUnit) {
+            console.log('attack?');
+            console.log('attackingUnit.targetsInRange:', attackingUnit.targetsInRange);
+            let occupyingInAttackRange = attackingUnit.targetsInRange.some(target => (
+              equal(target.position, space.position)
+            ));
+            console.log('occupyingInAttackRange:', occupyingInAttackRange);
+            if (occupyingInAttackRange) {
+              let damageValues = calculateDamage(attackingUnit, occupyingUnit, this.props.clickedSpace.defense, space.defense);
+              console.log('damageValues:', damageValues);
+              this.props.actions.decrementHp(occupyingUnit.position, damageValues[0]);
+              if (damageValues[1]) this.props.actions.decrementHp(attackingUnit.position, damageValues[1]);
             }
           }
           this.props.toggleSpaceIntel(space);

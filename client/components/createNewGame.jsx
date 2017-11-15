@@ -37,7 +37,6 @@ class CreateNewGame extends React.Component {
     })
       .then(res => {
         let board = this.assembleBoard(res.data);
-        console.log('board:', board);
         this.props.actions.setCurrentGameName(gameName);
         this.props.actions.setCurrentMap(map);
         this.props.actions.setCurrentBoard(board);

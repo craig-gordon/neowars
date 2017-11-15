@@ -61,17 +61,21 @@ class CurrentGame extends React.Component {
         <h3>{this.props.currentGameName}</h3>
         <div>Map: {this.props.currentMap.name}</div>
         <div>Day: {this.props.currentDay}</div><br/>
+
         <GameBoard
           clickedSpace={this.state.clickedSpace}
           clickedUnit={this.state.clickedUnit}
           movingUnit={this.state.movingUnit}
+          attackingUnit={this.state.attackingUnit}
           toggleSpaceIntel={this.toggleSpaceIntel}
           toggleUnitMove={this.toggleUnitMove}
           toggleUnitAttack={this.toggleUnitAttack}
         />
+
         <CountriesIntel
           toggleSpaceIntel={this.toggleSpaceIntel}
         />
+
         {this.state.spaceInFocus ? <SpaceIntel
           space={this.state.clickedSpace}
           movingUnit={this.state.movingUnit}
@@ -79,6 +83,7 @@ class CurrentGame extends React.Component {
           toggleUnitMove={this.toggleUnitMove}
           toggleUnitAttack={this.toggleUnitAttack}
         /> : null}
+
       </div>
     )
   }
