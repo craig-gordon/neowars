@@ -94,8 +94,9 @@ export const incrementHp = (gain) => ({
   gain
 });
 
-export const decrementHp = (loss) => ({
+export const decrementHp = (position, loss) => ({
   type: DECREMENT_HP,
+  position,
   loss
 });
 

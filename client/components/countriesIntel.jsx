@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../actions';
@@ -18,27 +17,48 @@ class CountriesIntel extends React.Component {
 
   render() {
     return (
-      <div className="countries">
-        <div>
-          Country   Funds   Income
+      <div className="countriesIntel">
+        <div className="countriesIntelTitleContainer">
+          <div>
+            Countries
+          </div>
+        </div>
+        <div className="countriesIntelHeaders">
+          <div className="countriesNameHeader">Country</div>
+          <div className="countriesFundsHeader">Funds</div>
+          <div className="countriesIncomeHeader">Income</div>
+          <div className="countriesOptionsHeader">Options</div>
+        </div>
 
-          {this.props.countries.map((country, i) => (
-            <div className={`country${i}`} key={i}>
-
-              {country.name} {country.funds} {country.income} {this.props.currentTurn === country.name ? (
-
-                <div onClick={() => {
+        {this.props.countries.map((country, i) => (
+          <div className={`country${i}Intel`} key={i}>
+            <div className="countryName">
+              <div>
+                {country.name}
+              </div>
+            </div>
+            <div className="countryFunds">
+              <div>
+                {country.funds}
+              </div>
+            </div>
+            <div className="countryIncome">
+              <div>
+                {country.income}
+              </div>
+            </div>
+            <div className="countryOptions">
+              {this.props.currentTurn === country.name ? (
+                <div className="endTurn" onClick={() => {
                   this.props.actions.changeCurrentTurn(this.props.countries);
                   this.props.actions.makeUnitsActive();
                   this.props.toggleSpaceIntel();
                 }}> End Turn </div>
-
               ) : null}
-
             </div>
-          ))}
+          </div>
+        ))}
 
-        </div>
       </div>
     )
   }

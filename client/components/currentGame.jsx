@@ -1,10 +1,10 @@
 import React from 'react';
 import _ from 'lodash';
+import GameHeader from './GameHeader.jsx';
 import GameBoard from './GameBoard.jsx';
 import CountriesIntel from './CountriesIntel.jsx';
 import SpaceIntel from './SpaceIntel.jsx';
 
-import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../actions';
@@ -58,13 +58,12 @@ class CurrentGame extends React.Component {
   render() {
     return (
       <div>
-        <h3>{this.props.currentGameName}</h3>
-        <div>Map: {this.props.currentMap.name}</div>
-        <div>Day: {this.props.currentDay}</div><br/>
+        <GameHeader />
         <GameBoard
           clickedSpace={this.state.clickedSpace}
           clickedUnit={this.state.clickedUnit}
           movingUnit={this.state.movingUnit}
+          attackingUnit={this.state.attackingUnit}
           toggleSpaceIntel={this.toggleSpaceIntel}
           toggleUnitMove={this.toggleUnitMove}
           toggleUnitAttack={this.toggleUnitAttack}
@@ -79,6 +78,7 @@ class CurrentGame extends React.Component {
           toggleUnitMove={this.toggleUnitMove}
           toggleUnitAttack={this.toggleUnitAttack}
         /> : null}
+
       </div>
     )
   }

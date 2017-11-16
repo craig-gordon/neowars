@@ -1,6 +1,62 @@
+@import url('../../../node_modules/antd/dist/antd.css');
+
+@font-face {
+  font-family: Arcade;
+  src: url('../fonts/ARCADE.ttf'); 
+}
+
 body {
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(0, 0, 0, 0.65);
   background-color: #DDF7E6;
-  margin-left: 30px;
+  margin: 0px;
+}
+
+.siteBanner {
+  display: grid;
+  grid-template-columns: 16% 5% 10% 69%;
+  align-items: end;
+  color: #ff4ae7;
+  background: #192320;
+  padding: 0px 0px 0px 30px;
+}
+
+.siteName {
+  font-size: 56px;
+  font-family: 'Arcade';
+  color: #ff4ae7;
+  grid-column: 1 / 2;
+  text-decoration: none;
+  margin-bottom: -20px;
+  transition: color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.siteName:hover {
+  color: #40a9ff;
+}
+
+.primaryButton {
+  color: #fff;
+  background-color: #1890ff;
+  border-width: 1px;
+  border-color: #1890ff;
+  border-style: solid;
+  border-radius: 4px;
+  height: 32px;
+  padding: 0 15px;
+  transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.primaryButton:hover {
+  cursor: pointer;
+  background-color: #40a9ff;
+  border-color: #40a9ff;
+}
+
+.siteBody {
+  padding-left: 30px;
 }
 
 .gameName, .map {
@@ -10,8 +66,10 @@ body {
 table {
   border-collapse: collapse;
   border-spacing: 0px;
-  margin: 0px;
-  border: 0px;
+  margin: 50px 0px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #4c4c4c;
   padding: 0px;
   line-height: 0px;
 }
@@ -37,18 +95,117 @@ td {
   padding: 0px;
 }
 
-.countries {
+.countriesIntel {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-auto-rows: minmax(100px, auto);
+  grid-template-rows: 24px 22px 30px 30px;
+  width: 400px;
+  text-align: center;
+  color: #474747;
+  background-color: #f9f9f9;
+  border-color: #4c4c4c;
+  border-style: solid;
+  border-width: 1px;
 }
 
-.country1 {
-  grid-row: 1;
+.countriesIntelTitleContainer {
+  display: grid;
+  align-items: center;
+  grid-row: 1 / 2;
+  font-weight: 700;
+  color: #fcfcfc;
+  background-color: #4c4c4c;
+  border-color: #3a3a3a;
+  border-style: solid;
+  border-width: 0px 0px 1px 0px;
 }
 
-.country2 {
-  grid-row: 2;
+.countriesIntelHeaders {
+  grid-row: 2 / 3;
+  display: grid;
+  align-items: center;
+  background-color: #b7b7b7;
+  grid-template-columns: 150px 75px 75px 100px;
+  border-color: #b7b7b7;
+  border-style: solid;
+  border-width: 0px 0px 1px 0px;
+}
+
+.countriesNameHeader {
+  grid-column: 1 / 2;
+  border-width: 0px 1px 0px 0px;
+}
+
+.countriesFundsHeader {
+  grid-column: 2 / 3;
+  border-width: 0px 1px 0px 0px;
+}
+
+.countriesIncomeHeader {
+  grid-column: 3 / 4;
+  border-width: 0px 1px 0px 0px;
+}
+
+.countriesOptionsHeader {
+  grid-column: 4 / 5;
+}
+
+.country0Intel {
+  grid-row: 3 / 4;
+  display: grid;
+  align-items: center;
+  grid-template-columns: 150px 75px 75px;
+  border-color: #b7b7b7;
+  border-style: solid;
+  border-width: 0px 0px 1px 0px;
+}
+
+.country1Intel {
+  grid-row: 4 / 5;
+  display: grid;
+  align-items: center;
+  grid-template-columns: 150px 75px 75px;
+}
+
+.countryName {
+  display: grid;
+  align-items: center;
+  height: 30px;
+  grid-column: 1 / 2;
+  border-color: #b7b7b7;
+  border-style: solid;
+  border-width: 0px 1px 0px 0px;
+}
+
+.countryFunds {
+  display: grid;
+  align-items: center;
+  height: 30px;
+  grid-column: 2 / 3;
+  border-color: #b7b7b7;
+  border-style: solid;
+  border-width: 0px 1px 0px 0px;
+}
+
+.countryIncome {
+  display: grid;
+  align-items: center;
+  height: 30px;
+  grid-column: 3 / 4;
+  border-color: #b7b7b7;
+  border-style: solid;
+  border-width: 0px 1px 0px 0px;
+}
+
+.countryOptions {
+  display: grid;
+  align-items: center;
+  height: 30px;
+  grid-column: 4 / 5;
+}
+
+.endTurn:hover {
+  cursor: pointer;
+  text-decoration: underline;
 }
 
 .plains_undefined {

@@ -33,14 +33,6 @@ class UnitIntel extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  mapList: state.mapList,
-  gameName: state.gameName,
-  map: state.map,
-  day: state.day,
-  currentTurn: state.currentTurn,
-  board: state.board,
-  countries: state.countries,
-  units: state.units,
   router: state.router
 });
 

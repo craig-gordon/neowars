@@ -79,7 +79,6 @@ const countries = (state = (
       var newState = [...state.map(country => _.assign({}, country))];
       var idx = _.reduce(newState, (acc, country, i) => country.name === action.countryName ? i : acc, null);
       newState[idx].funds += newState[idx].income;
-      console.log('newState:', newState);
       return newState;
     case 'DECREMENT_FUNDS':
       var newState = [...state.map(country => _.assign({}, country))];
@@ -113,6 +112,14 @@ const units = (state = [], action) => {
       var idx = _.reduce(state, (acc, unit, i) => equal(action.position, unit.position) ? i : acc, null);
       var unit = state[idx];
       unit.targetsInRange = findAllTargetsInRange(idx, state.slice());
+      return [...state.slice(0, idx), unit, ...state.slice(idx + 1)];
+    case 'DECREMENT_HP':
+      console.log('enter DECREMENT HP');
+      var idx = _.reduce(state, (acc, unit, i) => equal(action.position, unit.position) ? i : acc, null);
+      var unit = state[idx];
+      console.log('unit.hp before:', unit.hp);
+      unit.hp -= action.loss;
+      console.log('unit.hp after:', unit.hp);
       return [...state.slice(0, idx), unit, ...state.slice(idx + 1)];
     default:
       return state;

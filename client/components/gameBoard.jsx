@@ -1,7 +1,6 @@
 import React from 'react';
 import BoardSpace from './BoardSpace.jsx';
 
-import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../actions';
@@ -25,6 +24,7 @@ class GameBoard extends React.Component {
                     clickedSpace={this.props.clickedSpace}
                     clickedUnit={this.props.clickedUnit}
                     movingUnit={this.props.movingUnit}
+                    attackingUnit={this.props.attackingUnit}
                     toggleSpaceIntel={this.props.toggleSpaceIntel}
                     toggleUnitMove={this.props.toggleUnitMove}
                     toggleUnitAttack={this.props.toggleUnitAttack}
