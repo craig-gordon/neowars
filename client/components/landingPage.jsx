@@ -27,10 +27,10 @@ export class LandingPage extends React.Component {
     return (
       <div>
         <h3>Welcome to Neo Wars!</h3>
-        <p>Neo Wars is the premiere site to play Advance Wars online.</p>
-        <p><a href="https://en.wikipedia.org/wiki/Advance_Wars">Advance Wars</a> is a delightful series
-        of turn-based strategy games developed by Intelligent Systems and published by Nintendo. Neo Wars
-        takes elements from Advance Wars 1, 2, and Dual Strike.</p>
+        <div>Neo Wars is the premiere site to play Advance Wars online.</div>
+        <div><a href="https://en.wikipedia.org/wiki/Advance_Wars">Advance Wars</a> is a series
+        of turn-based strategy games developed by Intelligent Systems and published by Nintendo.</div>
+        <div>Neo Wars takes elements from Advance Wars 1, 2, and Dual Strike.</div><br/>
         <button className="primaryButton" onClick={this.getMapList}>
           Create New Game
         </button>
