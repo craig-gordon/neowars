@@ -16,7 +16,7 @@ body {
 
 .siteBanner {
   display: grid;
-  grid-template-columns: 16% 5% 10% 69%;
+  grid-template-columns: 17% 5% 10% 68%;
   align-items: end;
   color: #ff4ae7;
   background: #192320;

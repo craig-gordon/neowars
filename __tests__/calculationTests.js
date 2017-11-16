@@ -1,4 +1,3 @@
-import 'raf/polyfill';
 import { unitTypes as Unit } from '../client/gameData/unitTypes';
 import { countTilesBetweenUnits, findAllTargetsInRange } from '../client/gameData/calculations';
 
