@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../actions';
 
-class App extends React.Component {
+export class App extends React.Component {
   constructor(props) {
     super(props);
   }

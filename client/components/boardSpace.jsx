@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../actions';
 
-class BoardSpace extends React.Component {
+export class BoardSpace extends React.Component {
   constructor(props) {
     super(props);
   }

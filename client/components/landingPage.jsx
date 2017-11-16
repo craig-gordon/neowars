@@ -1,7 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
-// import { Button } from 'antd';
 // import 'antd/lib/button/style/css';
 
 import { connect } from 'react-redux';
@@ -28,6 +26,11 @@ export class LandingPage extends React.Component {
   render() {
     return (
       <div>
+        <h3>Welcome to Neo Wars!</h3>
+        <p>Neo Wars is the premiere site to play Advance Wars online.</p>
+        <p><a href="https://en.wikipedia.org/wiki/Advance_Wars">Advance Wars</a> is a delightful series
+        of turn-based strategy games developed by Intelligent Systems and published by Nintendo. Neo Wars
+        takes elements from Advance Wars 1, 2, and Dual Strike.</p>
         <button className="primaryButton" onClick={this.getMapList}>
           Create New Game
         </button>

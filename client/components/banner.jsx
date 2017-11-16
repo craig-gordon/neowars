@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-class Banner extends React.Component {
+export class Banner extends React.Component {
   constructor() {
     super();
   }

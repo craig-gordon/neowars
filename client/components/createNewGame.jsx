@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../actions';
 
-class CreateNewGame extends React.Component {
+export class CreateNewGame extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -64,13 +64,18 @@ class CreateNewGame extends React.Component {
       
         <h2> Create Game </h2>
 
-        <div className="gameName">Game Name:
-          <input type="text" value={this.state.gameName} onChange={this.updateTypedName}></input>
+        <div className="gameName">
+          <input
+            type="text"
+            placeholder="Enter game name"
+            value={this.state.gameName}
+            onChange={this.updateTypedName}
+          ></input>
         </div>
 
-        <div className="map">Select Map:
+        <div className="map">
           <select name="map" onChange={this.updateSelectedMap}>
-            <option>select...</option>
+            <option>Select Map...</option>
             {_.map(this.props.mapList, (map, i) => <option key={i}> {map.name} </option>)}
           </select>
         </div>
