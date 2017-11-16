@@ -44230,6 +44230,7 @@ var LandingPage = exports.LandingPage = function (_React$Component) {
       var _this2 = this;
 
       _axios2.default.get('/maps').then(function (res) {
+        console.log('res.data:', res.data);
         _this2.props.actions.populateMapList(res.data);
         _this2.props.history.push('/new');
       }).catch(function (err) {
