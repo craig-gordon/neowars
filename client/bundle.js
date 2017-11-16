@@ -45250,6 +45250,7 @@ var CreateNewGame = exports.CreateNewGame = function (_React$Component) {
       _axios2.default.post('/board', {
         mapId: map.id
       }).then(function (res) {
+        console.log('res.data:', res.data);
         var board = _this2.assembleBoard(res.data);
         _this2.props.actions.setCurrentGameName(gameName);
         _this2.props.actions.setCurrentMap(map);
