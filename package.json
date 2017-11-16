@@ -5,7 +5,7 @@
   "main": "webpack.config.js",
   "scripts": {
     "compile": "webpack -w",
-    "start": "nodemon server/index.js",
+    "start": "node server/index.js",
     "test": "jest --verbose --watchAll"
   },
   "repository": {
