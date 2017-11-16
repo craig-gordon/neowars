@@ -10,7 +10,7 @@ const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, proces
     freezeTableName: true
   },
   dialectOptions: {
-    ssl:'Amazon RDS'
+    SSL_VERIFY_SERVER_CERT: '../amazon-rds-ca-cert.pem'
   },
   pool: {
     maxConnections: 5,
