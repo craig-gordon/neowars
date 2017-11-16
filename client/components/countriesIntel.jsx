@@ -27,6 +27,7 @@ class CountriesIntel extends React.Component {
           <div className="countriesNameHeader">Country</div>
           <div className="countriesFundsHeader">Funds</div>
           <div className="countriesIncomeHeader">Income</div>
+          <div className="countriesOptionsHeader">Options</div>
         </div>
 
         {this.props.countries.map((country, i) => (
@@ -46,14 +47,16 @@ class CountriesIntel extends React.Component {
                 {country.income}
               </div>
             </div>
+            <div className="countryOptions">
+              {this.props.currentTurn === country.name ? (
+                <div className="endTurn" onClick={() => {
+                  this.props.actions.changeCurrentTurn(this.props.countries);
+                  this.props.actions.makeUnitsActive();
+                  this.props.toggleSpaceIntel();
+                }}> End Turn </div>
+              ) : null}
+            </div>
           </div>
-          // {this.props.currentTurn === country.name ? (
-          //   <div className="endTurn" onClick={() => {
-          //     this.props.actions.changeCurrentTurn(this.props.countries);
-          //     this.props.actions.makeUnitsActive();
-          //     this.props.toggleSpaceIntel();
-          //   }}> End Turn </div>
-          // ) : null}
         ))}
 
       </div>
