@@ -1,5 +1,7 @@
 const Sequelize = require('sequelize');
 
+console.log('process.env:', process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASS, process.env.DB_HOST, process.env.DB_PORT);
+
 const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASS, {
   host: process.env.DB_HOST,
   port: Number(process.env.DB_PORT),
@@ -8,7 +10,7 @@ const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, proces
     freezeTableName: true
   },
   dialectOptions: {
-      ssl:'Amazon RDS'
+    ssl:'Amazon RDS'
   },
   pool: {
     maxConnections: 5,
