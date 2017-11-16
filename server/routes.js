@@ -16,7 +16,6 @@ app.use(express.static(path.join(__dirname + '/../client/')));
 app.get('/maps', (req, res) => {
   query.getAllMaps()
     .then(maps => {
-      console.log('maps:', maps);
       res.send(maps);
     })
     .catch(err => {
@@ -27,7 +26,6 @@ app.get('/maps', (req, res) => {
 app.post('/board', (req, res) => {
   query.getBoard(req.body.mapId)
     .then(board => {
-      console.log('board:', board);
       res.send(board);
     })
     .catch(err => {
