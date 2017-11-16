@@ -3,8 +3,8 @@ import Banner from './Banner.jsx';
 import LandingPage from './LandingPage.jsx';
 import CreateNewGame from './CreateNewGame.jsx';
 import CurrentGame from './CurrentGame.jsx';
+import { Switch, Route } from 'react-router-dom';
 
-import { Switch, Route, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../actions';
@@ -18,11 +18,13 @@ class App extends React.Component {
     return (
       <div>
         <Banner />
-        <Switch>
-          <Route exact path="/" component={LandingPage}/>
-          <Route path="/new" component={CreateNewGame}/>
-          <Route path="/game" component={CurrentGame}/>
-        </Switch>
+        <div className="siteBody">
+          <Switch>
+            <Route exact path="/" component={LandingPage}/>
+            <Route path="/new" component={CreateNewGame}/>
+            <Route path="/game" component={CurrentGame}/>
+          </Switch>
+        </div>
       </div>
     )
   }

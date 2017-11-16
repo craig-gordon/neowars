@@ -3,7 +3,6 @@ import equal from 'deep-equal';
 import { Link } from 'react-router-dom';
 import { countTilesBetweenUnits, calculateDamage } from '../gameData/calculations';
 
-import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../actions';

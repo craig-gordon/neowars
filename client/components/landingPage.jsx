@@ -1,9 +1,9 @@
 import React from 'react';
-import _ from 'lodash';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+// import { Button } from 'antd';
+// import 'antd/lib/button/style/css';
 
-import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../actions';
@@ -28,7 +28,7 @@ export class LandingPage extends React.Component {
   render() {
     return (
       <div>
-        <button onClick={this.getMapList}>
+        <button className="primaryButton" onClick={this.getMapList}>
           Create New Game
         </button>
       </div>

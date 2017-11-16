@@ -77,9 +77,10 @@ class CreateNewGame extends React.Component {
 
         <br/><br/>
 
-        <button onClick={this.setNameAndMap.bind(null, this.state.gameName, this.state.map)}>
-          Start Game
-        </button>
+        <button
+          className="primaryButton"
+          onClick={this.setNameAndMap.bind(null, this.state.gameName, this.state.map)}
+        > Start Game </button>
 
       </div>
     )

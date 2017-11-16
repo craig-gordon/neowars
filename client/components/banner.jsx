@@ -8,9 +8,11 @@ class Banner extends React.Component {
 
   render() {
     return (
-      <h1>
-        <Link to='/'>Neo Wars</Link>
-      </h1>
+      <div className="siteBanner">
+        <Link to="/" className="siteName">
+          Neo Wars
+        </Link>
+      </div>
     )
   }
 }

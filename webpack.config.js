@@ -5,7 +5,7 @@ const webpack = require('webpack');
 const Dotenv = require('dotenv-webpack');
 
 const config = {
-  entry: ['babel-polyfill', './client/index.jsx'],
+  entry: './client/index.jsx',
   output: {
     path: path.join(__dirname + '/client'),
     filename: 'bundle.js'
@@ -14,18 +14,16 @@ const config = {
   module: {
     loaders: [
       {
-        test: /\.css$/,
-        loader: 'style-loader!css-loader',
-      },
-      {
         test: /.jsx?$/,
         loader: 'babel-loader',
         exclude: /node_modules/,
         query: {
+          babelrc: false,
           presets: ['es2015', 'react'],
-          plugins: [
-            'transform-object-rest-spread'
-          ]
+          plugins: [[
+            'transform-object-rest-spread',
+            'transform-react-jsx-source'
+          ]]
         }
       }
     ]
