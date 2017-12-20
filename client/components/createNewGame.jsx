@@ -36,6 +36,7 @@ export class CreateNewGame extends React.Component {
       mapId: map.id
     })
       .then(res => {
+        console.log('res.data:', res.data);
         let board = this.assembleBoard(res.data);
         this.props.actions.setCurrentGameName(gameName);
         this.props.actions.setCurrentMap(map);

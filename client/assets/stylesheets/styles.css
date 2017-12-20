@@ -1,8 +1,6 @@
-@import url('../../../node_modules/antd/dist/antd.css');
-
 @font-face {
   font-family: Arcade;
-  src: url('../fonts/ARCADE.ttf'); 
+  src: url('ARCADE.ttf') format('truetype'); 
 }
 
 body {

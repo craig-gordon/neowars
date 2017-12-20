@@ -5,7 +5,7 @@
   "main": "webpack.config.js",
   "scripts": {
     "compile": "webpack -w",
-    "start": "nodemon server/index.js",
+    "start": "node server/index.js",
     "test": "jest --verbose --watchAll"
   },
   "repository": {
@@ -34,7 +34,6 @@
     "enzyme-to-json": "^3.2.2",
     "jest": "^21.2.1",
     "jest-cli": "^21.2.1",
-    "redux-devtools": "^3.4.1",
     "webpack": "^3.8.1",
     "webpack-dev-middleware": "^1.12.0",
     "webpack-dev-server": "^2.9.4"
@@ -58,6 +57,7 @@
     "react-router-dom": "^4.2.2",
     "react-router-redux": "^5.0.0-alpha.8",
     "redux": "^3.7.2",
+    "redux-devtools-extension": "^2.13.2",
     "sequelize": "^4.22.6"
   }
 }

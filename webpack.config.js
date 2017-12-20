@@ -10,7 +10,6 @@ const config = {
     path: path.join(__dirname + '/client'),
     filename: 'bundle.js'
   },
-  devtool: 'source-map',
   module: {
     loaders: [
       {

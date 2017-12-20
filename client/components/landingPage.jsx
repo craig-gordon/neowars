@@ -15,6 +15,7 @@ export class LandingPage extends React.Component {
   getMapList() {
     axios.get('/maps')
       .then(res => {
+        console.log('res.data:', res.data);
         this.props.actions.populateMapList(res.data);
         this.props.history.push('/new');
       })
