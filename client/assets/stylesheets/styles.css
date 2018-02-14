@@ -1,6 +1,6 @@
 @font-face {
-  font-family: Arcade;
-  src: url('ARCADE.ttf') format('truetype'); 
+  font-family: 'Arcade';
+  src: url('../fonts/ARCADE.ttf') format('truetype'); 
 }
 
 body {
