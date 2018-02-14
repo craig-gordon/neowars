@@ -12,10 +12,7 @@ const historyMiddleware = routerMiddleware(appHistory);
 
 const store = createStore(
   rootReducer,
-  compose(
-    applyMiddleware(historyMiddleware),
-    (window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
-  )
+  applyMiddleware(historyMiddleware)
 );
 
 render(
