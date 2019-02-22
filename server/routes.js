@@ -1,36 +1,21 @@
 const express = require('express');
 const path = require('path');
-const axios = require('axios');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const compression = require('compression');
-const query = require('../db/queries.js');
+// const query = require('../db/queries.js');
 const app = express();
+
+const maps = require('../db/maps.js');
 
 app.use(bodyParser.json());
 app.use(cors());
-// app.use(compression());
+app.use(compression());
 
 app.use(express.static(path.join(__dirname + '/../client/')));
 
 app.get('/maps', (req, res) => {
-  query.getAllMaps()
-    .then(maps => {
-      res.send(maps);
-    })
-    .catch(err => {
-      res.send(err);
-    });
-});
-
-app.post('/board', (req, res) => {
-  query.getBoard(req.body.mapId)
-    .then(board => {
-      res.send(board);
-    })
-    .catch(err => {
-      res.send(err);
-    });
+  res.send(maps);
 });
 
 app.get('/*', (req, res) => {

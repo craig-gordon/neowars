@@ -8,30 +8,36 @@ import * as actionCreators from '../actions';
 class GameBoard extends React.Component {
   constructor(props) {
     super(props);
+    console.log('GameBoard props:', this.props);
+    this.state = {
+      board: this.props.currentBoard.length > 0 ? this.props.currentBoard : this.props.displayBoard
+    };
   }
 
   render() {
+    console.log('this.state.board:', this.state.board);
     return (
       <div className="board">
         <table>
           <tbody>
-            {this.props.currentBoard.map((row, x) => {
+            {this.state.board ? this.state.board.map((row, x) => {
               return <tr className='row' key={x}>{row.map((space, y) => {
                 return (
                   <BoardSpace
+                    display={!!this.props.displayBoard}
                     key={y}
                     space={space}
-                    clickedSpace={this.props.clickedSpace}
-                    clickedUnit={this.props.clickedUnit}
-                    movingUnit={this.props.movingUnit}
-                    attackingUnit={this.props.attackingUnit}
-                    toggleSpaceIntel={this.props.toggleSpaceIntel}
-                    toggleUnitMove={this.props.toggleUnitMove}
-                    toggleUnitAttack={this.props.toggleUnitAttack}
+                    clickedSpace={this.props.clickedSpace || null}
+                    clickedUnit={this.props.clickedUnit || null}
+                    movingUnit={this.props.movingUnit || null}
+                    attackingUnit={this.props.attackingUnit || null}
+                    toggleSpaceIntel={this.props.toggleSpaceIntel || null}
+                    toggleUnitMove={this.props.toggleUnitMove || null}
+                    toggleUnitAttack={this.props.toggleUnitAttack || null}
                   />
                 )
               })}</tr>
-            })}
+            }) : null}
           </tbody>
         </table>
       </div>

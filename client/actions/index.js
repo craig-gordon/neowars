@@ -1,5 +1,4 @@
 const POPULATE_MAP_LIST = 'POPULATE_MAP_LIST';
-const SET_CURRENT_GAME_NAME = 'SET_CURRENT_GAME_NAME';
 const SET_CURRENT_MAP = 'SET_CURRENT_MAP';
 const SET_CURRENT_BOARD = 'SET_CURRENT_BOARD';
 const INCREMENT_CURRENT_DAY = 'INCREMENT_CURRENT_DAY';
@@ -24,11 +23,6 @@ const CAPTURE_PROPERTY = 'CAPTURE_PROPERTY';
 export const populateMapList = (maps) => ({
   type: POPULATE_MAP_LIST,
   maps
-});
-
-export const setCurrentGameName = (gameName) => ({
-  type: SET_CURRENT_GAME_NAME,
-  gameName
 });
 
 export const setCurrentMap = (map) => ({

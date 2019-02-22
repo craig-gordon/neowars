@@ -1,6 +1,6 @@
-const sequelize = require('./index').sequelize;
-const Map = require('./index').Map;
-const Space = require('./index').Space;
+// const sequelize = require('./index').sequelize;
+// const Map = require('./index').Map;
+// const Space = require('./index').Space;
 
 const getAllMaps = () => {
   return Map.findAll()

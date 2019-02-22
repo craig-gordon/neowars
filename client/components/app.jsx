@@ -1,34 +1,27 @@
 import React from 'react';
-import Banner from './Banner.jsx';
 import LandingPage from './LandingPage.jsx';
-import CreateNewGame from './CreateNewGame.jsx';
 import CurrentGame from './CurrentGame.jsx';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Link } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../actions';
 
-export class App extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <div>
-        <Banner />
-        <div className="siteBody">
-          <Switch>
-            <Route exact path="/" component={LandingPage}/>
-            <Route path="/new" component={CreateNewGame}/>
-            <Route path="/game" component={CurrentGame}/>
-          </Switch>
-        </div>
-      </div>
-    )
-  }
-}
+const App = () => (
+  <div>
+    <div className="siteBanner">
+      <Link to="/" className="siteName">
+        Neowars
+      </Link>
+    </div>
+    <div className="siteBody">
+      <Switch>
+        <Route exact path="/" component={LandingPage}/>
+        <Route path="/game" component={CurrentGame}/>
+      </Switch>
+    </div>
+  </div>
+);
 
 const mapStateToProps = (state) => ({
   router: state.router

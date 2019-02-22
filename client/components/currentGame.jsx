@@ -1,9 +1,9 @@
 import React from 'react';
 import _ from 'lodash';
-import GameHeader from './GameHeader.jsx';
 import GameBoard from './GameBoard.jsx';
 import CountriesIntel from './CountriesIntel.jsx';
 import SpaceIntel from './SpaceIntel.jsx';
+import { terrainTypes as Terrain } from '../gameData/terrainTypes';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -58,7 +58,10 @@ class CurrentGame extends React.Component {
   render() {
     return (
       <div>
-        <GameHeader />
+        <div>
+          <div>Map: {this.state.currentMap.name}</div>
+          <div>Day: {this.state.currentDay}</div>
+        </div>
         <GameBoard
           clickedSpace={this.state.clickedSpace}
           clickedUnit={this.state.clickedUnit}
@@ -71,21 +74,23 @@ class CurrentGame extends React.Component {
         <CountriesIntel
           toggleSpaceIntel={this.toggleSpaceIntel}
         />
-        {this.state.spaceInFocus ? <SpaceIntel
-          space={this.state.clickedSpace}
-          movingUnit={this.state.movingUnit}
-          toggleSpaceIntel={this.toggleSpaceIntel}
-          toggleUnitMove={this.toggleUnitMove}
-          toggleUnitAttack={this.toggleUnitAttack}
-        /> : null}
-
+        {
+          this.state.spaceInFocus
+            ? <SpaceIntel
+                space={this.state.clickedSpace}
+                movingUnit={this.state.movingUnit}
+                toggleSpaceIntel={this.toggleSpaceIntel}
+                toggleUnitMove={this.toggleUnitMove}
+                toggleUnitAttack={this.toggleUnitAttack}
+              />
+            : null
+        }
       </div>
     )
   }
 }
 
 const mapStateToProps = (state) => ({
-  currentGameName: state.currentGameName,
   currentMap: state.currentMap,
   currentBoard: state.currentBoard,
   currentDay: state.currentDay,

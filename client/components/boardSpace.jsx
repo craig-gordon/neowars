@@ -8,43 +8,44 @@ import { bindActionCreators } from 'redux';
 import * as actionCreators from '../actions';
 
 export class BoardSpace extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
+    console.log('BoardSpace props:', this.props);
     let space = this.props.space;
-    let occupyingUnit = this.props.units.filter(unit => unit.position === space.position)[0];
-    let movingUnit = this.props.movingUnit;
-    let attackingUnit = this.props.attackingUnit;
-    let clickedPosition = this.props.clickedSpace.position;
-    return (
-      <td
-        className={`${space.terrain}_${space.countryName}`}
-        onClick={() => {
-          if (movingUnit) {
-            if (!occupyingUnit && countTilesBetweenUnits(clickedPosition, space.position) <= movingUnit.moveRange) {
-              this.props.actions.moveUnit(clickedPosition, space.position);
-              this.props.actions.updateTargetsInRange(space.position);
-              this.props.toggleUnitMove();
+    if (this.props.display) {
+      return <td className={`${space.terrain}_${space.country}`} />;
+    } else {
+      let occupyingUnit = this.props.units.filter(unit => unit.position === space.position)[0];
+      let movingUnit = this.props.movingUnit;
+      let attackingUnit = this.props.attackingUnit;
+      let clickedPosition = this.props.clickedSpace.position;
+      return (
+        <td
+          className={`${space.terrain}_${space.countryName}`}
+          onClick={() => {
+            if (movingUnit) {
+              if (!occupyingUnit && countTilesBetweenUnits(clickedPosition, space.position) <= movingUnit.moveRange) {
+                this.props.actions.moveUnit(clickedPosition, space.position);
+                this.props.actions.updateTargetsInRange(space.position);
+                this.props.toggleUnitMove();
+              }
+            } else if (attackingUnit) {
+              let occupyingInAttackRange = attackingUnit.targetsInRange.some(target => (
+                equal(target.position, space.position)
+              ));
+              if (occupyingInAttackRange) {
+                let damageValues = calculateDamage(attackingUnit, occupyingUnit, this.props.clickedSpace.defense, space.defense);
+                this.props.actions.decrementHp(occupyingUnit.position, damageValues[0]);
+                if (damageValues[1]) this.props.actions.decrementHp(attackingUnit.position, damageValues[1]);
+                this.props.toggleUnitAttack();
+              }
             }
-          } else if (attackingUnit) {
-            let occupyingInAttackRange = attackingUnit.targetsInRange.some(target => (
-              equal(target.position, space.position)
-            ));
-            if (occupyingInAttackRange) {
-              let damageValues = calculateDamage(attackingUnit, occupyingUnit, this.props.clickedSpace.defense, space.defense);
-              this.props.actions.decrementHp(occupyingUnit.position, damageValues[0]);
-              if (damageValues[1]) this.props.actions.decrementHp(attackingUnit.position, damageValues[1]);
-              this.props.toggleUnitAttack();
-            }
-          }
-          this.props.toggleSpaceIntel(space);
-        }}
-      >
-        {occupyingUnit ? <img src={`assets/images/${occupyingUnit.type}_${occupyingUnit.countryName}.png`} /> : null}
-      </td>
-    )
+            this.props.toggleSpaceIntel(space);
+          }}
+        >
+          {occupyingUnit ? <img src={`assets/images/${occupyingUnit.type}_${occupyingUnit.countryName}.png`} /> : null}
+        </td>
+      );
+    }
   }
 }
 

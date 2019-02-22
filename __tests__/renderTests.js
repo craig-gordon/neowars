@@ -7,7 +7,6 @@ Enzyme.configure({ adapter: new Adapter() });
 
 import { App } from '../client/components/App.jsx';
 import { Banner } from '../client/components/Banner.jsx';
-import { CreateNewGame } from '../client/components/CreateNewGame.jsx';
 import { LandingPage } from '../client/components/LandingPage.jsx';
 
 
@@ -27,16 +26,6 @@ describe('<Banner />', () => {
   
   it('renders', () => {
     expect(banner).toHaveLength(1);
-  });
-
-});
-
-describe('<CreateNewGame />', () => {
-
-  const createNewGame = shallow(<CreateNewGame />);
-  
-  it('renders', () => {
-    expect(createNewGame).toHaveLength(1);
   });
 
 });

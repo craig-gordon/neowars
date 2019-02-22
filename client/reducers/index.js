@@ -14,15 +14,6 @@ const mapList = (state = [], action) => {
   }
 };
 
-const currentGameName = (state = '', action) => {
-  switch (action.type) {
-    case 'SET_CURRENT_GAME_NAME':
-      return action.gameName;
-    default:
-      return state;
-  }
-};
-
 const currentMap = (state = {}, action) => {
   switch (action.type) {
     case 'SET_CURRENT_MAP':
@@ -128,7 +119,6 @@ const units = (state = [], action) => {
 
 const rootReducer = combineReducers({
   mapList,
-  currentGameName,
   currentMap,
   currentBoard,
   currentDay,
