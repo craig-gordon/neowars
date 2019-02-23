@@ -9,7 +9,7 @@ export const findAllTargetsInRange = (idx, unitList) => {
       let filtered = _.filter(unitList, (dUnit) => {
         return countTilesBetweenUnits(aUnit.position, dUnit.position) <= weapon.range
           && weapon.damageTo.hasOwnProperty(dUnit.type)
-          && aUnit.countryName !== dUnit.countryName;
+          && aUnit.country !== dUnit.country;
       });
       return _.map(filtered, (unit) => ({weapon, position: unit.position}));
     })

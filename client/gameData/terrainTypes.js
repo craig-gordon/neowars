@@ -63,7 +63,7 @@ class Mountain extends Terrain {
 }
 
 class City extends Terrain {
-  constructor(x, y, countryName = null) {
+  constructor(x, y, country = null) {
     super(x, y);
     this.terrain = 'city';
     this.defense = 3;
@@ -75,7 +75,7 @@ class City extends Terrain {
       W: 1
     };
     this.captureHp = 20;
-    this.countryName = countryName;
+    this.country = country;
     this.canBuild = false;
     this.unitList = [
       {name: 'antiair'},
@@ -94,7 +94,7 @@ class City extends Terrain {
 }
 
 class Base extends Terrain {
-  constructor(x, y, countryName = null) {
+  constructor(x, y, country = null) {
     super(x, y);
     this.terrain = 'base';
     this.defense = 3;
@@ -106,7 +106,7 @@ class Base extends Terrain {
       W: 1
     };
     this.captureHp = 20;
-    this.countryName = countryName;
+    this.country = country;
     this.canBuild = true;
     this.unitList = [
       {name: 'antiair', cost: 7000},
@@ -125,7 +125,7 @@ class Base extends Terrain {
 }
 
 class Airport extends Terrain {
-  constructor(x, y, countryName = null) {
+  constructor(x, y, country = null) {
     super(x, y);
     this.terrain = 'airport';
     this.defense = 3;
@@ -137,7 +137,7 @@ class Airport extends Terrain {
       W: 1
     };
     this.captureHp = 20;
-    this.countryName = countryName;
+    this.country = country;
     this.canBuild = true;
     this.unitList = [
       {name: 'bcopter', cost: 9000},
@@ -149,7 +149,7 @@ class Airport extends Terrain {
 }
 
 class HQ extends Terrain {
-  constructor(x, y, countryName) {
+  constructor(x, y, country) {
     super(x, y);
     this.terrain = 'hq';
     this.defense = 4;
@@ -161,7 +161,7 @@ class HQ extends Terrain {
       W: 1
     };
     this.captureHp = 20;
-    this.countryName = countryName;
+    this.country = country;
     this.endsGame = true;
     this.canBuild = false;
     this.unitList = [

@@ -47,10 +47,10 @@ class CurrentGame extends React.Component {
     this.setState({attackingUnit: unit ? unit : null});
   }
 
-  calculateInitialIncome(countryName) {
+  calculateInitialIncome(country) {
     return _.reduce(this.props.currentBoard, (sum, row) => {
       return sum + _.reduce(row, (total, space) => {
-        return total + (space.countryName === countryName ? 1000 : 0);
+        return total + (space.country === country ? 1000 : 0);
       }, 0);
     }, 0);
   }
@@ -58,9 +58,9 @@ class CurrentGame extends React.Component {
   render() {
     return (
       <div>
-        <div>
-          <div>Map: {this.state.currentMap.name}</div>
-          <div>Day: {this.state.currentDay}</div>
+        <div className='map-day-info'>
+          <div>Map: {this.props.currentMap.name}</div>
+          <div>Day: {this.props.currentDay}</div>
         </div>
         <GameBoard
           clickedSpace={this.state.clickedSpace}

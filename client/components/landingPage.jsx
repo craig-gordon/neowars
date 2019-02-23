@@ -2,7 +2,7 @@ import React from 'react';
 import _ from 'lodash';
 import axios from 'axios';
 import { terrainTypes as Terrain } from '../gameData/terrainTypes';
-import GameBoard from './gameBoard.jsx';
+import DisplayMap from './displayMap.jsx';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -11,12 +11,7 @@ import * as actionCreators from '../actions';
 export class LandingPage extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      map: {}
-    };
-    this.updateSelectedMap = this.updateSelectedMap.bind(this);
-    this.setNameAndMap = this.setNameAndMap.bind(this);
-    this.assembleBoard = this.assembleBoard.bind(this);
+    this.setMap = this.setMap.bind(this);
   }
 
   componentDidMount() {
@@ -31,50 +26,43 @@ export class LandingPage extends React.Component {
       });
   }
 
-  updateSelectedMap(e) {
-    let map = _.filter(this.props.mapList, (map, i) => map.name === e.target.value)[0];
-    this.setState({ map });
-  }
-
-  setNameAndMap(gameName, map) {
-    axios.post('/board', {
-      mapId: map.id
-    })
-      .then(res => {
-        console.log('res.data:', res.data);
-        let board = this.assembleBoard(res.data);
-        this.props.actions.setCurrentMap(map);
-        this.props.actions.setCurrentBoard(board);
-        this.props.history.push('/game');
-      })
-      .catch(err => {
-        console.log('Error fetching board data from database:', err);
+  setMap() {
+    if (!this.props.selectedMap.hasOwnProperty('name')) return;
+    let board = this.props.selectedMap.board;
+    let constructedBoard = _.map(board, (row, x) => {
+      return _.map(row, (space, y) => {
+        return new Terrain[space.terrain](x, y, space.country);
       });
-  }
-
-  assembleBoard(spaces) {
-    return _.reduce(spaces, (matrix, space) => {
-      if (space.col === 0) {
-        matrix[space.row] = [new Terrain[space.terrain](space.row, space.col, space.country)];
-      } else {
-        matrix[space.row].push(new Terrain[space.terrain](space.row, space.col, space.country));
-      }
-      return matrix;
-    }, []);
+    });
+    console.log('constructedBoard:', constructedBoard);
+    this.props.actions.setCurrentMap(this.props.selectedMap);
+    this.props.actions.setCurrentBoard(constructedBoard);
+    this.props.history.push('/game');
+    this.props.actions.setSelectedMap({});
   }
 
   render() {
     return (
       <div>
         <h3>Welcome to Neowars!</h3>
-        <div>Neowars is a browser simulation <a className='wiki-link' href="https://en.wikipedia.org/wiki/Advance_Wars">Advance Wars</a>, a series
+        <div className='tagline'>Neowars is a browser simulation <a className='wiki-link' href="https://en.wikipedia.org/wiki/Advance_Wars">Advance Wars</a>, a series
         of turn-based strategy games developed by Intelligent Systems and published by Nintendo.</div>
+        <h4>Click to select a map</h4>
         <div className="map-grid">
-          {_.map(this.props.mapList, (map) => map.board ? <GameBoard key={map.name} displayBoard={map.board} /> : null)}
+          {_.map(this.props.mapList, (map) => (
+            map.board
+              ? <DisplayMap
+                  key={map.name}
+                  map={map}
+                  setSelectedMap={this.props.actions.setSelectedMap}
+                  selected={this.props.selectedMap.name === map.name}
+                />
+              : null
+          ))}
         </div>
         <button
-          className="primaryButton"
-          onClick={this.setNameAndMap.bind(null, this.state.gameName, this.state.map)}
+          className={this.props.selectedMap.hasOwnProperty('name') ? 'primary-button' : 'primary-button-disabled'}
+          onClick={this.setMap}
         >
           Start Game
         </button>
@@ -85,6 +73,7 @@ export class LandingPage extends React.Component {
 
 const mapStateToProps = (state) => ({
   mapList: state.mapList,
+  selectedMap: state.selectedMap,
   router: state.router
 });
 

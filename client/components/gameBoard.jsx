@@ -8,14 +8,12 @@ import * as actionCreators from '../actions';
 class GameBoard extends React.Component {
   constructor(props) {
     super(props);
-    console.log('GameBoard props:', this.props);
     this.state = {
       board: this.props.currentBoard.length > 0 ? this.props.currentBoard : this.props.displayBoard
     };
   }
 
   render() {
-    console.log('this.state.board:', this.state.board);
     return (
       <div className="board">
         <table>

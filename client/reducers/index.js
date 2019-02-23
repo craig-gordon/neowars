@@ -14,6 +14,15 @@ const mapList = (state = [], action) => {
   }
 };
 
+const selectedMap = (state = {}, action) => {
+  switch (action.type) {
+    case 'SET_SELECTED_MAP':
+      return action.map;
+    default:
+      return state;
+  }
+};
+
 const currentMap = (state = {}, action) => {
   switch (action.type) {
     case 'SET_CURRENT_MAP':
@@ -68,12 +77,12 @@ const countries = (state = (
   switch (action.type) {
     case 'RECEIVE_INCOME': // state = [{'Floria'}, {'Ranford'}]
       var newState = [...state.map(country => _.assign({}, country))];
-      var idx = _.reduce(newState, (acc, country, i) => country.name === action.countryName ? i : acc, null);
+      var idx = _.reduce(newState, (acc, country, i) => country.name === action.country ? i : acc, null);
       newState[idx].funds += newState[idx].income;
       return newState;
     case 'DECREMENT_FUNDS':
       var newState = [...state.map(country => _.assign({}, country))];
-      var idx = _.reduce(newState, (acc, country, i) => country.name === action.countryName ? i : acc, null);
+      var idx = _.reduce(newState, (acc, country, i) => country.name === action.country ? i : acc, null);
       newState[idx].funds -= action.loss;
       return newState;
     case 'INCREMENT_INCOME':
@@ -88,7 +97,7 @@ const countries = (state = (
 const units = (state = [], action) => {
   switch (action.type) {
     case 'BUILD_UNIT':
-      return [...state, new Unit[action.unitType](action.countryName, action.position)];
+      return [...state, new Unit[action.unitType](action.country, action.position)];
     case 'DESTROY_UNIT':
       return [...state.slice(0, action.idx), ...state.slice(action.idx + 1)];
     case 'MAKE_UNITS_ACTIVE':
@@ -119,6 +128,7 @@ const units = (state = [], action) => {
 
 const rootReducer = combineReducers({
   mapList,
+  selectedMap,
   currentMap,
   currentBoard,
   currentDay,

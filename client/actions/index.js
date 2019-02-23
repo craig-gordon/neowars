@@ -1,4 +1,5 @@
 const POPULATE_MAP_LIST = 'POPULATE_MAP_LIST';
+const SET_SELECTED_MAP = 'SET_SELECTED_MAP';
 const SET_CURRENT_MAP = 'SET_CURRENT_MAP';
 const SET_CURRENT_BOARD = 'SET_CURRENT_BOARD';
 const INCREMENT_CURRENT_DAY = 'INCREMENT_CURRENT_DAY';
@@ -25,6 +26,11 @@ export const populateMapList = (maps) => ({
   maps
 });
 
+export const setSelectedMap = (map) => ({
+  type: SET_SELECTED_MAP,
+  map
+})
+
 export const setCurrentMap = (map) => ({
   type: SET_CURRENT_MAP,
   map
@@ -45,21 +51,21 @@ export const changeCurrentTurn = (countries) => ({
   countries
 });
 
-export const receiveIncome = (countryName) => ({
+export const receiveIncome = (country) => ({
   type: RECEIVE_INCOME,
-  countryName
+  country
 });
 
-export const decrementFunds = (countryName, loss) => ({
+export const decrementFunds = (country, loss) => ({
   type: DECREMENT_FUNDS,
-  countryName,
+  country,
   loss
 });
 
-export const buildUnit = (unitType, countryName, position) => ({
+export const buildUnit = (unitType, country, position) => ({
   type: BUILD_UNIT,
   unitType,
-  countryName,
+  country,
   position
 });
 

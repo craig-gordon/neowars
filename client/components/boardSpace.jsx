@@ -9,7 +9,7 @@ import * as actionCreators from '../actions';
 
 export class BoardSpace extends React.Component {
   render() {
-    console.log('BoardSpace props:', this.props);
+    console.log('this.props:', this.props);
     let space = this.props.space;
     if (this.props.display) {
       return <td className={`${space.terrain}_${space.country}`} />;
@@ -20,8 +20,9 @@ export class BoardSpace extends React.Component {
       let clickedPosition = this.props.clickedSpace.position;
       return (
         <td
-          className={`${space.terrain}_${space.countryName}`}
+          className={`${space.terrain}_${space.country}`}
           onClick={() => {
+            console.log('CLICKED! this.props:', this.props);
             if (movingUnit) {
               if (!occupyingUnit && countTilesBetweenUnits(clickedPosition, space.position) <= movingUnit.moveRange) {
                 this.props.actions.moveUnit(clickedPosition, space.position);
@@ -42,7 +43,7 @@ export class BoardSpace extends React.Component {
             this.props.toggleSpaceIntel(space);
           }}
         >
-          {occupyingUnit ? <img src={`assets/images/${occupyingUnit.type}_${occupyingUnit.countryName}.png`} /> : null}
+          {occupyingUnit ? <img width='24px' src={`assets/images/${occupyingUnit.type}_${occupyingUnit.country}.png`} /> : null}
         </td>
       );
     }

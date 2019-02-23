@@ -13,7 +13,7 @@ class SpaceIntel extends React.Component {
 
   render() {
     let space = this.props.space;
-    let spaceOwner = this.props.countries.filter(country => country.name === space.countryName)[0];
+    let spaceOwner = this.props.countries.filter(country => country.name === space.country)[0];
     let unit = this.props.units.filter(unit => unit.position === space.position)[0];
     return (
       <div>
@@ -25,28 +25,41 @@ class SpaceIntel extends React.Component {
           movingUnit={this.props.movingUnit}
         /> : null}
 
-        Terrain: {space.terrain}<br/>
-        Defense: {space.defense}<br/>
+        <div className='space-intel-grid'>
+          <div style={{gridColumn: 'span 2'}}>Terrain Info</div>
+          <div>Terrain</div>
+          <div>{space.terrain}</div>
+          <div>Defense</div>
+          <div>{space.defense}</div>
+          {space.country ? <div>Owner</div> : null}
+          {space.country ? <div>{space.country}</div> : null}
+        </div>
 
-        {space.countryName ? <div>Owner: {space.countryName}</div> : null}<br/>
-
-        {space.canBuild && this.props.currentTurn === space.countryName ?
-          (<div>
-
-            {space.unitList.map((unit, i) => (
-              unit.cost <= spaceOwner.funds ? (
-                <div
-                  key={i}
-                  onClick={() => {
-                    this.props.actions.buildUnit(unit.name, space.countryName, space.position);
-                    this.props.actions.decrementFunds(space.countryName, unit.cost);
-                    this.props.toggleSpaceIntel();
-                  }}
-                > {unit.name} | {unit.cost} </div>
-              ) : null
-            ))}
-
-          </div>)
+        {space.canBuild && this.props.currentTurn === space.country ?
+          (
+            <div className='build-list-grid'>
+              <div style={{gridColumn: 'span 2'}}>Build List</div>
+              {space.unitList.map((unit, i) => (
+                unit.cost <= spaceOwner.funds ? (
+                  <React.Fragment key={i}>
+                    <div
+                      key={i}
+                      onClick={() => {
+                        this.props.actions.buildUnit(unit.name, space.country, space.position);
+                        this.props.actions.decrementFunds(space.country, unit.cost);
+                        this.props.toggleSpaceIntel();
+                      }}
+                    >
+                      {unit.name}
+                    </div>
+                    <div>
+                      {unit.cost}
+                    </div>
+                  </React.Fragment>
+                ) : null
+              ))}
+            </div>
+          )
         :
           null}
 
